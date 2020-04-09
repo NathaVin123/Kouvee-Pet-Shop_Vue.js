@@ -1,4 +1,4 @@
-# lyriclibs
+# Kouvee Pet Shop
 
 ## Project setup
 ```
