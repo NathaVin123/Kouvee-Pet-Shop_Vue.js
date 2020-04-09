@@ -101,7 +101,12 @@ export default new Router({
             name: 'commentAdmin',           
             path: '/admins/adminContents/commentAdmin',           
             component: loadView('commentAdmin')         
-        }        
+          },
+          {           
+            name: 'layananAdmin',           
+            path: '/admins/adminContents/layananAdmin',           
+            component: loadView('layananAdmin')         
+          }     
       ]     
   }, 
   ],

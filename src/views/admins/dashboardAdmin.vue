@@ -15,7 +15,7 @@
                     Admin                
                 </v-list-item-title>                 
                 <v-list-item-subtitle>                     
-                    lyriclibs
+                    Kouvee Pet Shop
                 </v-list-item-subtitle>                 
                 </v-list-item-content>             
             </v-list-item> 
@@ -53,7 +53,7 @@
                     style="font-size: 21px;"                 
                     class="white--text ml-2"             
                 >                  
-                    LyricsLibsAdminSYS             
+                    Kouvee Pet Shop Admin System             
                 </v-toolbar-title>
             </v-app-bar> 
  
@@ -71,6 +71,7 @@
                 drawer: null,         
                 items: [           
                     { title: 'Dashboard', icon: 'mdi-dashboard', route: '/admins/dashboardAdmin'},
+                    { title: 'Layanan', icon: 'mdi-dashboard', route: '/admins/adminContents/layananAdmin'},
                     { title: 'User List', icon: 'mdi-dashboard', route: '/admins/adminContents/userAdmin'},
                     { title: 'Lyric List', icon: 'mdi-dashboard', route: '/admins/adminContents/lyricAdmin'},      
                     { title: 'Comment List', icon: 'mdi-dashboard', route: '/admins/adminContents/commentAdmin'},  
