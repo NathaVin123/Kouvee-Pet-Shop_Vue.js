@@ -93,6 +93,11 @@ export default new Router({
               component: loadView('userAdmin')         
           },
           {           
+            name: 'welcomeAdmin',           
+            path: '/admins/adminContents/welcomeAdmin',           
+            component: loadView('welcomeAdmin')         
+          },
+          {           
             name: 'lyricAdmin',           
             path: '/admins/adminContents/lyricAdmin',           
             component: loadView('lyricAdmin')         

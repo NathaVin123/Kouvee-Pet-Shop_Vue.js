@@ -57,7 +57,7 @@
               class="text-center"
               cols="12"
             > 
-            {{ new Date().getFullYear() }} — <strong>Made by Love ❤</strong>
+            {{ new Date().getFullYear() }} — <strong>P3L G kel 3</strong>
             </v-col>
           </v-footer>
         </div>

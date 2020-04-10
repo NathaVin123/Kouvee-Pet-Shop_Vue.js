@@ -6,7 +6,7 @@
           <v-layout row wrap style="margin:10px">
             <v-flex xs6>
               <v-container class="my-5">
-              <h1 class="subheading grey--text">Data Layanan</h1>
+              <h1 class="subheading grey-darken--text">Data Layanan</h1>
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">

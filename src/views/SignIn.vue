@@ -103,7 +103,7 @@ export default {
             this.user.append('password', this.form.password)
             this.$http.post(url,this.user).then(response =>{
                 if(this.form.email == "admin@admin.lr" && this.form.password == "adminadmin"){
-                this.$router.push({name: 'userAdmin'})
+                this.$router.push({name: 'welcomeAdmin'})
                 alert('Sign In to Admin Success !')
             }
                 else if(response.data.token){
