@@ -36,7 +36,7 @@ export default new Router({
           component: loadViewBefore('Welcome')           
         },
         {
-          path: '/views/dashboard',
+          path: '/views/DaftarProduk',
           name: 'dashboard',
           component: loadViewBefore('Dashboard')           
         },
