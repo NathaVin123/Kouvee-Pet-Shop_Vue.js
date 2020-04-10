@@ -9,7 +9,7 @@
                             <v-col cols="6">
                                 <div class="header">
                                   <div id="title">
-                                        Join With Us.!  
+                                        Bergabunglah bersama kami !  
                                     </div>
                                     <div id="tagline">
                                         Kouvee Pet Shop                                
@@ -46,7 +46,7 @@
                                       height=50
                                     ></v-text-field>
 
-                                    <small>Already have an account ? </small>
+                                    <small>Sudah punya akun ? </small>
                                     
                                     <v-btn
                                       v-for="item in signin"
@@ -55,11 +55,11 @@
                                       class="mr-4"
                                       router :to="item.route"
                                     >
-                                    Sign In Here
+                                    Masuk disini
                                     </v-btn>
 
                                     <br><br>
-                                <v-btn  @click="setForm()" rounded block class="elevation-0" color="primary" height=50 dark>SIGN UP NOW</v-btn>
+                                <v-btn  @click="setForm()" rounded block class="elevation-0" color="primary" height=50 dark>Daftar</v-btn>
                                </div>
                               </v-col>
                             <v-col cols="6" md="6" style="padding:0px">
@@ -89,7 +89,7 @@ export default {
             },
             email: '',
             signin: [
-                { text: 'Home', route: '/signin'}
+                { text: 'Home', route: '/views/signin'}
             ],
 
             nameRules: [

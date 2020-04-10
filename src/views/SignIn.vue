@@ -77,7 +77,7 @@ export default {
             email: '',
             
             signin: [
-            { text: 'Home', route: '/views/signup'}
+            { text: 'Home', route: '/views/signUp'}
             ],
             
             emailRules: [
@@ -104,12 +104,12 @@ export default {
             this.$http.post(url,this.user).then(response =>{
                 if(this.form.email == "admin@admin.lr" && this.form.password == "adminadmin"){
                 this.$router.push({name: 'userAdmin'})
-                alert('Sign In to Admin Success !')
+                alert('Login sebagai admin, sukses !')
             }
                 else if(response.data.token){
                     localStorage.setItem("token", response.data.token)
                     this.$router.push({name : 'YourLyric'})
-                    alert('Sign In Success !')
+                    alert(' !')
                 }else{
                     alert('Failed')
                 }
