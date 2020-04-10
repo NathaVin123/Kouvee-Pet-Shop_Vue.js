@@ -64,20 +64,23 @@
         </div> 
     </template> 
      
-    <script>   
-    export default {     
-        data () {       
-            return {         
-                drawer: null,         
-                items: [           
-                    { title: 'Dashboard', icon: 'mdi-dashboard', route: '/admins/dashboardAdmin'},
-                    { title: 'Layanan', icon: 'mdi-dashboard', route: '/admins/adminContents/layanan_Admin'},
-                    { title: 'User List', icon: 'mdi-dashboard', route: '/admins/adminContents/userAdmin'},
-                    { title: 'Lyric List', icon: 'mdi-dashboard', route: '/admins/adminContents/lyricAdmin'},      
-                    { title: 'Comment List', icon: 'mdi-dashboard', route: '/admins/adminContents/commentAdmin'},  
-                    { title: 'Logout', icon: 'mdi-dashboard', route: '/'}   
-                ],       
-            }     
-        },   
-    } 
-    </script> 
+<script>   
+export default {     
+    data () {       
+        return {         
+            drawer: null,         
+            items: [           
+                { title: 'Dashboard', icon: 'mdi-dashboard', route: '/admins/dashboardAdmin'},
+                { title: 'Layanan', icon: 'mdi-dashboard', route: '/admins/adminContents/layanan_Admin'},
+                { title: 'Produk', icon: 'mdi-dashboard', route: '/admins/adminContents/produk_Admin'},
+                { title: 'Pegawai', icon: 'mdi-dashboard', route: '/admins/adminContents/pegawai_Admin'},
+                { title: 'Customer', icon: 'mdi-dashboard', route: '/admins/adminContents/customer_Admin'},
+                { title: 'Supplier', icon: 'mdi-dashboard', route: '/admins/adminContents/supplier_Admin'},
+                { title: 'Hewan', icon: 'mdi-dashboard', route: '/admins/adminContents/hewan_Admin'},
+                { title: 'Jenis Hewan', icon: 'mdi-dashboard', route: '/admins/adminContents/jenisHewan_Admin'}, 
+                { title: 'Logout', icon: 'mdi-dashboard', route: '/'}
+            ],       
+        }     
+    },   
+} 
+</script> 

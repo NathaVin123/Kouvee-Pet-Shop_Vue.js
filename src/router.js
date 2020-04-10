@@ -111,7 +111,32 @@ export default new Router({
             name: 'produkAdmin',           
             path: '/admins/adminContents/produk_Admin',           
             component: loadView('produk_Admin')
-          }     
+          },
+          {
+            name: 'pegawai_Admin',           
+            path: '/admins/adminContents/pegawai_Admin',           
+            component: loadView('pegawai_Admin')
+          },
+          {
+            name: 'customer_Admin',           
+            path: '/admins/adminContents/customer_Admin',           
+            component: loadView('customer_Admin')
+          },
+          {
+            name: 'supplier_Admin',           
+            path: '/admins/adminContents/supplier_Admin',           
+            component: loadView('supplier_Admin')
+          },    
+          {
+            name: 'hewan_Admin',           
+            path: '/admins/adminContents/hewan_Admin',           
+            component: loadView('hewan_Admin')
+          },
+          {
+            name: 'jenisHewan_Admin',           
+            path: '/admins/adminContents/jenisHewan_Admin',           
+            component: loadView('jenisHewan_Admin')
+          },
       ]     
   }, 
   ],
