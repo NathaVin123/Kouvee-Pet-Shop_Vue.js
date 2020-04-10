@@ -3,7 +3,7 @@
     <div id="app">
       <br><br>
           <center>
-            <h1 class="subheading grey--text">DEVELOPER TEAM</h1>
+            <h1 class="subheading grey--text">P3l TEAM</h1>
           </center>
           <v-container class="my-5">
       
@@ -26,24 +26,22 @@
       
           </v-container>
           <center>
-            <h1 class="subheading grey--text">ABOUT US</h1>
+            <h1 class="subheading grey--text">Tentang Kami</h1>
           </center>
           
               <v-container class="my-5">
-                    <h2 class="subheading grey--text"><p class="text-left">What is Lyric Libs ?</p></h2>
+                    <h2 class="subheading grey--text"><p class="text-left">Siapa Kami?</p></h2>
                     <br>
-                    LyricLibs makes it easy for you to find the right lyric for every song you hear on your cellphone, your computer, your tablet, and others.
-                    There are millions of lyric that you are ready to access anytime and anywhere. So even if you are driving, exercising, partying, or relaxing, LyricLibs will always accompany you when listening to music.
+                    Kami adalah mahasiswa Universitas Atma Jaya Yogyakarta
                     <br><br>
-                    You can also add lyrics that are not yet on LyricLibs, and your friends can also see the lyrics you have made. LyricLibs will faithfully accompany when listening to your song. Because life needs words.
               </v-container>
           
           
           <v-container class="my-5">
-            <h2 class="subheading grey--text">Our Lovely Office</h2>
+            <h2 class="subheading grey--text">Kantor Kami</h2>
             <br>
-              <p class="text-left" mb-3>Babarsari Street Number 43, Janti, Caturtunggal, Depok, Sleman Regency, Special Region of Yogyakarta 55281
-                <small color="error"><br>*this is not our actual office, cause we all are students</small></p>
+              <p class="text-left" mb-3>Jalan Babarsari No 43, Caturtunggal, Depok, Yogyakarta
+                <small color="error"><br>*ini belum kantor sebenarnya, karena kami masih mahasiswa</small></p>
                 <br>
                 <gmap-map :center="center" :map-type-id="mapTypeId" :zoom="5">
                         <gmap-marker
@@ -71,10 +69,11 @@
         data() {
           return {
             team: [
-                { name: 'Hendry Roganda', id_number:'170709176', role: 'Web developer', avatar: '/avatar-2.png' },
-                { name: 'Nathaniel Vincent', id_number:'170709127', role: 'Backend developer', avatar: '/avatar-1.png' },
-                { name: 'Mathias Sebastian', id_number:'170709403', role: 'Tester', avatar: '/avatar-3.png' },
-                { name: 'Anastasya Valya Miroku', id_number:'170709552',role: 'Graphic designer', avatar: '/avatar-4.png' }
+                { name: 'Lawrence Adi Noman', id_number:'170709410', role: 'Mobile Developer', avatar: '/olen.jpg' },
+                { name: 'Nathaniel Vincent Wibowo', id_number:'170709127', role: 'Desktop Developer', avatar: '/vincent.jpg' },
+                { name: 'Benedictus Gladdenata A', id_number:'170709160', role: 'Desktop Developer', avatar: '/gladd.jpg' },
+                { name: 'Alfarau Al Ababil', id_number:'170709435',role: 'Backend Web Developer', avatar: '/avatar-4.png' },
+                { name: 'Afiq Satrio Nurahman', id_number:'17070926',role: 'Frontend Web Designer', avatar: '/afiq.jpg' }
         ],
         center: { lat: -7.7793301, lng: 110.4159397 },
         Zoom: "100000",

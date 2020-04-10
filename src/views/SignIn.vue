@@ -12,7 +12,7 @@
                                         Kouvee Pet Shop
                                     </div>
                                     <div id="tagline">
-                                        Sign in to continue                                    
+                                        Silahkan Login                                    
                                     </div>
                                 </div>
                                 <div class="form">
@@ -35,7 +35,7 @@
                                     height=50
                                     ></v-text-field>
 
-          <small>*Not have an account ? </small>
+          <small>Belum punya akun ? </small>
           <v-btn
           v-for="item in signin"
           :key="item.text" 
@@ -43,10 +43,10 @@
           class="mr-4"
           router :to="item.route"
         >
-         Sign Up Here
+         Daftar disini
         </v-btn>
         
-        <v-btn @click="login()" rounded block class="elevation-0" color="primary" height=50 dark>SIGN IN NOW</v-btn>
+        <v-btn @click="login()" rounded block class="elevation-0" color="primary" height=50 dark>Submit</v-btn>
         </div>
                                 
         </v-col>

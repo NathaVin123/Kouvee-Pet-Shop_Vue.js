@@ -47,7 +47,7 @@
           router :to="item.route"
           small
         >
-          <span>Sign In</span>
+          <span>Log In</span>
           <v-icon dark right small>mdi-login-variant</v-icon>
         </v-btn>
       </v-toolbar> 
@@ -80,8 +80,10 @@
         ],
         links: [
         { icon:'mdi-home', title: 'Home', route: '/' },
-        { icon:'mdi-format-align-justify', title: 'Lyric List', route: '/views/dashboard' },
-        { icon:'mdi-information', title: 'About Us', route: '/views/about' }
+        { icon:'mdi-format-align-justify', title: 'Daftar Produk', route: '/views/dashboard' },
+        { icon:'mdi-format-align-justify', title: 'Daftar Layanan', route: '' },
+        { icon:'mdi-format-align-justify', title: 'Daftar Hewan', route: '' },
+        { icon:'mdi-information', title: 'Tentang kami ', route: '/views/about' }
       ],
       signin: [
         { text: 'Home', route: '/views/signin'}

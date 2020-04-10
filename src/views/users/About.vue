@@ -49,7 +49,7 @@
               class="text-center"
               cols="12"
             >
-              {{ new Date().getFullYear() }} — <strong>LyricLibs</strong>
+              {{ new Date().getFullYear() }} — <strong>Kouvee Pet Shop</strong>
             </v-col>
           </v-footer>
         </div>
