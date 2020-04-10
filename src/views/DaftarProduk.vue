@@ -1,7 +1,8 @@
 <template v-slot:body="{ items }">
   <div class="dashboard">
+    <v-container class="my-5">
     <h1 class="subheading grey--text">Daftar Produk</h1>
-    
+    </v-container>
     <v-container class="my-5">
       <v-layout row justify-start class="mb-3">
         <v-flex xs6>
