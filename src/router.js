@@ -142,6 +142,11 @@ export default new Router({
             path: '/admins/adminContents/jenisHewan_Admin',           
             component: loadView('jenisHewan_Admin')
           },
+          {
+            name: 'ukuranHewan_Admin',           
+            path: '/admins/adminContents/ukuranHewan_Admin',           
+            component: loadView('ukuranHewan_Admin')
+          },
       ]     
   }, 
   ],
