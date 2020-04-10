@@ -4,7 +4,7 @@
       <!-- untuk navbar-->
       <v-toolbar flat app>
         <img src = "../assets/AW419642_01.gif" style="width:110px;height:48px" class="mr-2">
-        <v-toolbar-title class="text-uppercase grey--text" light>
+        <v-toolbar-title class="text-uppercase grey-darken--text" light>
           <span class="font-weight-light">Kouvee</span>
           <span>PetShop</span>
         </v-toolbar-title>
