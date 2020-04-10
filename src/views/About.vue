@@ -57,7 +57,7 @@
               class="text-center"
               cols="12"
             > 
-            {{ new Date().getFullYear() }}  — Kouvee Pet Shop <strong>Made by P3L G 3</strong>
+            {{ new Date().getFullYear() }}  — Kouvee Pet Shop <strong>Made with ❤ by P3L G 3</strong>
             </v-col>
           </v-footer>
         </div>
