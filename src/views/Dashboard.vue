@@ -1,6 +1,6 @@
 <template v-slot:body="{ items }">
   <div class="dashboard">
-    <h1 class="subheading grey--text">Lyric List</h1>
+    <h1 class="subheading grey--text">Daftar Produk</h1>
     
     <v-container class="my-5">
       <v-layout row justify-start class="mb-3">
@@ -13,9 +13,9 @@
             </template>
 
             <v-card>
-              <v-card-title class="headline">Whoops !</v-card-title>
+              <v-card-title class="headline">Kamu harus masuk / daftar dahulu</v-card-title>
                 <v-card-text>
-                  Seems you're interested to post your lyrics. Just 
+                  Kalau belum punya akun bisa 
                     <v-btn
                     v-for="item in signup"
                     :key="item.text" 
@@ -23,9 +23,9 @@
                     class="mr-4"
                     router :to="item.route"
                   >
-                    Sign Up Here
+                    Daftar Dahulu
                   </v-btn>                  
-                  <br>then you can post your favorite lyrics or 
+                  <br>Kalau udah punya bisa langsung 
                     
                     <v-btn
                     v-for="item in signin"
@@ -34,12 +34,12 @@
                     class="mr-4"
                     router :to="item.route"
                   >
-                    Sign In Here
+                    Masuk Disini
                   </v-btn>                   
-                  <br>if you've create your account </v-card-text>
+                  <br>jika kamu sudah punya akun</v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                      <v-btn color="primary" text @click="dialog = false">Back</v-btn>
+                      <v-btn color="primary" text @click="dialog = false">Tutup</v-btn>
                   </v-card-actions>
               </v-card>
             </v-dialog>
@@ -84,25 +84,32 @@ export default {
       keyword: '',
       headers: [
         {
-          text: 'Title',
-          value: 'title'
+          text: 'ID Produk',
+          value: 'id_produk'
         },
         {
-          text: 'Artist',
-          value: 'artist'
+          text: 'Nama Produk',
+          value: 'nama_produk'
         },
         {
-          text: 'Genre',
-          value: 'genre'
+          text: 'Harga Produk',
+          value: 'harga_produk'
         },
         {
-          text: 'Lyric',
-          value: 'lyric'
+          text: 'Stok Produk',
+          value: 'stok_produk'
         },
         {
-          text: 'Aksi',
-          value: null,
-          sortable : false
+          text: 'Min Stok Produk',
+          value: 'min_stok_produk'
+        },
+        {
+          text: 'Gambar',
+          value: 'gambar'
+        },
+        {
+          text: 'Update Log By (NIP)',
+          value: 'updateLog_by'
         },
       ],
       signin: [
@@ -130,7 +137,7 @@ export default {
   },
   methods: {
     getData() {
-      var uri = this.$apiUrl2 + '/lyric'
+      var uri = this.$apiUrl4 + '/produk'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
       })
