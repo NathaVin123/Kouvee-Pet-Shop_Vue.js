@@ -3,7 +3,7 @@
     <div id="app">
       <br><br>
           <center>
-            <h1 class="subheading grey--text">P3l TEAM</h1>
+            <h1 class="subheading grey--text">P3L TEAM</h1>
           </center>
           <v-container class="my-5">
       
