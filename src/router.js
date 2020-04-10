@@ -103,9 +103,14 @@ export default new Router({
             component: loadView('commentAdmin')         
           },
           {           
-            name: 'layananAdmin',           
-            path: '/admins/adminContents/layananAdmin',           
-            component: loadView('layananAdmin')         
+            name: 'layanan_Admin',           
+            path: '/admins/adminContents/layanan_Admin',           
+            component: loadView('layanan_Admin')         
+          },
+          {
+            name: 'produkAdmin',           
+            path: '/admins/adminContents/produk_Admin',           
+            component: loadView('produk_Admin')
           }     
       ]     
   }, 

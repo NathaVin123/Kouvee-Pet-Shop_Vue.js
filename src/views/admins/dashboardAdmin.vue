@@ -71,7 +71,7 @@
                 drawer: null,         
                 items: [           
                     { title: 'Dashboard', icon: 'mdi-dashboard', route: '/admins/dashboardAdmin'},
-                    { title: 'Layanan', icon: 'mdi-dashboard', route: '/admins/adminContents/layananAdmin'},
+                    { title: 'Layanan', icon: 'mdi-dashboard', route: '/admins/adminContents/layanan_Admin'},
                     { title: 'User List', icon: 'mdi-dashboard', route: '/admins/adminContents/userAdmin'},
                     { title: 'Lyric List', icon: 'mdi-dashboard', route: '/admins/adminContents/lyricAdmin'},      
                     { title: 'Comment List', icon: 'mdi-dashboard', route: '/admins/adminContents/commentAdmin'},  
