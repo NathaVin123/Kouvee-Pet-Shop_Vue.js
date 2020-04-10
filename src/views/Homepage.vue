@@ -80,7 +80,7 @@
         ],
         links: [
         { icon:'mdi-home', title: 'Home', route: '/' },
-        { icon:'mdi-format-align-justify', title: 'Daftar Produk', route: '/views/dashboard' },
+        { icon:'mdi-format-align-justify', title: 'Daftar Produk', route: '/views/DaftarProduk' },
         { icon:'mdi-information', title: 'Tentang kami ', route: '/views/about' }
       ],
       signin: [

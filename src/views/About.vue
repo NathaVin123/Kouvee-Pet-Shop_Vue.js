@@ -57,7 +57,11 @@
               class="text-center"
               cols="12"
             > 
+<<<<<<< HEAD
             {{ new Date().getFullYear() }} — <strong>P3L G kel 3</strong>
+=======
+            {{ new Date().getFullYear() }}  — Kouvee Pet Shop <strong>Made by P3L G 3</strong>
+>>>>>>> f75f4a9e3e3c049afe27ea96bf57a536f64ded35
             </v-col>
           </v-footer>
         </div>
