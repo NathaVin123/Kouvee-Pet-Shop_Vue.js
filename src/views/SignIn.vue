@@ -9,7 +9,7 @@
                             <v-col cols="6">
                                 <div class="header">
                                     <div id="title">
-                                        LyricLibs
+                                        Kouvee Pet Shop
                                     </div>
                                     <div id="tagline">
                                         Sign in to continue                                    

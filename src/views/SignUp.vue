@@ -12,7 +12,7 @@
                                         Join With Us.!  
                                     </div>
                                     <div id="tagline">
-                                        LYRICLIBS                                
+                                        Kouvee Pet Shop                                
                                     </div>
                                     <div id="tagline">                                   </div>
                                 </div>

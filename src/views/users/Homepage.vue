@@ -3,10 +3,10 @@
         <nav>
       <!-- untuk navbar-->
       <v-toolbar flat app>
-        <img src = "../../assets/LogoBrands.png" style="width:20px;height:20px" class="mr-2">
+        <img src = "../../assets/AW419642_01.gif" style="width:110px;height:48px" class="mr-2">
         <v-toolbar-title class="text-uppercase grey--text" light>
-          <span class="font-weight-light">Lyric</span>
-          <span>Libs</span>
+          <span class="font-weight-light">Kouvee</span>
+          <span>PetShop</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         
