@@ -46,7 +46,7 @@
           router :to="item.route"
           small
         >
-          <span>Sign Out</span>
+          <span>Log Out</span>
           <v-icon dark right small>mdi-login-variant</v-icon>
         </v-btn>
       </v-app-bar> 

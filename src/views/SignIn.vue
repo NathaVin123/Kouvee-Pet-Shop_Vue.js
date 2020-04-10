@@ -109,7 +109,7 @@ export default {
                 else if(response.data.token){
                     localStorage.setItem("token", response.data.token)
                     this.$router.push({name : 'YourLyric'})
-                    alert(' !')
+                    alert('Sukses, Selamat datang di Kouvee PetShop !')
                 }else{
                     alert('Failed')
                 }
