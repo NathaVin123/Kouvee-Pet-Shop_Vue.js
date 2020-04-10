@@ -37,8 +37,8 @@ export default new Router({
         },
         {
           path: '/views/DaftarProduk',
-          name: 'dashboard',
-          component: loadViewBefore('Dashboard')           
+          name: 'DaftarProduk',
+          component: loadViewBefore('DaftarProduk')           
         },
         {
           path: '/views/signin',
