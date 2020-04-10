@@ -1,10 +1,9 @@
 <template>
   <div>
-        <nav>
       <!-- untuk navbar-->
-      <v-toolbar flat app>
+      <v-app-bar app fixed clipped-left>
         <img src = "../assets/AW419642_01.gif" style="width:110px;height:48px" class="mr-2">
-        <v-toolbar-title class="text-uppercase grey--text" light>
+        <v-toolbar-title style="font-size: 21px;" class="secondary--text ml-3">
           <span class="font-weight-light">Kouvee</span>
           <span>PetShop</span>
         </v-toolbar-title>
@@ -50,8 +49,8 @@
           <span>Log In</span>
           <v-icon dark right small>mdi-login-variant</v-icon>
         </v-btn>
-      </v-toolbar> 
-    </nav>
+      </v-app-bar> 
+  
     <VContent >
       <router-view />
     </VContent>
