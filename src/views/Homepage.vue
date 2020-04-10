@@ -3,11 +3,7 @@
       <!-- untuk navbar-->
       <v-app-bar app fixed clipped-left>
         <img src = "../assets/AW419642_01.gif" style="width:110px;height:48px" class="mr-2">
-<<<<<<< HEAD
         <v-toolbar-title style="font-size: 21px;" class="secondary--text ml-3">
-=======
-        <v-toolbar-title class="text-uppercase grey-darken--text" light>
->>>>>>> 5c46d32304f41c4b8d38ca282e84a8f273ce1e52
           <span class="font-weight-light">Kouvee</span>
           <span>PetShop</span>
         </v-toolbar-title>
