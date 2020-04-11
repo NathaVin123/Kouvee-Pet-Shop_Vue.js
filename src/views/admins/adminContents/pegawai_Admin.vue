@@ -36,21 +36,21 @@
             :loading="load">
             <template v-slot:body="{ items }" >
               <tbody>
-                <tr v-for="(item) in items" :key="item.nip">
-                  <td>{{ item.nip }}</td>
+                <tr v-for="(item) in items" :key="item.NIP">
+                  <td>{{ item.NIP }}</td>
                   <td>{{ item.nama_pegawai }}</td>
                   <td>{{ item.alamat_pegawai }}</td>
                   <td>{{ item.tglLahir_pegawai }}</td>
-                  <td>{{ item.noTelp_Pegawai }}</td>
+                  <td>{{ item.noTelp_pegawai }}</td>
                   <td>{{ item.stat}}</td>
                   <td>{{ item.password }}</td>
                   <td>{{ item.gambar }}</td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
-                    <v-btn icon color="indigo" light @click="editHandler(item.nip)">
+                    <v-btn icon color="indigo" light @click="editHandler(item.NIP)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.nip)">
+                    <v-btn icon color="error" light @click="deleteData(item.NIP)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </td>
@@ -70,7 +70,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="NIP" v-model="form.nip" required></v-text-field>
+                <v-text-field label="NIP" v-model="form.NIP" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Nama Pegawai" v-model="form.nama_pegawai" required></v-text-field>
@@ -82,7 +82,7 @@
                 <v-text-field label="Tanggal Lahir" v-model="form.tglLahir_pegawai" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Nomor Telepon" v-model="form.noTelp_Pegawai" required></v-text-field>
+                <v-text-field label="Nomor Telepon" v-model="form.noTelp_pegawai" required></v-text-field>
               </v-col>
                <v-col cols="12">
                 <v-text-field label="Status" v-model="form.stat" required></v-text-field>
@@ -123,7 +123,7 @@ export default {
       headers: [
         {
           text: 'NIP',
-          value: 'nip'
+          value: 'NIP'
         },
         {
           text: 'Nama Pegawai',
@@ -169,7 +169,7 @@ export default {
       text: '',
       load: false,
       form: {
-        nip: '',
+        NIP: '',
         nama_pegawai: '',
         alamat_pegawai: '',
         tglLahir_pegawai: '',
@@ -193,7 +193,7 @@ export default {
       })
     },
     sendData() {
-      this.user.append('nip', this.form.nip);
+      this.user.append('NIP', this.form.NIP);
       this.user.append('nama_pegawai', this.form.nama_pegawai);
       this.user.append('alamat_pegawai', this.form.alamat_pegawai);
       this.user.append('tglLahir_pegawai', this.form.tglLahir_pegawai);
@@ -223,7 +223,7 @@ export default {
         })
     },
     updateData() {
-       this.user.append('nip', this.form.nip);
+      this.user.append('NIP', this.form.NIP);
       this.user.append('nama_pegawai', this.form.nama_pegawai);
       this.user.append('alamat_pegawai', this.form.alamat_pegawai);
       this.user.append('tglLahir_pegawai', this.form.tglLahir_pegawai);
@@ -232,7 +232,7 @@ export default {
       this.user.append('password', this.form.password);
       this.user.append('gambar', this.form.gambar);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/pegawai'
+      var uri = this.$apiUrl4 + '/pegawai' + this.updatedNIP;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -258,7 +258,7 @@ export default {
     editHandler(item) {
       this.typeInput = 'edit';
       this.dialog = true;
-      this.form.nip = item.nip;
+      this.form.NIP = item.NIP;
       this.form.nama_pegawai = item.nama_pegawai;
       this.form.alamat_pegawai = item.alamat_pegawai;
       this.form.noTelp_pegawai = item.noTelp_pegawai;
@@ -267,10 +267,10 @@ export default {
       this.form.password = item.password;
       this.form.gambar = item.gambar;
       this.form.updateLog_by = item.updateLog_by;
-      this.updatedId = item.nip;
+      this.updatedNIP = item.NIP;
     },
-    deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/pegawai/' + deleteId;
+    deleteData(deleteNIP) {
+      var uri = this.$apiUrl4 + '/pegawai/' + deleteNIP;
       this.$http.delete(uri).then(response =>{
           this.snackbar = true;
           this.text = response.data.message;
@@ -293,7 +293,7 @@ export default {
     },
     resetForm() {
       this.form = {
-         nip: '',
+        NIP: '',
         nama_pegawai: '',
         alamat_pegawai: '',
         tglLahir_pegawai: '',

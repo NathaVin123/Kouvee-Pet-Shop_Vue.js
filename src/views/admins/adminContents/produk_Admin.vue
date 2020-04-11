@@ -44,7 +44,6 @@
                   <td>{{ item.min_stok_produk }}</td>
                   <td>{{ item.satuan_produk }}</td>
                   <td>{{ item.gambar }}</td>
-                  <td>{{ item.id_ukuranHewan }}</td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item.id_produk)">
@@ -134,6 +133,10 @@ export default {
         {
           text: 'Min Stok Produk',
           value: 'min_stok_produk'
+        },
+        {
+          text: 'Satuan Produk',
+          value: 'satuan_produk'
         },
         {
           text: 'Gambar',
