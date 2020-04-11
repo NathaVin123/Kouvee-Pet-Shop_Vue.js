@@ -43,8 +43,7 @@
                   <td>{{ item.stok_produk }}</td>
                   <td>{{ item.min_stok_produk }}</td>
                   <td>{{ item.satuan_produk }}</td>
-                  <td>{{ item.gambar }}</td>
-                  <td>{{ item.id_ukuranHewan }}</td>
+                  <!-- <td>{{ item.gambar }}</td> -->
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item.id_produk)">
@@ -161,7 +160,7 @@ export default {
         stok_produk: '',
         min_stok_produk: '',
         satuan_produk: '',
-        gambar_produk: '',
+        gambar: '',
         updateLog_by: ''
       },
       user: new FormData,
