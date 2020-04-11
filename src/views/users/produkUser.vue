@@ -136,6 +136,10 @@ export default {
           value: 'min_stok_produk'
         },
         {
+          text: 'Satuan Produk',
+          value: 'satuan_produk'
+        },
+        {
           text: 'Gambar',
           value: 'gambar'
         },
