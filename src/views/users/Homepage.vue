@@ -78,8 +78,8 @@
         ],
         links: [
         { icon:'mdi-home', title: 'Home', route: '/views/users/' },
-        { icon:'mdi-podcast', title: 'Your List', route: '/views/users/YourLyric' },
-        { icon:'mdi-format-align-justify', title: 'Lyric List', route: '/views/users/dashboardUser' },
+        { icon:'mdi-format-align-justify', title: 'Daftar Produk', route: '/views/users/produkUser' },
+        { icon:'mdi-format-align-justify', title: 'Daftar Layanan', route: '/views/users/layananUser' },
         { icon:'mdi-information', title: 'About Us', route: '/views/users/aboutUser' }
       ],
       signin: [

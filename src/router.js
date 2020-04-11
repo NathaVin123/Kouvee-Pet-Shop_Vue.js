@@ -67,14 +67,14 @@ export default new Router({
           component: loadViewAfter('Welcome')           
         },
         {
-          path: '/views/users/YourLyric',
-          name: 'YourLyric',
-          component: loadViewAfter('YourLyric')
+          path: '/views/users/produkUser',
+          name: 'produkUser',
+          component: loadViewAfter('produkUser')
         },
         {
-          path: '/views/users/dashboardUser',
-          name: 'dashboardUser',
-          component: loadViewAfter('dashboardUser')           
+          path: '/views/users/layananUser',
+          name: 'layananUser',
+          component: loadViewAfter('layananUser')           
         },
         {
           path: '/views/users/aboutUser',

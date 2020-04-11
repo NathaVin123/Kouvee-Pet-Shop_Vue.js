@@ -6,14 +6,15 @@
           <v-layout row wrap style="margin:10px">
             <v-flex xs6>
               <v-container class="my-5">
-              <h1 class="subheading grey--text">LYRICS LIST</h1>
+              <h1 class="subheading grey-darken--text">Daftar Layanan Kami</h1>
               </v-container>
             </v-flex>
-            <v-flex xs6 class="text-right">
+            <!-- <v-flex xs6 class="text-right">
               <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialog = true">
                 <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
+                Tambah layanan
               </v-btn>
-            </v-flex>
+            </v-flex> -->
           </v-layout>
 
           <v-text-field
@@ -35,19 +36,20 @@
             :loading="load">
             <template v-slot:body="{ items }" >
               <tbody>
-                <tr v-for="(item) in items" :key="item.id">
-                  <td>{{ item.title }}</td>
-                  <td>{{ item.artist }}</td>
-                  <td>{{ item.genre }}</td>
-                  <td>{{ item.lyric }}</td>
-                  <td class="text-center">
-                    <v-btn icon color="indigo" light @click="editHandler(item)">
+                <tr v-for="(item) in items" :key="item.id_layanan">
+                  <td>{{ item.id_layanan }}</td>
+                  <td>{{ item.nama_layanan }}</td>
+                  <td>{{ item.harga_layanan }}</td>
+                  <td>{{ item.id_ukuranHewan }}</td>
+                  <td>{{ item.updateLog_by }}</td>
+                  <!-- <td class="text-center">
+                    <v-btn icon color="indigo" light @click="editHandler(item.id_layanan)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.id)">
+                    <v-btn icon color="error" light @click="deleteData(item.id_layanan)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
-                  </td>
+                  </td> -->
                 </tr>
               </tbody>
             </template>
@@ -58,22 +60,25 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="headline">Add Lyric</span>
+          <span class="headline">Tambah Layanan</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Title" v-model="form.title" required></v-text-field>
+                <v-text-field label="ID Layanan" v-model="form.id_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Artist" v-model="form.artist"></v-text-field>
+                <v-text-field label="Nama Layanan" v-model="form.nama_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Genre*" v-model="form.genre"></v-text-field>
+                <v-text-field label="Harga Layanan" v-model="form.harga_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Lyric" v-model="form.lyric"></v-text-field>
+                <v-text-field label="ID Ukuran Hewan" v-model="form.id_ukuranHewan" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -101,26 +106,30 @@ export default {
       keyword: '',
       headers: [
         {
-          text: 'Title',
-          value: 'title'
+          text: 'ID Layanan',
+          value: 'id_layanan'
         },
         {
-          text: 'Artist',
-          value: 'artist'
+          text: 'Nama Layanan',
+          value: 'nama_layanan'
         },
         {
-          text: 'Genre',
-          value: 'genre'
+          text: 'Harga Layanan',
+          value: 'harga_layanan'
         },
         {
-          text: 'Lyric',
-          value: 'lyric'
+          text: 'ID Ukuran Hewan',
+          value: 'id_ukuranHewan'
         },
         {
-          text: 'Action',
-          value: null,
-          sortable : false
+          text: 'Update Log By (NIP)',
+          value: 'updateLog_by'
         },
+        // {
+        //   text: 'Action',
+        //   value: null,
+        //   sortable : false
+        // },
       ],
       users: [],
       snackbar: false,
@@ -128,10 +137,11 @@ export default {
       text: '',
       load: false,
       form: {
-        title: '',
-        artist: '',
-        genre: '',
-        lyric:''
+        id_layanan: '',
+        nama_layanan: '',
+        harga_layanan: '',
+        id_ukuranHewan:'',
+        updateLog_by: ''
       },
       user: new FormData,
       typeInput: 'new',
@@ -141,17 +151,18 @@ export default {
   },
   methods: {
     getData() {
-      var uri = this.$apiUrl2 + '/lyric'
+      var uri = this.$apiUrl4 + '/layanan'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
       })
     },
     sendData() {
-      this.user.append('title', this.form.title);
-      this.user.append('artist', this.form.artist);
-      this.user.append('genre', this.form.genre);
-      this.user.append('lyric', this.form.lyric);
-      var uri = this.$apiUrl2 + '/lyric'
+      this.user.append('id_layanan', this.form.id_layanan);
+      this.user.append('nama_layanan', this.form.nama_layanan);
+      this.user.append('harga_layanan', this.form.harga_layanan);
+      this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
+      this.user.append('updateLog_by', this.form.updateLog_by);
+      var uri = this.$apiUrl4 + '/layanan'
       this.load = true
       this.$http.post(uri, this.user).then(response => {
           this.snackbar = true;
@@ -172,11 +183,12 @@ export default {
         })
     },
     updateData() {
-      this.user.append('title', this.form.title);
-      this.user.append('artist', this.form.artist);
-      this.user.append('genre', this.form.genre);
-      this.user.append('lyric', this.form.lyric);
-      var uri = this.$apiUrl2 + '/lyric/' + this.updatedId;
+      this.user.append('id_layanan', this.form.id_layanan);
+      this.user.append('nama_layanan', this.form.nama_layanan);
+      this.user.append('harga_layanan', this.form.harga_layanan);
+      this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
+      this.user.append('updateLog_by', this.form.updateLog_by);
+      var uri = this.$apiUrl4 + '/layanan/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -202,14 +214,15 @@ export default {
     editHandler(item) {
       this.typeInput = 'edit';
       this.dialog = true;
-      this.form.title = item.title;
-      this.form.artist = item.artist;
-      this.form.genre = item.genre;
-      this.form.lyric = item.lyric;
-      this.updatedId = item.id;
+      this.form.id_layanan = item.id_layanan;
+      this.form.nama_layanan = item.nama_layanan;
+      this.form.harga_layanan = item.harga_layanan;
+      this.form.id_ukuranHewan = item.id_ukuranHewan;
+      this.form.updateLog_by = item.updateLog_by;
+      this.updatedId = item.id_layanan;
     },
     deleteData(deleteId) {
-      var uri = this.$apiUrl2 + '/lyric/' + deleteId;
+      var uri = this.$apiUrl4 + '/layanan/' + deleteId;
       this.$http.delete(uri).then(response =>{
           this.snackbar = true;
           this.text = response.data.message;
@@ -232,10 +245,11 @@ export default {
     },
     resetForm() {
       this.form = {
-        title: '',
-        artist: '',
-        genre: '',
-        lyric: ''
+        id_layanan: '',
+        nama_layanan: '',
+        harga_layanan: '',
+        id_ukuranHewan: '',
+        updateLog_by: ''
       }
     }
   },

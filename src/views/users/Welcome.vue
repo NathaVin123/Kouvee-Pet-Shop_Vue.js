@@ -31,14 +31,13 @@
       </v-container>
     <div class="mt-8">
       <v-container class="my-5">
-            <h1 class="subheading grey--text"><p class="text-left">What is Lyric Libs ?</p></h1>
+            <h1 class="subheading grey--text"><p class="text-center">Apa itu Kouvee Pet Shop ?</p></h1>
             <br>
-            LyricLibs makes it easy for you to find the right lyric for every song you hear on your cellphone, your computer, your tablet, and others.
-            There are millions of lyric that you are ready to access anytime and anywhere. So even if you are driving, exercising, partying, or relaxing, LyricLibs will always accompany you when listening to music.
+            Kouvee Pet Shop merupakan pet shop ternama di yogyakarta. Kami menyediakan berbagai macam produk dan layanan untuk hewan kesayangan Anda.
       </v-container>
-      <v-container class="my-5">
+      <!-- <v-container class="my-5">
             You can also add lyrics that are not yet on LyricLibs, and your friends can also see the lyrics you have made. LyricLibs will faithfully accompany when listening to your song. Because life needs words.
-      </v-container>
+      </v-container> -->
     </div>
     <div class="mt-6">
       <v-container class="my-5">
@@ -48,25 +47,25 @@
         mt-5>
           <center>
             <v-container class="my-5">
-              <h1 class="subheading grey--text"><p class="text-left">ENJOY THE LYRICS FOR FREE.!</p></h1>
+              <h1 class="subheading grey--text"><p class="text-center">Nikmati Berbagai Layanan Kouvee Pet Shop</p></h1>
               <br>
               Currently LyricLibs is still in the development stage, to enjoy it you don't need to pay for it.
                To support us, write in the comments column what is still a weakness of the LyricLibs website.
                We are very happy and thankful, because of all of you we can continue to accompany you in listening to music.
                <br><br>
-               <v-btn
+               <!-- <v-btn
                 v-for="item in dashboard"
                 :key="item.text" 
                 text small color="warning"
                 class="mr-4"
                 router :to="item.route"
-              >FIND THE LYRICS</v-btn>
+              >FIND THE LYRICS</v-btn> -->
             </v-container>
           </center>
         </v-card>
       </v-container>
     </div>
-    <v-container grid-list-md mb-0>
+    <!-- <v-container grid-list-md mb-0>
         <br><br>
         <center>
             <h1 class="subheading grey--text"><p class="text-center">COMMENT</p></h1>  
@@ -129,7 +128,17 @@
           <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>  
+    </v-dialog>   -->
+  
+  <v-footer padless dark>
+  <v-col
+    class="text-center"
+    cols="12"
+  > 
+  {{ new Date().getFullYear() }}  — Kouvee Pet Shop <strong>Made with ❤ by P3L G 3</strong>
+  </v-col>
+  </v-footer>
+  
   </div>
 </template>
 
