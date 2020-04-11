@@ -12,7 +12,7 @@
             <v-list-item>                 
                 <v-list-item-content>                 
                 <v-list-item-title class="title">                     
-                    Admin                
+                    Administrator                
                 </v-list-item-title>                 
                 <v-list-item-subtitle>                     
                     Kouvee Pet Shop
