@@ -43,7 +43,11 @@
                   <td>{{ item.stok_produk }}</td>
                   <td>{{ item.min_stok_produk }}</td>
                   <td>{{ item.satuan_produk }}</td>
+<<<<<<< HEAD
                   <!-- <td>{{ item.gambar }}</td> -->
+=======
+                  <td>{{ item.gambar }}</td>
+>>>>>>> a38dc9b53c7d33c8a651a25e1cfe2c0ff90bddd7
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item.id_produk)">
@@ -133,6 +137,10 @@ export default {
         {
           text: 'Min Stok Produk',
           value: 'min_stok_produk'
+        },
+        {
+          text: 'Satuan Produk',
+          value: 'satuan_produk'
         },
         {
           text: 'Gambar',
