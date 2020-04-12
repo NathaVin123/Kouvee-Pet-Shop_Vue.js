@@ -9,12 +9,12 @@
               <h1 class="subheading grey-darken--text">Daftar Layanan Kami</h1>
               </v-container>
             </v-flex>
-            <!-- <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialog = true">
+            <v-flex xs6 class="text-right">
+              <!-- <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialog = true">
                 <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
                 Tambah layanan
-              </v-btn>
-            </v-flex> -->
+              </v-btn> -->
+            </v-flex>
           </v-layout>
 
           <v-text-field
@@ -41,9 +41,9 @@
                   <td>{{ item.nama_layanan }}</td>
                   <td>{{ item.harga_layanan }}</td>
                   <td>{{ item.id_ukuranHewan }}</td>
-                  <td>{{ item.updateLog_by }}</td>
+                  <!-- <td>{{ item.updateLog_by }}</td> -->
                   <!-- <td class="text-center">
-                    <v-btn icon color="indigo" light @click="editHandler(item.id_layanan)">
+                    <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
                     <v-btn icon color="error" light @click="deleteData(item.id_layanan)">
@@ -121,10 +121,10 @@ export default {
           text: 'ID Ukuran Hewan',
           value: 'id_ukuranHewan'
         },
-        {
-          text: 'Update Log By (NIP)',
-          value: 'updateLog_by'
-        },
+        // {
+        //   text: 'Update Log By (NIP)',
+        //   value: 'updateLog_by'
+        // },
         // {
         //   text: 'Action',
         //   value: null,
