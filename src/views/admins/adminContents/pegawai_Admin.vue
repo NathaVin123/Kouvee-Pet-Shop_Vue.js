@@ -242,7 +242,7 @@ export default {
       this.user.append('password', this.form.password);
       this.user.append('gambar', this.form.gambar);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/pegawai' + this.updatedNIP;
+      var uri = this.$apiUrl4 + '/pegawai/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -277,7 +277,7 @@ export default {
       this.form.password = item.password;
       this.form.gambar = item.gambar;
       this.form.updateLog_by = item.updateLog_by;
-      this.updatedNIP = item.NIP;
+      this.updatedId = item.NIP;
     },
     deleteData(deleteNIP) {
       var uri = this.$apiUrl4 + '/pegawai/' + deleteNIP;
