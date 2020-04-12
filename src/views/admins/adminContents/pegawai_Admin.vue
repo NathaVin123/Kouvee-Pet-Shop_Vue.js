@@ -44,7 +44,7 @@
                   <td>{{ item.noTelp_pegawai }}</td>
                   <td>{{ item.stat }}</td>
                   <td>{{ item.password }}</td>
-                  <td>{{ item.gambar }}</td>
+                  <td> <v-img :src="$apiUrl4 + '/pegawai/' + item.gambar" contain class="grey lighten-2" width="75" height="75"/></td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item)">
@@ -91,7 +91,8 @@
                 <v-text-field label="Password" v-model="form.password" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Gambar" v-model="form.gambar" required></v-text-field>
+                <v-file-input label="Pilih Gambar" accept="image/*">
+                </v-file-input>
               </v-col>
               <!-- <v-col cols="12"> 
               <v-file-input
