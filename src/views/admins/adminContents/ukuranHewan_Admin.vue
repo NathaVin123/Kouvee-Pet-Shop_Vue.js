@@ -133,7 +133,7 @@ export default {
   },
   methods: {
     getData() {
-      var uri = this.$apiUrl4 + '/ukuranHewan'
+      var uri = this.$apiUrl4 + '/ukuranhewan'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
       })
@@ -142,7 +142,7 @@ export default {
       this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
       this.user.append('nama_ukuranHewan', this.form.nama_ukuranHewan);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/ukuranHewan'
+      var uri = this.$apiUrl4 + '/ukuranhewan'
       this.load = true
       this.$http.post(uri, this.user).then(response => {
           this.snackbar = true;
@@ -166,7 +166,7 @@ export default {
       this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
       this.user.append('nama_ukuranHewan', this.form.nama_ukuranHewan);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/ukuranHewan/' + this.updatedId;
+      var uri = this.$apiUrl4 + '/ukuranhewan/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -198,7 +198,7 @@ export default {
       this.updatedId = item.id_ukuranHewan;
     },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/ukuranHewan/' + deleteId;
+      var uri = this.$apiUrl4 + '/ukuranhewan/' + deleteId;
       this.$http.delete(uri).then(response =>{
           this.snackbar = true;
           this.text = response.data.message;
