@@ -155,11 +155,11 @@
           'brown',
         ],
         slides: [
-          '"Relakanlah yang tak seharusnya untukmu" - Kunto Aji',
-          '"I have been thinking, I want you to be happier" - Marshmello',
-          '"Memories bring back, memories bring back you" - Maroon 5',
-          '"Fikirkan indah tentang surga, seakan akan disana" - Fourtwnty',
-          '"Kita adalah rasa yang tepat di waktu yang salah" - Fiersa Besari',
+          'Caring Your Beloving Pet',
+          'Caring Your Beloving Pet',
+          'Caring Your Beloving Pet',
+          'Caring Your Beloving Pet',
+          'Caring Your Beloving Pet',
           ],
       keyword: '',
       headers: [
