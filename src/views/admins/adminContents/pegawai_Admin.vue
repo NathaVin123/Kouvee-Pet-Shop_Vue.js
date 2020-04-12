@@ -93,6 +93,15 @@
               <v-col cols="12">
                 <v-text-field label="Gambar" v-model="form.gambar" required></v-text-field>
               </v-col>
+              <!-- <v-col cols="12"> 
+              <v-file-input
+                :rules="rules"
+                accept="image/png, image/jpeg, image/bmp"
+                placeholder="Pick an avatar"
+                prepend-icon="mdi-camera"
+                label="Avatar"
+              ></v-file-input>
+              </v-col> -->
               <v-col cols="12">
                 <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>
               </v-col>
@@ -182,7 +191,7 @@ export default {
       user: new FormData,
       typeInput: 'new',
       errors: '',
-      updateId: '',
+      updateNIP: '',
     }
   },
   methods: {
