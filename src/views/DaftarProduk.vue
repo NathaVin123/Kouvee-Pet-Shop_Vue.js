@@ -7,11 +7,11 @@
       <v-layout row justify-start class="mb-3">
         <v-flex xs6>
           <v-dialog v-model="dialog" persistent max-width="290">
-            <template v-slot:activator="{ on }">
+            <!-- <template v-slot:activator="{ on }">
               <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" v-on="on">
                 <v-icon size="18" class="mr-1">mdi-pencil-plus</v-icon>
               </v-btn>
-            </template>
+            </template> -->
 
             <v-card>
               <v-card-title class="headline">Kamu harus masuk / daftar dahulu</v-card-title>
