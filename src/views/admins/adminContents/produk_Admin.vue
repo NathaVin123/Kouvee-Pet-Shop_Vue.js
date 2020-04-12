@@ -75,7 +75,10 @@
                 <v-text-field label="Nama Produk" v-model="form.nama_produk" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Stok Produk" v-model="form.harga_produk" required></v-text-field>
+                <v-text-field label="Harga Produk" v-model="form.harga_produk" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="Stok Produk" v-model="form.stok_produk" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Min Stok Produk" v-model="form.min_stok_produk" required></v-text-field>
