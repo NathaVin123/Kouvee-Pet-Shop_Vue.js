@@ -49,8 +49,8 @@
             <v-container class="my-5">
               <h1 class="subheading grey--text"><p class="text-center">Nikmati Berbagai Layanan Kouvee Pet Shop</p></h1>
               <br>
-              Currently LyricLibs is still in the development stage, to enjoy it you don't need to pay for it.
-               To support us, write in the comments column what is still a weakness of the LyricLibs website.
+              Currently KouveePetShop is still in the development stage, to enjoy it you don't need to pay for it.
+               To support us, write in the comments column what is still a weakness of the KouveePetShop website.
                We are very happy and thankful, because of all of you we can continue to accompany you in listening to music.
                <br><br>
                <!-- <v-btn
