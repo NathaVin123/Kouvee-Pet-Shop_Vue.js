@@ -155,11 +155,11 @@
           'brown',
         ],
         slides: [
-          'Caring Your Beloving Pet',
-          'Caring Your Beloving Pet',
-          'Caring Your Beloving Pet',
-          'Caring Your Beloving Pet',
-          'Caring Your Beloving Pet',
+          'Caring  ',
+          'Your',
+          'Beloving',
+          'Pet',
+          '(:',
           ],
       keyword: '',
       headers: [
