@@ -172,7 +172,7 @@ export default {
       this.user.append('tglLahir_customer', this.form.tglLahir_customer);
       this.user.append('noTelp_customer', this.form.noTelp_customer);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/layanan'
+      var uri = this.$apiUrl4 + '/customer'
       this.load = true
       this.$http.post(uri, this.user).then(response => {
           this.snackbar = true;
