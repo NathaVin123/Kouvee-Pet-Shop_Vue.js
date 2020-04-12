@@ -64,10 +64,10 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="ID jenisHewan" v-model="form.id_jenisHewan" required></v-text-field>
+                <v-text-field label="ID Jenis Hewan" v-model="form.id_jenisHewan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Nama jenisHewan" v-model="form.nama_jenisHewan" required></v-text-field>
+                <v-text-field label="Nama Jenis Hewan" v-model="form.nama_jenisHewan" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>

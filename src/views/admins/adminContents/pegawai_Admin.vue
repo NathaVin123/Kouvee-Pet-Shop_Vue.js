@@ -42,7 +42,7 @@
                   <td>{{ item.alamat_pegawai }}</td>
                   <td>{{ item.tglLahir_pegawai }}</td>
                   <td>{{ item.noTelp_pegawai }}</td>
-                  <td>{{ item.stat}}</td>
+                  <td>{{ item.stat }}</td>
                   <td>{{ item.password }}</td>
                   <td>{{ item.gambar }}</td>
                   <td>{{ item.updateLog_by }}</td>
