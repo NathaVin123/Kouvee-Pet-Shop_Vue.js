@@ -37,13 +37,14 @@
             <template v-slot:body="{ items }" >
               <tbody>
                 <tr v-for="(item) in items" :key="item.id_produk">
+                  
                   <td>{{ item.id_produk }}</td>
                   <td>{{ item.nama_produk }}</td>
                   <td>{{ item.harga_produk }}</td>
                   <td>{{ item.stok_produk }}</td>
                   <td>{{ item.min_stok_produk }}</td>
                   <td>{{ item.satuan_produk }}</td>
-                  <td>{{ item.gambar }}</td>
+                  <td> <v-img :src="$apiUrl4 + '/produk/' + item.gambar" contain class="grey lighten-2" width="75" height="75"/></td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item)">
@@ -87,7 +88,8 @@
                 <v-text-field label="Satuan Produk" v-model="form.satuan_produk" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Gambar" v-model="form.gambar" required></v-text-field>
+                <v-file-input label="Pilih Gambar" accept="image/*">
+                </v-file-input>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>
@@ -190,7 +192,7 @@ export default {
       this.user.append('stok_produk', this.form.stok_produk);
       this.user.append('min_stok_produk', this.form.min_stok_produk);
       this.user.append('satuan_produk', this.form.satuan_produk);
-      this.user.append('gambar_produk', this.form.gambar_produk);
+      this.user.append('gambar', this.form.gambar);
       this.user.append('updateLog_by', this.form.updateLog_by);
       var uri = this.$apiUrl4 + '/produk'
       this.load = true
@@ -219,7 +221,7 @@ export default {
       this.user.append('stok_produk', this.form.stok_produk);
       this.user.append('min_stok_produk', this.form.min_stok_produk);
       this.user.append('satuan_produk', this.form.satuan_produk);
-      this.user.append('gambar_produk', this.form.gambar_produk);
+      this.user.append('gambar', this.form.gambar);
       this.user.append('updateLog_by', this.form.updateLog_by);
       var uri = this.$apiUrl4 + '/produk/' + this.updatedId;
       this.load = true
@@ -253,7 +255,7 @@ export default {
       this.form.stok_produk = item.stok_produk;
       this.form.min_stok_produk = item.min_stok_produk;
       this.form.satuan_produk = item.satuan_produk;
-      this.form.gambar_produk = item.gambar_produk;
+      this.form.gambar = item.gambar;
       this.form.updateLog_by = item.updateLog_by;
       this.updatedId = item.id_produk;
     },
@@ -287,7 +289,7 @@ export default {
         stok_produk: '',
         min_stok_produk: '',
         satuan_produk: '',
-        gambar_produk: '',
+        gambar: '',
         updateLog_by: ''
       }
     }
