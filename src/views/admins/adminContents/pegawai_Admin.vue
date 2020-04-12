@@ -88,7 +88,7 @@
                 <v-text-field label="Status" v-model="form.stat" required></v-text-field>
               </v-col>
                <v-col cols="12">
-                <v-text-field label="Password" v-model="form.password" required></v-text-field>
+                <v-text-field label="Password" v-model="form.password" type="password" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-file-input label="Pilih Gambar" accept="image/*">
