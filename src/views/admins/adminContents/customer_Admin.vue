@@ -44,7 +44,7 @@
                   <td>{{ item.noTelp_customer }}</td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
-                    <v-btn icon color="indigo" light @click="editHandler(item.id_customer)">
+                    <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
                     <v-btn icon color="error" light @click="deleteData(item.id_customer)">
