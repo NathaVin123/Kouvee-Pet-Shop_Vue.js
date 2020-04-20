@@ -6,10 +6,10 @@ import vuetify from './plugins/vuetify';
 import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.prototype.$http = Axios;
-Vue.prototype.$apiUrl = 'http://localhost:8081/LyricLibs_CI/index.php';
-Vue.prototype.$apiUrl2 = "http://localhost:8081/LyricLibs_CI/index.php/";
-Vue.prototype.$apiUrl3 = "http://localhost:8081/LyricLibs_CI/index.php/";
-Vue.prototype.$apiUrl4 = "http://localhost:8081/KouveePetShop_CI/index.php/";
+Vue.prototype.$apiUrl = 'http://localhost/LyricLibs_CI/index.php';
+Vue.prototype.$apiUrl2 = "http://localhost/LyricLibs_CI/index.php/";
+Vue.prototype.$apiUrl3 = "http://localhost/LyricLibs_CI/index.php/";
+Vue.prototype.$apiUrl4 = "http://localhost/KouveePetShop_CI/index.php/";
 // Vue.prototype.$apiUrl5 = "http://127.0.0.1:8000/api/";
 
 Vue.use(VueGoogleMaps, {
