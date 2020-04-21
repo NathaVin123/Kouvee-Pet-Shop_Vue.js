@@ -49,7 +49,7 @@
                     <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.id_produk)">
+                    <v-btn icon color="error" light @click="deleteData(item.no_order)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </td>
@@ -255,7 +255,7 @@ export default {
       this.form.id_supplier = item.id_supplier;
       this.form.status_pengadaan = item.status_pengadaan;
       this.form.total_harga = item.total_harga;
-      this.updatedId = item.id_produk;
+      this.updatedId = item.no_order;
     },
     deleteData(deleteId) {
       var uri = this.$apiUrl4 + '/pengadaan/' + deleteId;
