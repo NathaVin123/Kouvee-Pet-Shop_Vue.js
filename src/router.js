@@ -152,6 +152,11 @@ export default new Router({
             path: '/admins/adminContents/pengadaan_Admin',           
             component: loadView('pengadaan_Admin')
           },
+          {
+            name: 'penjualanLayanan_Admin',           
+            path: '/admins/adminContents/penjualanLayanan_Admin',           
+            component: loadView('penjualanLayanan_Admin')
+          },
       ]     
   }, 
   ],
