@@ -36,17 +36,17 @@
             :loading="load">
             <template v-slot:body="{ items }" >
               <tbody>
-                <tr v-for="(item) in items" :key="item.id_layanan">
+                <tr v-for="(item) in items" :key="item.kode_penjualan">
+                  <td>{{ item.kode_penjualan }}</td>
                   <td>{{ item.id_layanan }}</td>
-                  <td>{{ item.nama_layanan }}</td>
-                  <td>{{ item.harga_layanan }}</td>
-                  <td>{{ item.id_ukuranHewan }}</td>
-                  <td>{{ item.updateLog_by }}</td>
+                  <td>{{ item.tgl_transaksi_layanan }}</td>
+                  <td>{{ item.jml_transaksi_layanan }}</td>
+                  <td>{{ item.subtotal }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.id_layanan)">
+                    <v-btn icon color="error" light @click="deleteData(item.kode_penjualan)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </td>
@@ -66,19 +66,19 @@
           <v-container>
             <v-row>
               <v-col cols="12">
+                <v-text-field label="Kode Penjualan" v-model="form.kode_penjualan" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
                 <v-text-field label="ID Layanan" v-model="form.id_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Nama Layanan" v-model="form.nama_layanan" required></v-text-field>
+                <v-text-field label="Tanggal Transaksi" v-model="form.tgl_transaksi_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Harga Layanan" v-model="form.harga_layanan" required></v-text-field>
+                <v-text-field label="Jumlah Transaksi" v-model="form.jml_transaksi_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="ID Ukuran Hewan" v-model="form.id_ukuranHewan" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>
+                <v-text-field label="Subtotal" v-model="form.subtotal" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -106,24 +106,24 @@ export default {
       keyword: '',
       headers: [
         {
+          text: 'Kode Penjualan',
+          value: 'id_layanan'
+        },
+        {
           text: 'ID Layanan',
           value: 'id_layanan'
         },
         {
-          text: 'Nama Layanan',
-          value: 'nama_layanan'
-        },
-        {
-          text: 'Harga Layanan',
-          value: 'harga_layanan'
+          text: 'Tanggal Transaksi',
+          value: 'tgl_transaksi_layanan'
         },
         {
           text: 'ID Ukuran Hewan',
-          value: 'id_ukuranHewan'
+          value: 'jml_transaksi_layanan'
         },
         {
-          text: 'Update Log By (NIP)',
-          value: 'updateLog_by'
+          text: 'Subtotal',
+          value: 'subtotal'
         },
         {
           text: 'Action',
@@ -137,11 +137,11 @@ export default {
       text: '',
       load: false,
       form: {
+        kode_layanan: '',
         id_layanan: '',
-        nama_layanan: '',
-        harga_layanan: '',
-        id_ukuranHewan:'',
-        updateLog_by: ''
+        tgl_transaksi_layanan: '',
+        jml_transaksi_layanan: '',
+        subtotal:''
       },
       user: new FormData,
       typeInput: 'new',
@@ -151,18 +151,18 @@ export default {
   },
   methods: {
     getData() {
-      var uri = this.$apiUrl4 + '/layanan'
+      var uri = this.$apiUrl4 + '/detaillayanan'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
       })
     },
     sendData() {
+      this.user.append('kode_penjualan', this.form.kode_penjualan);
       this.user.append('id_layanan', this.form.id_layanan);
-      this.user.append('nama_layanan', this.form.nama_layanan);
-      this.user.append('harga_layanan', this.form.harga_layanan);
-      this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
-      this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/layanan'
+      this.user.append('tgl_transaksi_layanan', this.form.tgl_transaksi_layanan);
+      this.user.append('jml_transaksi_layanan', this.form.jml_transaksi_layanan);
+      this.user.append('subtotal', this.form.subtotal);
+      var uri = this.$apiUrl4 + '/detaillayanan'
       this.load = true
       this.$http.post(uri, this.user).then(response => {
           this.snackbar = true;
@@ -183,12 +183,12 @@ export default {
         })
     },
     updateData() {
+      this.user.append('kode_penjualan', this.form.kode_penjualan);
       this.user.append('id_layanan', this.form.id_layanan);
-      this.user.append('nama_layanan', this.form.nama_layanan);
-      this.user.append('harga_layanan', this.form.harga_layanan);
-      this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
-      this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/layanan/' + this.updatedId;
+      this.user.append('tgl_transaksi_layanan', this.form.tgl_transaksi_layanan);
+      this.user.append('jml_transaksi_layanan', this.form.jml_transaksi_layanan);
+      this.user.append('subtotal', this.form.subtotal);
+      var uri = this.$apiUrl4 + '/detaillayanan'
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -214,15 +214,15 @@ export default {
     editHandler(item) {
       this.typeInput = 'edit';
       this.dialog = true;
+      this.form.kode_penjualan = item.kode_penjualan;
       this.form.id_layanan = item.id_layanan;
-      this.form.nama_layanan = item.nama_layanan;
-      this.form.harga_layanan = item.harga_layanan;
-      this.form.id_ukuranHewan = item.id_ukuranHewan;
-      this.form.updateLog_by = item.updateLog_by;
+      this.form.tgl_transaksi_layanan = item.tgl_transaksi_layanan;
+      this.form.jml_transaksi_layanan = item.jml_transaksi_layanan;
+      this.form.subtotal = item.subtotal;
       this.updatedId = item.id_layanan;
     },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/layanan/' + deleteId;
+      var uri = this.$apiUrl4 + '/detaillayanan/' + deleteId;
       this.$http.delete(uri).then(response =>{
           this.snackbar = true;
           this.text = response.data.message;
@@ -245,11 +245,11 @@ export default {
     },
     resetForm() {
       this.form = {
+        kode_layanan: '',
         id_layanan: '',
-        nama_layanan: '',
-        harga_layanan: '',
-        id_ukuranHewan: '',
-        updateLog_by: ''
+        tgl_transaksi_layanan: '',
+        jml_transaksi_layanan: '',
+        subtotal:''
       }
     }
   },
