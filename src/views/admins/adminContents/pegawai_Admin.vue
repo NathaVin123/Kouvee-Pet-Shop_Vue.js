@@ -79,7 +79,25 @@
                 <v-text-field label="Alamat Pegawai" v-model="form.alamat_pegawai" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Tanggal Lahir" v-model="form.tglLahir_pegawai" required></v-text-field>
+                <v-menu
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="form.tglLahir_pegawai"
+                      label="Pilih Tanggal Lahir Anda"
+                      readonly
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="form.tglLahir_pegawai" @input="tanggal = false"></v-date-picker>
+                </v-menu>
+                <!-- <v-text-field label="Tanggal Lahir" v-model="form.tglLahir_pegawai" required></v-text-field> -->
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Nomor Telepon" v-model="form.noTelp_pegawai" required></v-text-field>
@@ -130,6 +148,8 @@ export default {
     return {
       dialog: false,
       keyword: '',
+      date: new Date().toISOString().substr(0, 10),
+      tanggal: false,
       headers: [
         {
           text: 'NIP',
