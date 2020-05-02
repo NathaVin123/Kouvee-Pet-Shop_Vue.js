@@ -66,9 +66,9 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12">
+              <!-- <v-col cols="12">
                 <v-text-field label="ID Customer" v-model="form.id_customer" required></v-text-field>
-              </v-col>
+              </v-col> -->
               <v-col cols="12">
                 <v-text-field label="Nama Customer" v-model="form.nama_customer" required></v-text-field>
               </v-col>
