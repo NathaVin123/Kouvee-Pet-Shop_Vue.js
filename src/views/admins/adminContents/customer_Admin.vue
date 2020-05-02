@@ -10,7 +10,7 @@
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialog = true">
+              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
                 <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
                 Tambah Customer
               </v-btn>
@@ -61,7 +61,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="headline">Tambah Customer</span>
+          <span class="headline">Customer</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -184,6 +184,11 @@ export default {
         this.users = response.data.message
       })
     },
+    dialogTambah(){
+      this.resetForm();
+      this.dialog = true;
+      this.tambah = true;
+    },
     sendData() {
       this.user.append('id_customer', this.form.id_customer);
       this.user.append('nama_customer', this.form.nama_customer);
@@ -243,6 +248,7 @@ export default {
     },
     editHandler(item) {
       this.typeInput = 'edit';
+      this.tambah = false;
       this.dialog = true;
       this.form.id_customer = item.id_customer;
       this.form.nama_customer = item.nama_customer;
