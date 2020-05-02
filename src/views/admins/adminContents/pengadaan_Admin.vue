@@ -72,10 +72,44 @@
                 <v-text-field label="No Order" v-model="form.no_order" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Tanggal Pesan" v-model="form.tgl_pesan" required></v-text-field>
+                <v-menu
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="form.tgl_pesan"
+                      label="Pilih Tanggal Pesan"
+                      readonly
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="form.tgl_pesan" @input="tanggal = false"></v-date-picker>
+                </v-menu>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Tanggal Cetak" v-model="form.tgl_Cetak" required></v-text-field>
+                <v-menu
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="form.tgl_Cetak"
+                      label="Pilih Tanggal Cetak"
+                      readonly
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="form.tgl_Cetak" @input="tanggal = false"></v-date-picker>
+                </v-menu>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Nama Stok" v-model="form.nama_stock" required></v-text-field>
@@ -115,6 +149,8 @@ export default {
   data() {
     return {
       dialog: false,
+      date: new Date().toISOString().substr(0, 10),
+      tanggal: false,
       keyword: '',
       headers: [
         {
