@@ -88,7 +88,6 @@ export default {
                 { title: 'Pengadaan', icon: 'mdi-dashboard', route: '/admins/adminContents/pengadaan_Admin'},
                 { title: 'Penjualan Layanan', icon: 'mdi-dashboard', route: '/admins/adminContents/penjualanLayanan_Admin'},  
                 { title: 'Penjualan Produk', icon: 'mdi-dashboard', route: '/admins/adminContents/penjualanProduk_Admin'},  
-                { title: 'tes', icon: 'mdi-dashboard', route: '/admins/adminContents/tes'}, 
             ],       
         }     
     },

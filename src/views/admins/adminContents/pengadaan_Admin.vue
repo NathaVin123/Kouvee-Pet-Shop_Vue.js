@@ -10,7 +10,7 @@
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialog = true">
+              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
                 <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
                 Tambah Pengadaan
               </v-btn>
@@ -183,6 +183,11 @@ export default {
         this.users = response.data.message
       })
     },
+    dialogTambah(){
+      this.resetForm();
+      this.dialog = true;
+      this.tambah = true;
+    },
     sendData() {
       this.user.append('no_order', this.form.no_order);
       this.user.append('tgl_pesan', this.form.tgl_pesan);
@@ -246,6 +251,7 @@ export default {
     },
     editHandler(item) {
       this.typeInput = 'edit';
+      this.tambah = false;
       this.dialog = true;
       this.form.no_order = item.no_order;
       this.form.tgl_pesan = item.tgl_pesan;

@@ -10,7 +10,7 @@
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialog = true">
+              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
                 <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
                 Tambah Jenis Hewan
               </v-btn>
@@ -63,9 +63,9 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12">
+              <!-- <v-col cols="12">
                 <v-text-field label="ID Jenis Hewan" v-model="form.id_jenisHewan" required></v-text-field>
-              </v-col>
+              </v-col> -->
               <v-col cols="12">
                 <v-text-field label="Nama Jenis Hewan" v-model="form.nama_jenisHewan" required></v-text-field>
               </v-col>
@@ -138,6 +138,11 @@ export default {
         this.users = response.data.message
       })
     },
+    dialogTambah(){
+      this.resetForm();
+      this.dialog = true;
+      this.tambah = true;
+    },
     sendData() {
       this.user.append('id_jenisHewan', this.form.id_jenisHewan);
       this.user.append('nama_jenisHewan', this.form.nama_jenisHewan);
@@ -191,6 +196,7 @@ export default {
     },
     editHandler(item) {
       this.typeInput = 'edit';
+      this.tambah = false;
       this.dialog = true;
       this.form.id_jenisHewan = item.id_jenisHewan;
       this.form.nama_jenisHewan = item.nama_jenisHewan;

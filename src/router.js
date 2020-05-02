@@ -162,11 +162,6 @@ export default new Router({
             path: '/admins/adminContents/penjualanProduk_Admin',           
             component: loadView('penjualanProduk_Admin')
           },
-          {
-            name: 'tes',           
-            path: '/admins/adminContents/tes',           
-            component: loadView('tes')
-          },
       ]     
   }, 
   ],
