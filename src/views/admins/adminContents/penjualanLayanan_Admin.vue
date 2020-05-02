@@ -72,7 +72,24 @@
                 <v-text-field label="ID Layanan" v-model="form.id_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Tanggal Transaksi" v-model="form.tgl_transaksi_layanan" required></v-text-field>
+                <v-menu
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="form.tgl_transaksi_layanan"
+                      label="Pilih Tanggal Transaksi"
+                      readonly
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="form.tgl_transaksi_layanan" @input="tanggal = false"></v-date-picker>
+                </v-menu>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Jumlah Transaksi" v-model="form.jml_transaksi_layanan" required></v-text-field>
@@ -104,6 +121,8 @@ export default {
     return {
       dialog: false,
       keyword: '',
+      date: new Date().toISOString().substr(0, 10),
+      tanggal: false,
       headers: [
         {
           text: 'Kode Penjualan',
