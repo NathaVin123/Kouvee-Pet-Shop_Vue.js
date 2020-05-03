@@ -78,9 +78,11 @@
         ],
         links: [
         { icon:'mdi-home', title: 'Home', route: '/views/users/' },
-        { icon:'mdi-format-align-justify', title: 'Daftar Produk', route: '/views/users/produkUser' },
-        { icon:'mdi-format-align-justify', title: 'Daftar Layanan', route: '/views/users/layananUser' },
-        { icon:'mdi-information', title: 'Tentang Kami', route: '/views/users/aboutUser' }
+        { icon:'mdi-package', title: 'Daftar Produk', route: '/views/users/produkUser' },
+        { icon:'mdi-dog-service', title: 'Daftar Layanan', route: '/views/users/layananUser' },
+        { icon:'mdi mdi-cash', title: 'Transaksi CS', route: '/views/users/transaksiCS' },
+        { icon:'mdi-information', title: 'Tentang Kami', route: '/views/users/aboutUser' },
+        
       ],
       signin: [
         { text: 'Home', route: '/views/signin'}

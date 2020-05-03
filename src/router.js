@@ -58,7 +58,7 @@ export default new Router({
       ]
     },
     {
-      path: '/views/users/',
+      path: '/views/users',
       component: navbarAfter,
       children: [
         {
@@ -75,6 +75,11 @@ export default new Router({
           path: '/views/users/layananUser',
           name: 'layananUser',
           component: loadViewAfter('layananUser')           
+        },
+        {
+          path: '/views/users/transaksiCS',
+          name: 'transaksiCS',
+          component: loadViewAfter('transaksiCS')           
         },
         {
           path: '/views/users/aboutUser',
