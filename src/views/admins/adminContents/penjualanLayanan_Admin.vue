@@ -137,7 +137,7 @@ export default {
           value: 'tgl_transaksi_layanan'
         },
         {
-          text: 'ID Ukuran Hewan',
+          text: 'Jumlah Transaksi Layanan',
           value: 'jml_transaksi_layanan'
         },
         {
