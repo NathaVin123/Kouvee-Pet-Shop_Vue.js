@@ -86,6 +86,7 @@ export default {
                 { title: 'Jenis Hewan', icon: 'mdi-dashboard', route: '/admins/adminContents/jenisHewan_Admin'}, 
                 { title: 'Ukuran Hewan', icon: 'mdi-dashboard', route: '/admins/adminContents/ukuranHewan_Admin'},
                 { title: 'Pengadaan', icon: 'mdi-dashboard', route: '/admins/adminContents/pengadaan_Admin'},
+                { title: 'Pengadaan2', icon: 'mdi-dashboard', route: '/admins/adminContents/pengadaan2_Admin'},
                 { title: 'Penjualan Layanan', icon: 'mdi-dashboard', route: '/admins/adminContents/penjualanLayanan_Admin'},  
                 { title: 'Penjualan Produk', icon: 'mdi-dashboard', route: '/admins/adminContents/penjualanProduk_Admin'},  
             ],       

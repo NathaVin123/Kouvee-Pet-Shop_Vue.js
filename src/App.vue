@@ -13,7 +13,10 @@ export default {
   name: 'App',
   data () {
     return {
-      
+      data: {
+      items: [],
+      shippingPrice: 0
+    }
     }
   }
 }
