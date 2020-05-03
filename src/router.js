@@ -3,9 +3,12 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const dashboardUser = () => import('./views/admins/dashboardAdmin.vue')
-const navbarBefore = () => import('./views/Homepage.vue')  
-const navbarAfter = () => import('./views/users/Homepage.vue') 
+const dashboardAdmin = () => import('./views/admins/dashboardAdmin.vue')
+const dashboardCS = () => import('./views/users/Customer_service/dashboardCS.vue')
+const dashboardKasir = () => import('./views/users/Kasir/dashboardKasir.vue')
+
+const navbarBeforeLogin = () => import('./views/Homepage.vue')  
+const navbarAfterLogin = () => import('./views/users/Homepage.vue')
 
 function loadView(view) {
     return () => import(`./views/admins/adminContents/${view}.vue`) 
@@ -28,7 +31,7 @@ export default new Router({
   routes: [
     {
       path: '',
-      component: navbarBefore,
+      component: navbarBeforeLogin,
       children: [
         {
           path: '',
@@ -59,10 +62,10 @@ export default new Router({
     },
     {
       path: '/views/users',
-      component: navbarAfter,
+      component: navbarAfterLogin,
       children: [
         {
-          path: '/views/users/',
+          path: '/views/users',
           name: 'Welcome',
           component: loadViewAfter('Welcome')           
         },
@@ -90,7 +93,7 @@ export default new Router({
     },    
     {       
       path: '/admins/dashboardAdmin',       
-      component: dashboardUser,       
+      component: dashboardAdmin,       
       children: [         
           {           
               name: 'userAdmin',           

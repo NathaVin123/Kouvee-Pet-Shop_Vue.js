@@ -69,12 +69,11 @@
             <VContent >             
                 <router-view />         
             </VContent>
-        </div>
-        
-    </template> 
-     
-<script>   
-export default {     
+        </div>    
+</template>
+
+<script> 
+export default {
     data() {       
         return {         
             drawer: null,         

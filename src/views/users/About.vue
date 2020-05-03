@@ -62,7 +62,7 @@
           </v-footer>
         </div>
         
-      </template>
+</template>
       
       <script>
       export default {
