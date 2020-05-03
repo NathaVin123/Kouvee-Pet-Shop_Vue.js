@@ -57,11 +57,20 @@
         </v-container>
       </v-container>
     </v-card>
-    <v-dialog v-model="dialog" persistent max-width="600px">
+    <v-dialog
+      v-model="dialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
       <v-card>
-        <v-card-title>
-          <span class="headline">Tambah Penjualan Layanan</span>
-        </v-card-title>
+        <v-toolbar color="#2ecc71">
+          <v-btn icon @click="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Penjualan Layanan</v-toolbar-title>
+          <v-spacer></v-spacer>
+        </v-toolbar>
         <v-card-text>
           <v-container>
             <v-row>
@@ -92,7 +101,7 @@
                 </v-menu>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Jumlah Transaksi" v-model="form.jml_transaksi_layanan" required></v-text-field>
+                <v-text-field label="Jumlah Transaksi Layanan" v-model="form.jml_transaksi_layanan" required></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Subtotal" v-model="form.subtotal" required></v-text-field>
@@ -101,11 +110,154 @@
           </v-container>
           <small>*indicates required fields</small>
         </v-card-text>
-        <v-card-actions>
+        
+        
+      </v-card>
+      <v-card>
+        
+        <v-list three-line subheader>
+          <v-subheader>
+            <h2>Pembelian Layanan</h2> </v-subheader>
+          <v-list-item>
+            <v-list-item-content>
+              <v-card>
+                <v-row>
+                  
+                  
+                  
+                </v-row>
+                <v-row>
+                
+                <v-col cols="4">
+                   <v-text-field
+                     v-model="form.total"
+                      label="Total Pembelian"
+                      readonly=""
+                      shaped=""
+                      color="purple"
+                     prefix="Rp."
+                    ></v-text-field>
+                </v-col>
+                </v-row>
+              </v-card>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>
+                <h3>Data Layanan</h3></v-list-item-title>
+              <v-card>
+                <div
+                  class="form-row"
+                  v-for="(detilTransaksi, index) in detilTransaksis"
+                  :key="index"
+                >
+                  <v-row>
+                    <v-col cols="3">
+                      <v-autocomplete
+                        v-model="detilTransaksi.id_produk"
+                        required
+                        width=""
+                        :items="produks"
+                        @change="filteredProduk(index),setSubtotal(index)"
+                        item-value="id_produk"
+                        item-text="nama"
+                        label="Nama Produk*"
+                        outlined
+                         color="purple"
+                          :filter="customFilter"
+                      ></v-autocomplete>
+                    </v-col>
+                    <v-col cols="2">
+                      <v-text-field
+                        label="Jumlah*"
+                        v-model="detilTransaksi.jumlah"
+                        color="purple"
+                        type="number"
+                        outlined=""
+                        single-line=""
+                        clearable=""
+                        @change="setSubtotal(index)"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="2">
+                      <v-text-field
+                        label="Harga Produk*"
+                        v-model="detilTransaksi.harga"
+                        value=""                        
+                        outlined=""
+                        readonly=""
+                         color="purple"
+                         prefix="Rp."
+                         
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="2">
+                      <v-text-field
+                        label="Subtotal*"
+                        v-model="detilTransaksi.subtotal"
+                        value=""                        
+                        outlined=""
+                        readonly=""
+                         color="purple"
+                         prefix="Rp."
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="1">
+                      <v-btn
+                        outlined=""
+                        color="red lighten-2"
+                        x-large=""
+                        @click="deleteRow(detilTransaksi)"
+                      >
+                        <v-icon>mdi-delete</v-icon>
+                      </v-btn>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-divider light=""></v-divider>
+                    </v-col>
+                  </v-row>
+                </div>
+
+                <v-row>
+                  <v-col class="text-right">
+                    <v-btn
+                      outlined=""
+                      color="green"
+                      x-large=""
+                      fab=""
+                      @click="addTransaksi"
+                      class="tombol"
+                    >
+                      <v-icon>
+                        mdi-plus
+                      </v-icon>
+                    </v-btn>
+
+                    <v-btn
+                      outlined=""
+                      color="green"
+                      x-large=""
+                      fab=""
+                      @click="submit"
+                      class="tombol"
+                    >
+                      <v-icon>
+                        mdi-content-save
+                      </v-icon>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
           <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
         </v-card-actions>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+        <v-divider></v-divider>
       </v-card>
     </v-dialog>
     <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">

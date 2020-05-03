@@ -77,9 +77,14 @@ export default new Router({
           component: loadViewAfter('layananUser')           
         },
         {
-          path: '/views/users/transaksiCS',
-          name: 'transaksiCS',
-          component: loadViewAfter('transaksiCS')           
+          path: '/views/users/transaksiLayananCS',
+          name: 'transaksiLayananCS',
+          component: loadViewAfter('transaksiLayananCS')           
+        },
+        {
+          path: '/views/users/transaksiProdukCS',
+          name: 'transaksiProdukCS',
+          component: loadViewAfter('transaksiProdukCS')           
         },
         {
           path: '/views/users/aboutUser',
