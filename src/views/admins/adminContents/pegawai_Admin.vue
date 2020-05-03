@@ -175,10 +175,10 @@ export default {
           text: 'Status',
           value: 'stat'
         },
-        {
-          text: 'Password',
-          value: 'password'
-        },
+        // {
+        //   text: 'Password',
+        //   value: 'password'
+        // },
         {
           text: 'Gambar',
           value: 'gambar'
