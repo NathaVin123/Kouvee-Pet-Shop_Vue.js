@@ -22,9 +22,6 @@ function loadViewAfter(view) {
   return () => import(`./views/users/${view}.vue`) 
 }
 
-    Vue.use(Router)   
-    //const router = new Router({mode: 'history', routes: routes})   
-
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -96,9 +93,9 @@ export default new Router({
       component: dashboardAdmin,       
       children: [         
           {           
-              name: 'userAdmin',           
-              path: '/admins/adminContents/userAdmin',           
-              component: loadView('userAdmin')         
+            name: 'userAdmin',           
+            path: '/admins/adminContents/userAdmin',           
+            component: loadView('userAdmin')         
           },
           {           
             name: 'welcomeAdmin',           

@@ -1,168 +1,103 @@
-<template>
-  <div>
-      <!-- untuk navbar-->
-      <v-app-bar app fixed clipped-left>
-        <img src = "../../assets/AW419642_01.gif" style="width:110px;height:48px" class="mr-2">
-        <v-toolbar-title style="font-size: 21px;" class="secondary--text ml-3">
-          <span class="font-weight-light">Kouvee</span>
-          <span>PetShop</span>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        
-        <!-- untuk dropdown-->
-        <v-menu
-        offset-y
-        transition="slide-y-transition"
-        bottom
-      >
-        <template v-slot:activator="{ on }">
-          <v-btn
-            flat 
-            slot="activator"
-            v-on="on"
-            text small color="primary"
-          >
-          <v-icon left small>mdi-file-document-box-outline</v-icon>
-            <span>Menu</span>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-            v-for="item in links"
-            :key="item.text"
-            router :to="item.route"
-          >
-            <v-icon small left>{{ item.icon }}</v-icon>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
+<template>     
+    <div>         
+        <v-navigation-drawer         
+        v-model="drawer"         
+        color="#424242"         
+        dark         
+        app         
+        clipped         
+        fixed         
+        temporary         
+        >             
+            <v-list-item>
+                <img src="../../assets/dog.png"
+                style="height:35px;width:35px"
+                />         
+                <v-list-item-content>                 
+                <v-list-item-title class="title" style="margin-left:10px;">                     
+                    Kouvee Pet Shop                
+                </v-list-item-title>                 
+                <v-list-item-subtitle style="margin-left:10px;">                     
+                    Customer Service
+                </v-list-item-subtitle>                 
+                </v-list-item-content>             
+            </v-list-item> 
+ 
+            <v-divider></v-divider>             
+            <v-list>                 
+                <v-list-item                 
+                v-for="item in items"                 
+                :key="item.title"
+                router :to="item.route"                 
+                link                 
+                >                 
+                <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>                 
+                </v-list-item-icon> 
+     
+                <v-list-item-content>                     
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>                 
+                </v-list-item-content>                 
+                </v-list-item>             
+            </v-list>
+            <template v-slot:append> 
+                <div class="pa-2">
+                    <v-btn color="#c0392b" block rounded @click="logout()">Logout</v-btn>
+                </div>
+            </template>
 
-        <!-- untuk button navbar-->     
-        <v-btn
-          v-for="item in signin"
-          :key="item.text" 
-          flat color="primary"
-          router :to="item.route"
-          small
-        >
-          <span>Log Out</span>
-          <v-icon dark right small>mdi-login-variant</v-icon>
-        </v-btn>
-      </v-app-bar> 
-    <VContent >
-      <router-view />
-    </VContent>
-  </div>
+        </v-navigation-drawer> 
+     
+        <v-app-bar             
+            dark              
+            app             
+            fixed             
+            clipped-left             
+            height="70px"             
+            color="#424242">             
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> 
+     
+                <VSpacer />                                                              
+                <v-toolbar-title                 
+                    style="font-size: 21px;"                 
+                    class="white--text ml-2"             
+                >                  
+                    Kouvee Pet Shop             
+                </v-toolbar-title>
+            </v-app-bar> 
+ 
+            <VContent >             
+                <router-view />         
+            </VContent>
+        </div>    
 </template>
 
-<script>
-  export default {
-    data () {
-      return {
-        drawer: false,
-        dialog:false,
-        colors: [
-          'indigo',
-          'warning',
-          'pink darken-2',
-          'red lighten-1',
-          'deep-purple accent-4',
-        ],
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
-        links: [
-        { icon:'mdi-home', title: 'Home', route: '/views/users/' },
-        { icon:'mdi-package-variant-closed', title: 'Daftar Produk', route: '/views/users/produkUser' },
-        { icon:'mdi-dog-service', title: 'Daftar Layanan', route: '/views/users/layananUser' },
-        { icon:'mdi mdi-cash', title: 'Transaksi CS', route: '/views/users/transaksiCS' },
-        { icon:'mdi-information', title: 'Tentang Kami', route: '/views/users/aboutUser' },
-        
-      ],
-      signin: [
-        { text: 'Home', route: '/views/signin'}
-      ],
-      keyword: '',
-      headers: [
-        {
-          text: 'Name',
-          value: 'title',
-          sortable: false
-        },
-        {
-          text: 'Comment',
-          value: 'artist',
-          sortable: false
-        },
-        
-      ],
-      users: [],
-      snackbar: false,
-      color: null,
-      text: '',
-      load: false,
-      form: {
-        name: '',
-        comment: ''
-      },
-      user: new FormData,
-      typeInput: 'new',
-      errors: '',
-      updateId: '',
-      }
+<script> 
+export default {
+    data() {       
+        return {         
+            drawer: null,         
+            items: [           
+                { title: 'Layanan', icon: 'mdi-dog-service', route: '/admins/adminContents/layanan_Admin'},
+                { title: 'Produk', icon: 'mdi-package-variant-closed', route: '/admins/adminContents/produk_Admin'},
+                { title: 'Pegawai', icon: 'mdi-badge-account', route: '/admins/adminContents/pegawai_Admin'},
+                { title: 'Customer', icon: 'mdi-account', route: '/admins/adminContents/customer_Admin'},
+                { title: 'Supplier', icon: 'mdi-account-convert', route: '/admins/adminContents/supplier_Admin'},
+                { title: 'Hewan', icon: 'mdi-dog-side', route: '/admins/adminContents/hewan_Admin'},
+                { title: 'Jenis Hewan', icon: 'mdi-axis-arrow', route: '/admins/adminContents/jenisHewan_Admin'}, 
+                { title: 'Ukuran Hewan', icon: 'mdi-size-xxl', route: '/admins/adminContents/ukuranHewan_Admin'},
+                { title: 'Pengadaan', icon: 'mdi-update', route: '/admins/adminContents/pengadaan_Admin'},
+                { title: 'Penjualan Layanan', icon: 'mdi-bank-transfer', route: '/admins/adminContents/penjualanLayanan_Admin'},  
+                { title: 'Penjualan Produk', icon: 'mdi-cash-multiple', route: '/admins/adminContents/penjualanProduk_Admin'},  
+            ],       
+        }     
     },
-    methods: {
-    getData() {
-      var uri = this.$apiUrl3 + '/comment'
-      this.$http.get(uri).then(response => {
-        this.users = response.data.message
-      })
-    },
-    sendData() {
-      this.user.append('name', this.form.name);
-      this.user.append('comment', this.form.comment);
-      var uri = this.$apiUrl3 + '/comment'
-      this.load = true
-      this.$http.post(uri, this.user).then(response => {
-          this.snackbar = true;
-          this.color = 'green';
-          this.text = response.data.message;
-
-          this.load = false;
-          this.dialog = false
-          this.getData();
-          this.resetForm();
-        })
-        .catch(error => {
-          this.errors = error
-          this.snackbar = true;
-          this.text = 'Try Again';
-          this.color = 'red';
-          this.load = false;
-        })
-    },
-    setForm() {
-      if (this.typeInput === 'new') {
-        this.sendData()
-      } else {
-        //console.log("dddd")
-        this.updateData()
-      }
-    },
-    resetForm() {
-      this.form = {
-        name: '',
-        comment: '',
-      }
-    }
-  },
-  mounted() {
-    this.getData();
-  }
-  }
-</script>
+    methods:
+    {
+        logout() {
+                    this.$router.push({ name: "Welcome" });
+                    alert("Berhasil Logout!");
+                },
+    }  
+} 
+</script> 
