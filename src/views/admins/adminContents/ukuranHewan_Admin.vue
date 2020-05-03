@@ -70,7 +70,12 @@
                 <v-text-field label="Nama Ukuran Hewan" v-model="form.nama_ukuranHewan" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>
+                <v-select
+                  label="Update Log By (NIP)"
+                  v-model="form.updateLog_by"
+                  :items="items"
+                  required
+                ></v-select>
               </v-col>
             </v-row>
           </v-container>
@@ -116,6 +121,8 @@ export default {
         },
       ],
       users: [],
+      pegawais:[],
+      items: ["PEG001", "CS001"],
       snackbar: false,
       color: null,
       text: '',
@@ -136,6 +143,12 @@ export default {
       var uri = this.$apiUrl4 + '/ukuranhewan'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
+      })
+    },
+    getNIP(){
+      var uri = this.$apiUrl4 + '/pegawai'
+      this.$http.get(uri).then(response => {
+        this.pegawais = response.data.message
       })
     },
     dialogTambah(){
@@ -231,10 +244,20 @@ export default {
         nama_ukuranHewan: '',
         updateLog_by: ''
       }
-    }
+    },
+    customFilter(item, queryText) {
+      const textOne = item.nama.toLowerCase();
+      const textTwo = item.nama.toLowerCase();
+      const searchText = queryText.toLowerCase();
+
+      return (
+        textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
+      );
+    },
   },
   mounted() {
     this.getData();
+    this.getNIP();
   }
 }
 </script>
