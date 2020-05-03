@@ -82,6 +82,8 @@
         { icon:'mdi-dog-service', title: 'Daftar Layanan', route: '/views/users/layananUser' },
         { icon:'mdi mdi-cash', title: 'Transaksi Layanan CS', route: '/views/users/transaksiLayananCS' },
         { icon:'mdi mdi-cash', title: 'Transaksi Produk CS', route: '/views/users/transaksiProdukCS' },
+        { icon:'mdi mdi-cash-multiple', title: 'Pembayaran Layanan CS', route: '/views/users/pembayaranLayananKasir' },
+        { icon:'mdi mdi-cash-multiple', title: 'Pembayaran Produk CS', route: '/views/users/pembayaranProdukKasir' },
         { icon:'mdi-information', title: 'Tentang Kami', route: '/views/users/aboutUser' },
         
       ],

@@ -87,6 +87,16 @@ export default new Router({
           component: loadViewAfter('transaksiProdukCS')           
         },
         {
+          path: '/views/users/pembayaranProdukKasir',
+          name: 'pembayaranProdukKasir',
+          component: loadViewAfter('pembayaranProdukKasir')           
+        },
+        {
+          path: '/views/users/pembayaranLayananKasir',
+          name: 'pembayaranLayananKasir',
+          component: loadViewAfter('pembayaranLayananKasir')           
+        },
+        {
           path: '/views/users/aboutUser',
           name: 'aboutUser',
           component: loadViewAfter('About')
