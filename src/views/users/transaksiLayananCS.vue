@@ -332,6 +332,14 @@ export default {
       this.dialog = true;
       this.tambah = true;
     },
+    addTransaksi() {
+      this.detilTransaksis.push({
+        nama: "",
+        jumlah: "",
+        subtotal:"",
+        harga:""
+      });
+    },
     sendData() {
       this.user.append('kode_penjualan', this.form.kode_penjualan);
       this.user.append('id_layanan', this.form.id_layanan);
@@ -364,7 +372,7 @@ export default {
       this.user.append('tgl_transaksi_layanan', this.form.tgl_transaksi_layanan);
       this.user.append('jml_transaksi_layanan', this.form.jml_transaksi_layanan);
       this.user.append('subtotal', this.form.subtotal);
-      var uri = this.$apiUrl4 + '/detaillayanan'
+      var uri = this.$apiUrl4 + '/detaillayanan/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
