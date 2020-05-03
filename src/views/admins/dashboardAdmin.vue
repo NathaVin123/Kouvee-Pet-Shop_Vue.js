@@ -2,7 +2,7 @@
     <div>         
         <v-navigation-drawer         
         v-model="drawer"         
-        class="grey darken-3"         
+        color="#424242"         
         dark         
         app         
         clipped         
@@ -54,7 +54,7 @@
             fixed             
             clipped-left             
             height="70px"             
-            color="grey darken-3">             
+            color="#424242">             
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> 
      
                 <VSpacer />                                                              

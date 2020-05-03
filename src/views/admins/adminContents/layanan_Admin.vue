@@ -12,7 +12,7 @@
             <v-flex xs6 class="text-right">
               <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
                 <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
-                Tambah layanan
+                Tambah Layanan
               </v-btn>
             </v-flex>
           </v-layout>
