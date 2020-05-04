@@ -40,7 +40,7 @@
                   <td>{{ item.status_pembayaran }}</td>
                   <td>{{ item.id_customer }}</td>
                   <td>{{ item.id_CS }}</td>
-                  <td>{{ item.id_kasir }}</td>
+                  <td>{{ item.id_Kasir }}</td>
                   <td>{{ item.tgl_transaksi_produk }}</td>
                   <td>{{ item.jml_transaksi_produk }}</td>
                   <td>{{ item.subtotal }}</td>
@@ -124,7 +124,6 @@ export default {
         },
       ],
       users: [],
-      transaksi:[],
       snackbar: false,
       color: null,
       text: '',
@@ -144,17 +143,12 @@ export default {
   },
   methods: {
     getData() {
-      var uri = this.$apiUrl4 + '/detailproduk'
+      var uri = this.$apiUrl4 + '/TransaksiProduk';
       this.$http.get(uri).then(response => {
         this.users = response.data.message
       })
     },
-    getTransaksi() {
-      var uri = this.$apiUrl4 + '/transaksipenjualan'
-      this.$http.get(uri).then(response => {
-        this.users = response.data.message
-      })
-    },
+    
     dialogTambah(){
       this.resetForm();
       this.dialog = true;
