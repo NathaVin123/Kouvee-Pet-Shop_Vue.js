@@ -32,18 +32,20 @@
               <tbody>
                 <tr v-for="(item) in items" :key="item.kode_penjualan">
                   <td>{{ item.kode_penjualan }}</td>
-                  <td>{{ item.id_layanan }}</td>
                   <td>{{ item.tgl_transaksi_penjualan }}</td>
+                  <td>{{ item.id_layanan }}</td>
+                  <td>{{ item.nama_layanan }}</td>
+                  <td>{{ item.id_customer }}</td>
+                  <td>{{ item.nama_customer }}</td>
+                  <td>{{ item.id_Kasir }}</td>
                   <td>{{ item.nama_kasir }}</td>
-                  <td>{{ item.total }}</td>
                   <td>{{ item.status_transaksi }}</td>
                   <td>{{ item.status_pembayaran }}</td>
-                  <td>{{ item.id_customer }}</td>
-                  <td>{{ item.id_CS }}</td>
-                  <td>{{ item.id_Kasir }}</td>
                   <td>{{ item.tgl_transaksi_layanan }}</td>
                   <td>{{ item.jml_transaksi_Layanan }}</td>
                   <td>{{ item.subtotal }}</td>
+                  <td>{{ item.total }}</td>
+                  
                   <td class="text-center">
                   </td>
                 </tr>
@@ -75,20 +77,32 @@ export default {
           value: 'kode_penjualan'
         },
         {
-          text: 'ID Layanan',
-          value: 'id_layanan'
-        },
-         {
           text: 'Tanggal Transaksi Penjualan',
           value: 'tgl_transaksi_penjualan'
         },
         {
-          text: 'Nama Kasir',
-          value: 'nama_kasir'
+          text: 'ID Layanan',
+          value: 'id_layanan'
         },
         {
-          text: 'Total',
-          value: 'total'
+          text: 'Nama Layanan',
+          value: 'nama_layanan'
+        },
+        {
+          text: 'ID Customer',
+          value: 'id_customer'
+        },
+        {
+          text: 'Nama Customer',
+          value: 'nama_customer'
+        },
+        {
+          text: 'ID Kasir',
+          value: 'id_Kasir'
+        },
+        {
+          text: 'Nama Kasir',
+          value: 'nama_kasir'
         },
         {
           text: 'Status Transaksi',
@@ -99,19 +113,7 @@ export default {
           value: 'status_pembayaran'
         },
         {
-          text: 'ID Customer',
-          value: 'id_customer'
-        },
-        {
-          text: 'ID CS',
-          value: 'id_CS'
-        },
-        {
-          text: 'ID Kasir',
-          value: 'id_kasir'
-        },
-        {
-          text: 'Tanggal Transaksi',
+          text: 'Tanggal Transaksi Layanan',
           value: 'tgl_transaksi_layanan'
         },
         {
@@ -121,6 +123,10 @@ export default {
         {
           text: 'Subtotal',
           value: 'subtotal'
+        },
+        {
+          text: 'Total',
+          value: 'total'
         },
       ],
       users: [],
