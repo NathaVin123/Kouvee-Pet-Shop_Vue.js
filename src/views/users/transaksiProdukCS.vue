@@ -117,7 +117,7 @@
         
         <v-list three-line subheader>
           <v-subheader>
-            <h2>Pembelian Layanan</h2> </v-subheader>
+            <h2>Pembelian Produk</h2> </v-subheader>
           <v-list-item>
             <v-list-item-content>
               <v-card>
@@ -145,7 +145,7 @@
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title>
-                <h3>Data Layanan</h3></v-list-item-title>
+                <h3>Data Produk</h3></v-list-item-title>
               <v-card>
                 <div
                   class="form-row"
