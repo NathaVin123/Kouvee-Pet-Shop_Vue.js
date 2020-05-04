@@ -404,7 +404,7 @@ export default {
       this.form.tgl_transaksi_layanan = item.tgl_transaksi_layanan;
       this.form.jml_transaksi_layanan = item.jml_transaksi_layanan;
       this.form.subtotal = item.subtotal;
-      this.updatedId = item.id_layanan;
+      this.updatedId = item.kode_penjualan;
     },
     deleteData(deleteId) {
       var uri = this.$apiUrl4 + '/detaillayanan/' + deleteId;
