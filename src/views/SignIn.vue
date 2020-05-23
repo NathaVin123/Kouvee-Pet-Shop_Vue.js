@@ -17,9 +17,9 @@
                                 </div>
                                 <div class="form">
                                     <v-text-field
-                                    v-model="form.email"
+                                    v-model="form.NIP"
                                     label="NIP"
-                                    :rules="emailRules"
+                                    :rules="NIPRules"
                                     hint="Masukkan NIP yang telah terdaftar"      
                                     outlined
                                     height=50
@@ -70,16 +70,16 @@ export default {
             valid: true,
             checkbox: false,
             form : {
-                email : null,
+                NIP : null,
                 password : null,
             },
-            email: '',
+            NIP: '',
             
             signin: [
             { text: 'Home', route: '/views/signUp'}
             ],
             
-            emailRules: [
+            NIPRules: [
               v => !!v || 'NIP harus dimasukkan',
             ],
             
@@ -93,18 +93,18 @@ export default {
     },
     methods :{
         login(){
-            var url = this.$apiUrl + '/auth'
+            var url = this.$apiUrl4 + '/auth'
             this.user = new FormData()
-            this.user.append('email', this.form.email)
+            this.user.append('NIP', this.form.NIP)
             this.user.append('password', this.form.password)
             this.$http.post(url,this.user).then(response =>{
-                if(this.form.email == "admin" && this.form.password == "adminadmin"){
+                if(this.form.NIP == "admin" && this.form.password == "adminadmin"){
                 this.$router.push({name: 'welcomeAdmin'})
                 alert('Berhasil login sebagai admin!')
             }
                 else if(response.data.token){
                     localStorage.setItem("token", response.data.token)
-                    this.$router.push({name : 'produkUser'})
+                    this.$router.push({name : 'welcomeAdmin'})
                     alert('Sukses, Selamat datang di Kouvee PetShop !')
                 }else{
                     alert('Failed')
