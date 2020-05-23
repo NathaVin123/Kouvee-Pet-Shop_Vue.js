@@ -43,7 +43,7 @@
                   <td>{{ item.tglLahir_pegawai }}</td>
                   <td>{{ item.noTelp_pegawai }}</td>
                   <td>{{ item.stat }}</td>
-                  <td>{{ item.password }}</td>
+                  <!-- <td>{{ item.password }}</td> -->
                   <td> <v-img :src="$apiUrl4 + '/pegawai/' + item.gambar" contain class="grey lighten-2" width="75" height="75"/></td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
@@ -102,10 +102,18 @@
               <v-col cols="12">
                 <v-text-field label="Nomor Telepon" v-model="form.noTelp_pegawai" required></v-text-field>
               </v-col>
-               <v-col cols="12">
-                <v-text-field label="Status" v-model="form.stat" required></v-text-field>
+              <!-- <v-col cols="12">
+                <v-text-field label="Role" v-model="form.stat" required></v-text-field>
+              </v-col> -->
+              <v-col cols="12">
+                <v-select
+                  label="Role"
+                  v-model="form.stat"
+                  :items="items"
+                  required
+                ></v-select>
               </v-col>
-               <v-col cols="12">
+              <v-col cols="12">
                 <v-text-field label="Password" v-model="form.password" type="password" required></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -161,7 +169,7 @@ export default {
         },
         {
           text: 'Alamat Pegawai',
-          value: 'harga_pegawai'
+          value: 'alamat_pegawai'
         },
         {
           text: 'Tanggal Lahir',
@@ -194,6 +202,7 @@ export default {
         },
       ],
       users: [],
+      items: ["Kasir", "CS"],
       snackbar: false,
       color: null,
       text: '',

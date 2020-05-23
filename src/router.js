@@ -11,7 +11,7 @@ const navbarBeforeLogin = () => import('./views/Homepage.vue')
 const navbarAfterLogin = () => import('./views/users/Homepage.vue')
 
 function loadView(view) {
-    return () => import(`./views/admins/adminContents/${view}.vue`) 
+  return () => import(`./views/admins/adminContents/${view}.vue`) 
 }
 
 function loadViewBefore(view) {

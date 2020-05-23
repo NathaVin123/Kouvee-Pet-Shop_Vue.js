@@ -18,9 +18,9 @@
                                 <div class="form">
                                     <v-text-field
                                     v-model="form.email"
-                                    label="Email"
+                                    label="NIP"
                                     :rules="emailRules"
-                                    hint="Input your valid email"      
+                                    hint="Masukkan NIP yang telah terdaftar"      
                                     outlined
                                     height=50
                                     ></v-text-field>
@@ -35,7 +35,7 @@
                                     height=50
                                     ></v-text-field>
 
-          <small>Belum punya akun ? </small>
+          <!-- <small>Belum punya akun ? </small>
           <v-btn
           v-for="item in signin"
           :key="item.text" 
@@ -44,9 +44,9 @@
           router :to="item.route"
         >
          Daftar disini
-        </v-btn>
+        </v-btn> -->
         
-        <v-btn @click="login()" rounded block class="elevation-0" color="primary" height=50 dark>Submit</v-btn>
+        <v-btn @click="login()" rounded block class="elevation-0" color="primary" height=50 dark>Login</v-btn>
         </div>
                                 
         </v-col>
@@ -60,11 +60,10 @@
             </v-row>
           </v-container>
       </v-content>
-  </v-app>
+    </v-app>
 </template>
 
 <script>
-
 export default {
     data () {
         return {
@@ -81,15 +80,12 @@ export default {
             ],
             
             emailRules: [
-              v => !!v || 'E-mail is required',
-              v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+              v => !!v || 'NIP harus dimasukkan',
             ],
             
             password: 'Password',
             rules: {
-                required: value => !!value || 'Required.',
-                min: v => v.length >= 8 || 'Min 8 characters',
-                emailMatch: () => ('The email and password you entered don\'t match'),
+                required: value => !!value || 'password harus diisi',
             },
 
             user: new FormData,
@@ -102,9 +98,9 @@ export default {
             this.user.append('email', this.form.email)
             this.user.append('password', this.form.password)
             this.$http.post(url,this.user).then(response =>{
-                if(this.form.email == "admin@admin.lr" && this.form.password == "adminadmin"){
+                if(this.form.email == "admin" && this.form.password == "adminadmin"){
                 this.$router.push({name: 'welcomeAdmin'})
-                alert('Login sebagai admin, sukses !')
+                alert('Berhasil login sebagai admin!')
             }
                 else if(response.data.token){
                     localStorage.setItem("token", response.data.token)
