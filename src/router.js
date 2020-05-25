@@ -13,8 +13,8 @@ const loginLayout = () => import('./views/SignIn.vue');
 const landingPageLayout = () => import('./views/Customer/landingPage.vue');
 
 ///////////////// load gemblung sebelum dibenerin ////////////////////
-const navbarBeforeLogin = () => import('./views/Homepage.vue')  
-const navbarAfterLogin = () => import('./views/users/Homepage.vue')
+const navbarBeforeLogin = () => import('./views/navbarHome.vue')  
+const navbarAfterLogin = () => import('./views/users/navbarHome.vue')
 
 
 function loadView(view) {
