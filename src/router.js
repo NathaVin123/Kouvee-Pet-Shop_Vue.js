@@ -3,12 +3,19 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const dashboardAdmin = () => import('./views/admins/dashboardAdmin.vue')
-const dashboardCS = () => import('./views/users/Customer_service/dashboardCS.vue')
-const dashboardKasir = () => import('./views/users/Kasir/dashboardKasir.vue')
+/////////////////// dashboard (sidebar) untuk tiap role /////////////////////
+const dashboardAdmin = () => import('./views/admins/dashboardAdmin.vue');
+const dashboardCS = () => import('./views/Customer_service/dashboardCS.vue');
+const dashboardKasir = () => import('./views/Cashier/dashboardKasir.vue');
 
+////////////////// login dan landing page ////////////////////////
+const loginLayout = () => import('./views/SignIn.vue');
+const landingPageLayout = () => import('./views/Customer/landingPage.vue');
+
+///////////////// load gemblung sebelum dibenerin ////////////////////
 const navbarBeforeLogin = () => import('./views/Homepage.vue')  
 const navbarAfterLogin = () => import('./views/users/Homepage.vue')
+
 
 function loadView(view) {
   return () => import(`./views/admins/adminContents/${view}.vue`) 
@@ -21,6 +28,12 @@ function loadViewBefore(view) {
 function loadViewAfter(view) {
   return () => import(`./views/users/${view}.vue`) 
 }
+
+////////////////////// load tiap fungsi data master dan transaksi //////////////////////////////
+function loadLayanan(view) {
+  return () => import(`./views/admins/adminContents/${view}.vue`)
+}
+
 
 export default new Router({
   mode: 'history',
