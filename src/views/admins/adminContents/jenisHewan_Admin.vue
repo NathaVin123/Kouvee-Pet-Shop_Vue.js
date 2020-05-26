@@ -36,7 +36,8 @@
             :loading="load">
             <template v-slot:body="{ items }" >
               <tbody>
-                <tr v-for="(item) in items" :key="item.id_jenisHewan">
+                <tr v-for="(item, index) in items" :key="item.id_jenisHewan">
+                  <td>{{ index + 1 }}</td>
                   <td>{{ item.id_jenisHewan }}</td>
                   <td>{{ item.nama_jenisHewan }}</td>
                   <td>{{ item.updateLog_by }}</td>
@@ -55,30 +56,46 @@
         </v-container>
       </v-container>
     </v-card>
+    
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
           <span class="headline">Tambah Jenis Hewan</span>
+          <v-spacer />
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-row>
-              <!-- <v-col cols="12">
-                <v-text-field label="ID Jenis Hewan" v-model="form.id_jenisHewan" required></v-text-field>
-              </v-col> -->
-              <v-col cols="12">
-                <v-text-field label="Nama Jenis Hewan" v-model="form.nama_jenisHewan" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>
-              </v-col>
-            </v-row>
+            <v-form ref="form">
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Nama Jenis Hewan*"
+                    v-model="form.nama_jenisHewan"
+                    required
+                    :rules="rules"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Diubah Oleh*"
+                    v-model="form.updateLog_by"
+                    required
+                    :rules="rules"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-form>
           </v-container>
-          <small>*indicates required fields</small>
+          <small>*berarti wajib diisi</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="resetForm(), reset(), (dialog = false)"
+            >Close</v-btn
+          >
           <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
         </v-card-actions>
       </v-card>
@@ -94,9 +111,15 @@
 export default {
   data() {
     return {
+      rules: [(value) => !!value || 'field Wajib diisi!'],
       dialog: false,
       keyword: '',
+      users: [],
       headers: [
+        {
+          text: 'No',
+          value: 'index'
+        },
         {
           text: 'ID Jenis Hewan',
           value: 'id_jenisHewan'
@@ -115,7 +138,6 @@ export default {
           sortable : false
         },
       ],
-      users: [],
       snackbar: false,
       color: null,
       text: '',
@@ -132,8 +154,18 @@ export default {
     }
   },
   methods: {
+    cekKosong() {
+        if (this.form.nama_jenisHewan === '') {
+          this.dialogWarning = true;
+        } else {
+          this.setForm();
+          this.resetForm();
+          this.reset();
+          this.dialog = false;
+        }
+    },
     getData() {
-      var uri = this.$apiUrl4 + '/jenisHewan'
+      var uri = this.$apiUrl4 + 'jenishewan'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
       })
@@ -144,10 +176,9 @@ export default {
       this.tambah = true;
     },
     sendData() {
-      this.user.append('id_jenisHewan', this.form.id_jenisHewan);
       this.user.append('nama_jenisHewan', this.form.nama_jenisHewan);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/jenisHewan'
+      var uri = this.$apiUrl4 + 'jenishewan'
       this.load = true
       this.$http.post(uri, this.user).then(response => {
           this.snackbar = true;
@@ -162,16 +193,15 @@ export default {
         .catch(error => {
           this.errors = error
           this.snackbar = true;
-          this.text = 'Try Again';
+          this.text = 'Try Again!';
           this.color = 'red';
           this.load = false;
         })
     },
     updateData() {
-      this.user.append('id_jenisHewan', this.form.id_jenisHewan);
       this.user.append('nama_jenisHewan', this.form.nama_jenisHewan);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/jenisHewan/' + this.updatedId;
+      var uri = this.$apiUrl4 + '/jenishewan/' + 'update/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -225,12 +255,16 @@ export default {
         this.updateData()
       }
     },
+    reset() {
+      this.$refs.form.resetValidation();
+    },
     resetForm() {
       this.form = {
-        id_jenisHewan: '',
-        nama_jenisHewan: '',
-        updateLog_by: ''
-      }
+          nama: '',
+          created_by: sessionStorage.getItem('Nama'),
+          delete_by: sessionStorage.getItem('Nama'),
+          modified_by: sessionStorage.getItem('Nama'),
+        };
     }
   },
   mounted() {
