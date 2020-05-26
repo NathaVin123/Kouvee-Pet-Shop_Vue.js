@@ -45,7 +45,7 @@
                     <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.id_jenisHewan)">
+                    <v-btn icon color="error" light @click="deleteRow(item)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </td>
@@ -56,6 +56,27 @@
         </v-container>
       </v-container>
     </v-card>
+
+    <div class="text-center">
+      <v-dialog width="500" v-model="deleteDialog">
+        <v-card>
+          <v-card-title class="headline Red lighten-2" primary-title
+            >Konfirmasi Hapus</v-card-title
+          >
+          <v-card-text>Data yang akan dihapus, Lanjutkan ?</v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="deleteDialog = false"
+              >Batal</v-btn
+            >
+            <v-btn color="primary" text @click="deleteData(deleteId)"
+              >Hapus</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
     
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
@@ -148,6 +169,7 @@ export default {
         updateLog_by: ''
       },
       user: new FormData,
+      deleteDialog: false,
       typeInput: 'new',
       errors: '',
       updateId: '',
@@ -233,8 +255,12 @@ export default {
       this.form.updateLog_by = item.updateLog_by;
       this.updatedId = item.id_jenisHewan;
     },
+    deleteRow(item) {
+      this.deleteId = item.id_jenisHewan;
+      this.deleteDialog = true;
+    },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/jenisHewan/' + deleteId;
+      var uri = this.$apiUrl4 + '/jenishewan/' + deleteId;
       this.$http.delete(uri).then(response =>{
           this.snackbar = true;
           this.text = response.data.message;
