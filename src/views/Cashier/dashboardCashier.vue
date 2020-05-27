@@ -18,7 +18,7 @@
                     Kouvee Pet Shop                
                 </v-list-item-title>                 
                 <v-list-item-subtitle style="margin-left:10px;">                     
-                    Customer Service
+                    Kasir
                 </v-list-item-subtitle>                 
                 </v-list-item-content>             
             </v-list-item> 
@@ -77,10 +77,10 @@ export default {
     data() {       
         return {         
             drawer: null,         
-            items: [       
-                { title: 'Customer', icon: 'mdi-account', to: '/menuCustomer'},    
-                { title: 'Hewan', icon: 'mdi-dog-side', to: '/menuHewan',},
-                { title: 'Transaksi', icon: 'mdi-bank-transfer', to: '/menuTransaksi'},
+            items: [
+                { title: 'Transaksi Produk', icon: 'mdi-cash-multiple', to: '/menuTransaksiProduk'},
+                { title: 'Transaksi Layanan', icon: 'mdi-bank-transfer', to: '/menuTransaksiLayanan'},
+                { title: 'Layanan', icon: 'mdi-dog-service', route: '/admins/adminContents/layanan_Admin'},  
             ],       
         }     
     },

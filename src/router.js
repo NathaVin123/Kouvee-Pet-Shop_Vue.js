@@ -6,7 +6,7 @@ Vue.use(Router)
 /////////////////// dashboard (sidebar) untuk tiap role /////////////////////
 const dashboardAdmin = () => import('./views/admins/dashboardAdmin.vue');
 const dashboardCS = () => import('./views/Customer_service/dashboardCS.vue');
-const dashboardKasir = () => import('./views/Cashier/dashboardKasir.vue');
+const dashboardCashier = () => import('./views/Cashier/dashboardCashier.vue');
 
 ////////////////// login dan landing page ////////////////////////
 const loginLayout = () => import('./views/SignIn.vue');
