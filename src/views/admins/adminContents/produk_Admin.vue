@@ -3,7 +3,7 @@
     <v-card>
       <v-container grid-list-md mb-0>
         <template>
-          <h1 class="subheading grey-darken--text">Data Produk Kouvee Petshop</h1>
+          <h1 class="subheading grey-darken--text">Data Produk</h1>
           <v-layout row wrap style="margin:10px">
             <v-toolbar flat color="white">
               <v-dialog v-model="dialog" max-width="500px">
