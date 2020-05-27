@@ -33,21 +33,23 @@
             :headers="headers"
             :items="users"
             :search="keyword"
-            :loading="load">
+            >
             <template v-slot:body="{ items }" >
               <tbody>
-                <tr v-for="(item) in items" :key="item.id_customer">
+                <tr v-for="(item, index) in items" :key="item.id_customer">
+                  <td>{{ index + 1 }}</td>
                   <td>{{ item.id_customer }}</td>
                   <td>{{ item.nama_customer }}</td>
                   <td>{{ item.alamat_customer }}</td>
                   <td>{{ item.tglLahir_customer }}</td>
                   <td>{{ item.noTelp_customer }}</td>
+                  <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.id_customer)">
+                    <v-btn icon color="error" light @click="deleteRow(item)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </td>
@@ -58,6 +60,28 @@
         </v-container>
       </v-container>
     </v-card>
+    <div class="text-center">
+      <v-dialog width="500" v-model="deleteDialog">
+        <v-card>
+          <v-card-title class="headline Red lighten-2" primary-title>
+            Konfirmasi Hapus
+          </v-card-title>
+          <v-card-text>
+            Data yang akan dihapus, Lanjutkan ?
+          </v-card-text>
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="deleteDialog = false">
+              Batal
+            </v-btn>
+            <v-btn color="primary" text @click="deleteData(deleteId)">
+              Hapus
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
@@ -66,20 +90,25 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <!-- <v-col cols="12">
-                <v-text-field label="ID Customer" v-model="form.id_customer" required></v-text-field>
-              </v-col> -->
               <v-col cols="12">
-                <v-text-field label="Nama Customer" v-model="form.nama_customer" required></v-text-field>
+                <v-text-field 
+                  label="Nama Customer*" 
+                  v-model="form.nama_customer" 
+                  required
+                ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Alamat Custumer" v-model="form.alamat_customer" required></v-text-field>
+                <v-text-field 
+                  label="Alamat Custumer" 
+                  v-model="form.alamat_customer" 
+                  required
+                ></v-text-field>
               </v-col>
-              <v-col cols="12">
+              <v-col cols="20">
                 <v-menu
-                  v-model="menu2"
+                  ref="menu"
+                  v-model="menu"
                   :close-on-content-click="false"
-                  :nudge-right="40"
                   transition="scale-transition"
                   offset-y
                   min-width="290px"
@@ -87,19 +116,26 @@
                   <template v-slot:activator="{ on }">
                     <v-text-field
                       v-model="form.tglLahir_customer"
-                      label="Pilih Tanggal Lahir Anda"
+                      label="Tanggal Lahir Customer*"
                       readonly
                       v-on="on"
                     ></v-text-field>
                   </template>
-                  <v-date-picker v-model="form.tglLahir_customer" @input="tanggal = false"></v-date-picker>
-                </v-menu>
-              </v-col>
+                  <v-date-picker
+                    ref="picker"
+                    v-model="form.tglLahir_customer"
+                    :max="new Date().toISOString().substr(0, 10)"
+                    min="1960-01-01"
+                    @change="save"
+                  ></v-date-picker>
+                  </v-menu>
+                </v-col>
               <v-col cols="12">
-                <v-text-field label="Nomor Telepon" v-model="form.noTelp_customer" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="UpdateLog_by (NIP)" v-model="form.updateLog_by" required></v-text-field>
+                <v-text-field 
+                  label="Nomor Telepon Customer*" 
+                  v-model="form.noTelp_customer" 
+                  required
+                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -125,9 +161,14 @@ export default {
     return {
       dialog: false,
       keyword: '',
-      date: new Date().toISOString().substr(0, 10),
       tanggal: false,
+      on: '',
+      deleteDialog: '',
       headers: [
+        {
+          text: 'No',
+          value: 'index',
+        },
         {
           text: 'ID Customer',
           value: 'id_customer'
@@ -149,7 +190,11 @@ export default {
           value: 'noTelp_customer'
         },
         {
-          text: 'UpdateLog_by (NIP)',
+          text: 'Tanggal Dibuat',
+          value: 'createLog_at'
+        },
+        {
+          text: 'Diubah Oleh',
           value: 'updateLog_by'
         },
         {
@@ -164,12 +209,11 @@ export default {
       text: '',
       load: false,
       form: {
-        id_customer: '',
         nama_customer: '',
         alamat_customer: '',
         tglLahir_customer: '',
         noTelp_customer: '',
-        updateLog_by: ''
+        updateLog_by: sessionStorage.getItem('Nama'),
       },
       user: new FormData,
       typeInput: 'new',
@@ -177,7 +221,34 @@ export default {
       updateId: '',
     }
   },
+  watch: {
+    menu(val) {
+      val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'));
+    },
+  },
   methods: {
+    cekKosong() {
+      if (
+        this.form.nama_customer === '' ||
+        this.form.alamat_customer === '' ||
+        this.form.tglLahir_customer === '' ||
+        this.form.noTelp_customer === ''
+      ) {
+        this.dialogWarning = true;
+      } else {
+        this.setForm();
+        this.resetForm();
+        this.reset();
+        this.dialog = false;
+      }
+    },
+    save(date) {
+      this.$refs.menu.save(date);
+    },
+    reset() {
+      this.$refs.form.resetValidation();
+      this.show = false;
+    },
     getData() {
       var uri = this.$apiUrl4 + '/customer'
       this.$http.get(uri).then(response => {
@@ -190,7 +261,6 @@ export default {
       this.tambah = true;
     },
     sendData() {
-      this.user.append('id_customer', this.form.id_customer);
       this.user.append('nama_customer', this.form.nama_customer);
       this.user.append('alamat_customer', this.form.alamat_customer);
       this.user.append('tglLahir_customer', this.form.tglLahir_customer);
@@ -202,7 +272,6 @@ export default {
           this.snackbar = true;
           this.color = 'green';
           this.text = response.data.message;
-
           this.load = false;
           this.dialog = false
           this.getData();
@@ -217,13 +286,12 @@ export default {
         })
     },
     updateData() {
-      this.user.append('id_customer', this.form.id_customer);
       this.user.append('nama_customer', this.form.nama_customer);
       this.user.append('alamat_customer', this.form.alamat_customer);
       this.user.append('tglLahir_customer', this.form.tglLahir_customer);
       this.user.append('noTelp_customer', this.form.noTelp_customer);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/customer/' + this.updatedId;
+      var uri = this.$apiUrl4 + 'customer/' + 'update/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -250,28 +318,34 @@ export default {
       this.typeInput = 'edit';
       this.tambah = false;
       this.dialog = true;
-      this.form.id_customer = item.id_customer;
       this.form.nama_customer = item.nama_customer;
       this.form.alamat_customer = item.alamat_customer;
       this.form.tglLahir_customer = item.tglLahir_customer;
       this.form.noTelp_customer = item.noTelp_customer;
-       this.form.updateLog_by = item.updateLog_by;
       this.updatedId = item.id_customer;
     },
+    deleteRow(item) {
+      this.deleteId = item.id_customer;
+      this.deleteDialog = true;
+    },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/customer/' + deleteId;
-      this.$http.delete(uri).then(response =>{
+      var uri = this.$apiUrl4 + 'customer' + '/delete/' + deleteId; //data dihapus berdasarkan id
+      this.load = true;
+      this.$http
+        .post(uri, this.user)
+        .then((response) => {
           this.snackbar = true;
           this.text = response.data.message;
-          this.color = 'green'
+          this.color = 'green';
           this.deleteDialog = false;
           this.getData();
-        }).catch(error => {
-          this.errors = error
+        })
+        .catch((error) => {
+          this.errors = error;
           this.snackbar = true;
           this.text = 'Try Again';
           this.color = 'red';
-        })
+        });
     },
     setForm() {
       if (this.typeInput === 'new') {
@@ -282,12 +356,11 @@ export default {
     },
     resetForm() {
       this.form = {
-        id_customer: '',
         nama_customer: '',
         alamat_customer: '',
         tglLahir_customer: '',
         noTelp_customer: '',
-        updateLog_by: ''
+        updateLog_by: sessionStorage.getItem('Nama'),
       }
     }
   },
