@@ -150,7 +150,7 @@ export default {
           value: 'nama_jenisHewan'
         },
         {
-          text: 'Update Log By (NIP)',
+          text: 'Diubah Oleh',
           value: 'updateLog_by'
         },
         {

@@ -1,15 +1,15 @@
 <template>
   <v-container>
     <v-card>
-      <v-container grid-list-md mb-20>
+      <v-container grid-list-md mb-0>
         <template>
-          <h2 class="text-md-center">Data Produk Kouvee Petshop</h2>
+          <h1 class="subheading grey-darken--text">Data Produk Kouvee Petshop</h1>
           <v-layout row wrap style="margin:10px">
             <v-toolbar flat color="white">
               <v-dialog v-model="dialog" max-width="500px">
                 <template v-slot:activator="{ on }">
                   <v-btn
-                    color="#f9c99e"
+                    color="green accent-3"
                     depressed
                     rounded
                     dark
@@ -114,20 +114,22 @@
                 </v-card>
               </v-dialog>
               <v-spacer></v-spacer>
+              
               <v-divider class="mx-4" inset vertical></v-divider>
               <v-flex xs6 class="text-right">
-                <v-text-field
-                  v-model="keyword"
-                  label="Cari"
-                  append-icon="mdi-search"
-                  single-line
-                  hide-details
-                  outlined=""
-                  clearable=""
-                ></v-text-field>
+                
               </v-flex>
             </v-toolbar>
           </v-layout>
+          <v-text-field
+                  class="mx-0"
+                  flat
+                  hide-details
+                  label="Search"
+                  v-model="keyword"
+                  prepend-inner-icon="mdi-magnify"
+                  solo-inverted
+                ></v-text-field>
         </template>
         <v-layout class="mx-4">
           <v-flex>
@@ -216,7 +218,7 @@
                             Stok Minimal : {{ item.min_stok_produk }}<br />
                             Harga : {{ item.harga_produk }}<br />
                             Satuan : {{ item.satuan_produk }}<br />
-                            Tanggal Dibuat : {{ item.created_at }}<br />
+                            Tanggal Dibuat : {{ item.createLog_at }}<br />
                             Diubah Oleh : {{ item.updateLog_by }}<br />
                           </v-card-subtitle>
                         </v-card-text>
@@ -467,8 +469,8 @@
   };
 </script>
 <style scoped>
-  .v-toolbar__content,
+  /* .v-toolbar__content,
   .v-toolbar__extension {
     color: white;
-  }
+  } */
 </style>
