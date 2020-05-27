@@ -163,18 +163,8 @@ export default new Router({
           },
           {           
             name: 'welcomeAdmin',           
-            path: '/admins/adminContents/welcomeAdmin',           
+            path: '/admins/welcomeAdmin',           
             component: loadView('welcomeAdmin')         
-          },
-          {           
-            name: 'lyricAdmin',           
-            path: '/admins/adminContents/lyricAdmin',           
-            component: loadView('lyricAdmin')         
-          },
-          {           
-            name: 'commentAdmin',           
-            path: '/admins/adminContents/commentAdmin',           
-            component: loadView('commentAdmin')         
           },
           {           
             name: 'layanan_Admin',           
@@ -211,26 +201,6 @@ export default new Router({
             path: '/admins/pengadaan/MenuPengadaan',           
             component: loadPengadaan('MenuPengadaan')
           },
-          {
-            name: 'customer_Admin',           
-            path: '/admins/adminContents/customer_Admin',           
-            component: loadView('customer_Admin')
-          },   
-          {
-            name: 'hewan_Admin',           
-            path: '/admins/adminContents/hewan_Admin',           
-            component: loadView('hewan_Admin')
-          },
-          {
-            name: 'penjualanLayanan_Admin',           
-            path: '/admins/adminContents/penjualanLayanan_Admin',           
-            component: loadView('penjualanLayanan_Admin')
-          },
-          {
-            name: 'penjualanProduk_Admin',           
-            path: '/admins/adminContents/penjualanProduk_Admin',           
-            component: loadView('penjualanProduk_Admin')
-          },
       ]     
     },
     {       
@@ -244,12 +214,12 @@ export default new Router({
           },
           {
             name: 'hewan_Admin',           
-            path: '/Customer_service/customer/MenuHewan',           
+            path: '/Customer_service/hewan/MenuHewan',           
             component: loadHewan('MenuHewan')
           },
           {
             name: 'transaksi_Amin',           
-            path: '/Customer_service/customer/MenuTransaksi',           
+            path: '/Customer_service/transaksi/MenuTransaksi',           
             component: loadTransaksi('MenuTransaksi')
           },
       ]     

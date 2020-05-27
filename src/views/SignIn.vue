@@ -116,6 +116,7 @@ export default {
             this.text = 'Login Berhasil';
             this.color = 'green';
             this.$router.push({ name: 'welcomeAdmin' });
+            alert('Login sebagai admin, sukses !');
             console.log('admin');
           } else {
             this.snackbar = true;
@@ -130,37 +131,39 @@ export default {
           this.$http
             .post(url, this.user)
             .then((response) => {
-              this.pegawai = response.data.message;
-              if (this.pegawai.id_pegawai != null) {
-                if (this.pegawai.role.toLowerCase() == 'customer service') {
+              this.pegawais = response.data.message;
+              if (this.pegawais.NIP != null) {
+                if (this.pegawais.stat.toLowerCase() == 'Customer Service') {
                   //login ke menu customer
                   sessionStorage.setItem(
                     'Id',
-                    response.data.message.id_pegawai
+                    response.data.message.NIP
                   );
                   sessionStorage.setItem(
                     'Nama',
-                    response.data.message.NIP
+                    response.data.message.nama_pegawai
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
                   this.color = 'green';
-                  this.$router.push({ name: 'Pelanggan' });
+                  this.$router.push({ name: 'customer_Admin' });
+                  alert('Login sebagai CS, sukses !');
                   console.log('customer service');
-                } else if (this.pegawai.role.toLowerCase() == 'kasir') {
+                } else if (this.pegawais.stat.toLowerCase() == 'kasir') {
                   //code untuk login ke kasir
                   sessionStorage.setItem(
                     'Id',
-                    response.data.message.id_pegawai
+                    response.data.message.NIP
                   );
                   sessionStorage.setItem(
                     'Nama',
-                    response.data.message.NIP
+                    response.data.message.nama_pegawai
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
                   this.color = 'green';
                   this.$router.push({ name: 'TransaksiProduk' });
+                  alert('Login sebagai Kasir, sukses !');
                   console.log('customer service');
                 } else {
                   this.snackbar = true;
