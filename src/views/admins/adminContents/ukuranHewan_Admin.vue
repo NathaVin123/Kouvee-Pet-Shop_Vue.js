@@ -33,18 +33,20 @@
             :headers="headers"
             :items="users"
             :search="keyword"
-            :loading="load">
+            >
             <template v-slot:body="{ items }" >
               <tbody>
-                <tr v-for="(item) in items" :key="item.id_ukuranHewan">
+                <tr v-for="(item, index) in items" :key="item.id_ukuranHewan">
+                  <td>{{ index + 1 }}</td>
                   <td>{{ item.id_ukuranHewan }}</td>
                   <td>{{ item.nama_ukuranHewan }}</td>
+                  <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.id_ukuranHewan)">
+                    <v-btn icon color="error" light v-on="on" @click="deleteRow(item)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </td>
@@ -63,19 +65,13 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <!-- <v-col cols="12">
-                <v-text-field label="ID Ukuran Hewan" v-model="form.id_ukuranHewan" required></v-text-field>
-              </v-col> -->
               <v-col cols="12">
-                <v-text-field label="Nama Ukuran Hewan" v-model="form.nama_ukuranHewan" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-select
-                  label="Update Log By (NIP)"
-                  v-model="form.updateLog_by"
-                  :items="items"
+                <v-text-field 
+                  label="Nama Ukuran Hewan*" 
+                  v-model="form.nama_ukuranHewan" 
                   required
-                ></v-select>
+                  :rules="rules"
+                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -84,10 +80,71 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="cekKosong()">Save</v-btn>
         </v-card-actions>
       </v-card>
+      <div class="text-center">
+        <v-dialog width="500" v-model="deleteDialog">
+          <v-card>
+            <v-card-title class="headline Red lighten-2" primary-title>
+              Konfirmasi Hapus
+            </v-card-title>
+            <v-card-text>
+              Data yang akan dihapus, Lanjutkan ?
+            </v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" text @click="deleteDialog = false">
+                Batal
+              </v-btn>
+              <v-btn color="primary" text @click="deleteData(deleteId)">
+                Hapus
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
     </v-dialog>
+    <v-dialog v-model="dialogEdit" persistent max-width="600px">
+        <v-card>
+          <v-card-title>
+            <v-spacer />
+            <span class="headline">Ubah Ukuran Hewan</span>
+            <v-spacer />
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+              <v-form ref="form">
+                <v-row>
+                  <v-col cols="12">
+                    <v-text-field
+                      label="Nama*"
+                      v-model="form.nama"
+                      required
+                      outlined=""
+                      :rules="rules"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-form>
+            </v-container>
+            <small>*wajib diisi</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="blue darken-1"
+              text
+              @click="resetForm(), reset(), (dialogEdit = false)"
+              >Tutup</v-btn
+            >
+            <v-btn color="blue darken-1" text @click="cekKosong()"
+              >Simpan</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
       {{ text }}
       <v-btn dark text @click="snackbar = false"> Close </v-btn>
@@ -99,9 +156,16 @@
 export default {
   data() {
     return {
+      rules: [(value) => !!value || 'field Wajib diisi !'],
       dialog: false,
       keyword: '',
+      on: '',
+      deleteDialog: '',
       headers: [
+        {
+          text: 'No',
+          value: 'index'
+        },
         {
           text: 'ID Ukuran Hewan',
           value: 'id_ukuranHewan'
@@ -111,7 +175,11 @@ export default {
           value: 'nama_ukuranHewan'
         },
         {
-          text: 'Update Log By (NIP)',
+          text: 'Tanggal Dibuat',
+          value: 'createLog_at'
+        },
+        {
+          text: 'Diubah oleh',
           value: 'updateLog_by'
         },
         {
@@ -121,34 +189,39 @@ export default {
         },
       ],
       users: [],
-      pegawais:[],
-      items: ["PEG001", "CS001"],
       snackbar: false,
       color: null,
       text: '',
       load: false,
       form: {
-        id_ukuranHewan: '',
         nama_ukuranHewan: '',
-        updateLog_by: ''
+        updateLog_by: sessionStorage.getItem('Nama'),
       },
       user: new FormData,
       typeInput: 'new',
       errors: '',
-      updateId: '',
+      updatedId: '',
     }
   },
   methods: {
+    cekKosong() {
+      if (this.form.nama_ukuranHewan === '') {
+        this.dialogWarning = true;
+      } else {
+        this.setForm();
+        this.resetForm();
+        this.reset();
+        this.dialog = false;
+      }
+    },
+    reset() {
+      this.$refs.form.resetValidation();
+      this.show = false;
+    },
     getData() {
-      var uri = this.$apiUrl4 + '/ukuranhewan'
+      var uri = this.$apiUrl4 + '/ukuranhewan/' + 'getAll'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
-      })
-    },
-    getNIP(){
-      var uri = this.$apiUrl4 + '/pegawai'
-      this.$http.get(uri).then(response => {
-        this.pegawais = response.data.message
       })
     },
     dialogTambah(){
@@ -157,16 +230,16 @@ export default {
       this.tambah = true;
     },
     sendData() {
-      this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
       this.user.append('nama_ukuranHewan', this.form.nama_ukuranHewan);
       this.user.append('updateLog_by', this.form.updateLog_by);
       var uri = this.$apiUrl4 + '/ukuranhewan'
       this.load = true
-      this.$http.post(uri, this.user).then(response => {
+      this.$http
+        .post(uri, this.user)
+        .then((response) => {
           this.snackbar = true;
           this.color = 'green';
           this.text = response.data.message;
-
           this.load = false;
           this.dialog = false
           this.getData();
@@ -181,10 +254,9 @@ export default {
         })
     },
     updateData() {
-      this.user.append('id_ukuranHewan', this.form.id_ukuranHewan);
       this.user.append('nama_ukuranHewan', this.form.nama_ukuranHewan);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/ukuranhewan/' + this.updatedId;
+      var uri = this.$apiUrl4 + 'ukuranhewan/' + 'update/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -210,26 +282,32 @@ export default {
     editHandler(item) {
       this.typeInput = 'edit';
       this.tambah = false;
-      this.dialog = true;
-      this.form.id_ukuranHewan = item.id_ukuranHewan;
+      this.dialog = true;      
       this.form.nama_ukuranHewan = item.nama_ukuranHewan;
-      this.form.updateLog_by = item.updateLog_by;
       this.updatedId = item.id_ukuranHewan;
     },
+    deleteRow(item) {
+      this.deleteId = item.id_ukuranHewan;
+      this.deleteDialog = true;
+    },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/ukuranhewan/' + deleteId;
-      this.$http.delete(uri).then(response =>{
+      var uri = this.$apiUrl4 + 'ukuranhewan' + '/delete/' + deleteId;
+      this.load = true;
+      this.$http
+        .post(uri, this.user)
+        .then((response) => {
           this.snackbar = true;
           this.text = response.data.message;
-          this.color = 'green'
+          this.color = 'green';
           this.deleteDialog = false;
           this.getData();
-        }).catch(error => {
-          this.errors = error
+        })
+        .catch((error) => {
+          this.errors = error;
           this.snackbar = true;
           this.text = 'Try Again';
           this.color = 'red';
-        })
+        });
     },
     setForm() {
       if (this.typeInput === 'new') {
@@ -240,24 +318,13 @@ export default {
     },
     resetForm() {
       this.form = {
-        id_ukuranHewan: '',
-        nama_ukuranHewan: '',
-        updateLog_by: ''
+        nama: '',
+        updateLog_by: sessionStorage.getItem('Nama'),
       }
-    },
-    customFilter(item, queryText) {
-      const textOne = item.nama.toLowerCase();
-      const textTwo = item.nama.toLowerCase();
-      const searchText = queryText.toLowerCase();
-
-      return (
-        textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
-      );
     },
   },
   mounted() {
     this.getData();
-    this.getNIP();
   }
 }
 </script>
