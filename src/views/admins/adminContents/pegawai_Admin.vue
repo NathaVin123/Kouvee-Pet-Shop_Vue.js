@@ -548,6 +548,7 @@
           });
       },
       updateData() {
+        this.pegawai.append('NIP', this.form.NIP);
         this.pegawai.append('nama_pegawai', this.form.nama_pegawai);
         this.pegawai.append('alamat_pegawai', this.form.alamat_pegawai);
         this.pegawai.append('tglLahir_pegawai', this.form.tglLahir_pegawai);
@@ -581,6 +582,7 @@
       editHandler(item) {
         this.typeInput = 'edit';
         this.dialogEdit = true;
+        this.form.NIP = item.NIP;
         this.form.nama_pegawai = item.nama_pegawai;
         this.form.alamat_pegawai = item.alamat_pegawai;
         this.form.tglLahir_pegawai = item.tglLahir_pegawai;
