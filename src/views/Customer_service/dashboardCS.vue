@@ -78,9 +78,9 @@ export default {
         return {         
             drawer: null,         
             items: [       
-                { title: 'Customer', icon: 'mdi-account', to: '/menuCustomer'},    
-                { title: 'Hewan', icon: 'mdi-dog-side', to: '/menuHewan',},
-                { title: 'Transaksi', icon: 'mdi-bank-transfer', to: '/menuTransaksi'},
+                { title: 'Customer', icon: 'mdi-account', route: '/Customer_service/customer/MenuCustomer'},    
+                { title: 'Hewan', icon: 'mdi-dog-side', route: '/Customer_service/hewan/MenuHewan'},
+                { title: 'Transaksi', icon: 'mdi-bank-transfer', route: '/Customer_service/transaksi/MenuTransaksi'},
             ],       
         }     
     },

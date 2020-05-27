@@ -56,7 +56,7 @@ function loadHewan(view) {
 }
 function loadCustomer(view) {
   return () =>
-    import(`./views/Customer_service/Customer/${view}.vue`);
+    import(`./views/Customer_service/customer/${view}.vue`);
 }
 function loadTransaksi(view) {
   return () =>
@@ -221,7 +221,6 @@ export default new Router({
             path: '/admins/adminContents/hewan_Admin',           
             component: loadView('hewan_Admin')
           },
-          
           {
             name: 'penjualanLayanan_Admin',           
             path: '/admins/adminContents/penjualanLayanan_Admin',           
@@ -233,6 +232,43 @@ export default new Router({
             component: loadView('penjualanProduk_Admin')
           },
       ]     
-  }, 
+    },
+    {       
+      path: '/Customer_service/dashboardCS',       
+      component: dashboardCS,       
+      children: [         
+          {           
+            name: 'customer_Admin',           
+            path: '/Customer_service/customer/MenuCustomer',           
+            component: loadCustomer('MenuCustomer')         
+          },
+          {
+            name: 'hewan_Admin',           
+            path: '/Customer_service/customer/MenuHewan',           
+            component: loadHewan('MenuHewan')
+          },
+          {
+            name: 'transaksi_Amin',           
+            path: '/Customer_service/customer/MenuTransaksi',           
+            component: loadTransaksi('MenuTransaksi')
+          },
+      ]     
+    },
+    {       
+      path: '/Cashier/dashboardCashier',       
+      component: dashboardCashier,       
+      children: [                  
+          {
+            name: 'penjualanLayanan_Admin',           
+            path: '/Cashier/transaksiLayanan/MenuTransaksiLayanan',           
+            component: loadTransaksiLayanan('MenuTransaksiLayanan')
+          },
+          {
+            name: 'penjualanProduk_Admin',           
+            path: '/Cashier/transaksiProduk/MenuTransaksiProduk',           
+            component: loadTransaksiProduk('MenuTransaksiProduk')
+          },
+      ]     
+    }, 
   ],
 })

@@ -78,9 +78,8 @@ export default {
         return {         
             drawer: null,         
             items: [
-                { title: 'Transaksi Produk', icon: 'mdi-cash-multiple', to: '/menuTransaksiProduk'},
-                { title: 'Transaksi Layanan', icon: 'mdi-bank-transfer', to: '/menuTransaksiLayanan'},
-                { title: 'Layanan', icon: 'mdi-dog-service', route: '/admins/adminContents/layanan_Admin'},  
+                { title: 'Transaksi Produk', icon: 'mdi-cash-multiple', route: '/Cashier/transaksiLayanan/MenuTransaksiLayanan'},
+                { title: 'Transaksi Layanan', icon: 'mdi-bank-transfer', route: '/Cashier/transaksiProduk/MenuTransaksiProduk'},
             ],       
         }     
     },
