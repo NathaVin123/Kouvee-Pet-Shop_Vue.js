@@ -33,7 +33,7 @@
                         <v-row>
                           <v-col cols="12">
                             <v-text-field
-                              label="Nama Produk*"
+                              label="Nama*"
                               v-model="form.nama_produk"
                               required
                               outlined=""
@@ -53,7 +53,7 @@
                           </v-col>
                           <v-col cols="12">
                             <v-text-field
-                              label="Stok*"
+                              label="Jumlah Stok*"
                               v-model="form.stok_produk"
                               required
                               outlined=""
@@ -63,7 +63,7 @@
                           </v-col>
                           <v-col cols="12">
                             <v-text-field
-                              label="Harga Produk*"
+                              label="Harga*"
                               v-model="form.harga_produk"
                               required
                               value="harga_produk"
@@ -74,7 +74,7 @@
                           </v-col>
                           <v-col cols="12">
                             <v-select
-                              label="Satuan Produk*"
+                              label="Satuan*"
                               v-model="form.satuan_produk"
                               value="satuan_produk"
                               :items="items"
@@ -216,9 +216,8 @@
                             Stok Minimal : {{ item.min_stok_produk }}<br />
                             Harga : {{ item.harga_produk }}<br />
                             Satuan : {{ item.satuan_produk }}<br />
-                            Tanggal Dibuat : {{ item.createLog_at }}<br />
+                            Tanggal Dibuat : {{ item.created_at }}<br />
                             Diubah Oleh : {{ item.updateLog_by }}<br />
-                            Tanggal Diubah : {{ item.updateLog_at }}<br />
                           </v-card-subtitle>
                         </v-card-text>
                       </div>
@@ -294,8 +293,7 @@
           harga_produk: '',
           min_stok_produk: '',
           gambar: '',
-          updateLog_by: sessionStorage.getItem('Nama'),
-          delete_by: sessionStorage.getItem('Nama'),
+          
           updateLog_by: sessionStorage.getItem('Nama'),
         },
         produk: new FormData(),
@@ -424,7 +422,7 @@
       },
       deleteData(deleteId) {
         //mengahapus data
-        this.produk.append('delete_by', this.form.delete_by);
+        
         var uri = this.$apiUrl4 + 'Produk' + '/delete/' + deleteId; //data dihapus berdasarkan id
         this.load = true;
         this.$http
@@ -459,8 +457,6 @@
           harga_produk: '',
           min_stok_produk: '',
           gambar: '',
-          updateLog_by: sessionStorage.getItem('Nama'),
-          delete_by: sessionStorage.getItem('Nama'),
           updateLog_by: sessionStorage.getItem('Nama'),
         };
       },

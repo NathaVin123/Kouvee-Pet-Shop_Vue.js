@@ -17,7 +17,7 @@
                                 </div>
                                 <div class="form">
                                     <v-text-field
-                                    v-model="form.email"
+                                    v-model="form.NIP"
                                     label="NIP"
                                     :rules="emailRules"
                                     hint="Masukkan NIP yang telah terdaftar"      
@@ -70,10 +70,10 @@ export default {
             valid: true,
             checkbox: false,
             form : {
-                email : null,
+                NIP : null,
                 password : null,
             },
-            email: '',
+            NIP: '',
             
             signin: [
             { text: 'Home', route: '/views/signUp'}
@@ -93,23 +93,95 @@ export default {
     },
     methods :{
         login(){
-            var url = this.$apiUrl + '/auth'
-            this.user = new FormData()
-            this.user.append('email', this.form.email)
-            this.user.append('password', this.form.password)
-            this.$http.post(url,this.user).then(response =>{
-            if(this.form.email == "admin" && this.form.password == "adminadmin"){
-                this.$router.push({name: 'welcomeAdmin'})
-                alert('Berhasil login sebagai admin!')
-            }
-            else if(response.data.token){
-                localStorage.setItem("token", response.data.token)
-                this.$router.push({name : 'produkUser'})
-                alert('Sukses, Selamat datang di Kouvee PetShop !')
-            }else{
-                alert('Failed')
-            }
+            // var url = this.$apiUrl + '/auth'
+            // this.user = new FormData()
+            // this.user.append('NIP', this.form.NIP)
+            // this.user.append('password', this.form.password)
+            // this.$http.post(url,this.user).then(response =>{
+            // if(this.form.NIP == "admin" && this.form.password == "adminadmin"){
+            //     this.$router.push({name: 'welcomeAdmin'})
+            //     alert('Berhasil login sebagai admin!')
+            // }
+            // else if(response.data.token){
+            //     localStorage.setItem("token", response.data.token)
+            //     this.$router.push({name : 'produkUser'})
+            //     alert('Sukses, Selamat datang di Kouvee PetShop !')
+            // }else{
+            //     alert('Failed')
+            // }
+            // })
+
+            if (this.form.username == 'admin') {
+          if (this.form.password == 'admin123') {
+            sessionStorage.setItem('Nama', 'admin');
+            this.snackbar = true;
+            this.text = 'Login Berhasil';
+            this.color = 'green';
+            this.$router.push({ name: 'Pegawai' });
+            console.log('admin');
+          } else {
+            this.snackbar = true;
+            this.text = 'Login Gagal';
+            this.color = 'red';
+          }
+        } else {
+          this.user.append('NIP', this.form.NIP);
+          this.user.append('password', this.form.password);
+          var url = this.$apiUrl + 'Pegawai/' + 'auth';
+          this.load = true;
+          this.$http
+            .post(url, this.user)
+            .then((response) => {
+              this.pegawai = response.data.message;
+              if (this.pegawai.id_pegawai != null) {
+                if (this.pegawai.role.toLowerCase() == 'customer service') {
+                  //login ke menu customer
+                  sessionStorage.setItem(
+                    'Id',
+                    response.data.message.id_pegawai
+                  );
+                  sessionStorage.setItem(
+                    'Nama',
+                    response.data.message.username
+                  );
+                  this.snackbar = true;
+                  this.text = 'Login Berhasil';
+                  this.color = 'green';
+                  this.$router.push({ name: 'Pelanggan' });
+                  console.log('customer service');
+                } else if (this.pegawai.role.toLowerCase() == 'kasir') {
+                  //code untuk login ke kasir
+                  sessionStorage.setItem(
+                    'Id',
+                    response.data.message.id_pegawai
+                  );
+                  sessionStorage.setItem(
+                    'Nama',
+                    response.data.message.username
+                  );
+                  this.snackbar = true;
+                  this.text = 'Login Berhasil';
+                  this.color = 'green';
+                  this.$router.push({ name: 'TransaksiProduk' });
+                  console.log('customer service');
+                } else {
+                  this.snackbar = true;
+                  this.text = 'Login Gagal';
+                  this.color = 'red';
+                }
+              } else {
+                this.snackbar = true;
+                this.text = 'Login Gagal';
+                this.color = 'red';
+              }
             })
+            .catch((error) => {
+              this.errors = error;
+              this.snackbar = true;
+              this.text = 'Try Again';
+              this.color = 'red';
+            });
+        }
         }
     },
 }
