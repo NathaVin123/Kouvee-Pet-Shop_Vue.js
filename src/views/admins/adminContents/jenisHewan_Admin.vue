@@ -164,15 +164,14 @@ export default {
       text: '',
       load: false,
       form: {
-        id_jenisHewan: '',
         nama_jenisHewan: '',
-        updateLog_by: ''
+        updateLog_by: sessionStorage.getItem('Nama'),
       },
       user: new FormData,
       deleteDialog: false,
       typeInput: 'new',
       errors: '',
-      updateId: '',
+      updatedId: '',
     }
   },
   methods: {
@@ -260,19 +259,23 @@ export default {
       this.deleteDialog = true;
     },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/jenishewan/' + deleteId;
-      this.$http.delete(uri).then(response =>{
+      var uri = this.$apiUrl4 + 'jenisHewan' + '/delete/' + deleteId;
+      this.load = true;
+      this.$http
+        .post(uri, this.jenishewan)
+        .then((response) => {
           this.snackbar = true;
           this.text = response.data.message;
-          this.color = 'green'
+          this.color = 'green';
           this.deleteDialog = false;
           this.getData();
-        }).catch(error => {
-          this.errors = error
+        })
+        .catch((error) => {
+          this.errors = error;
           this.snackbar = true;
           this.text = 'Try Again';
           this.color = 'red';
-        })
+        });
     },
     setForm() {
       if (this.typeInput === 'new') {
