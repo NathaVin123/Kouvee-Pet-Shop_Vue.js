@@ -18,18 +18,16 @@
               Tambah Layanan
             </v-btn>
           </v-flex>
-          <v-flex xs6 class="text-right">
-            <v-text-field
-              v-model="keyword"
-              append-icon="mdi-search"
-              label="Cari"
-              hide-details="auto"
-              outlined
-              clearable
-            >
-            </v-text-field>
-          </v-flex>
         </v-layout>
+        <v-text-field
+                  class="mx-0"
+                  flat
+                  hide-details
+                  label="Search"
+                  v-model="keyword"
+                  prepend-inner-icon="mdi-magnify"
+                  solo-inverted
+                ></v-text-field>
         <v-data-table :headers="headers" :items="layanans" :search="keyword">
           <template v-slot:body="{ items }">
             <tbody>
@@ -354,7 +352,6 @@
         dialog: false,
         dialogAddLayanan: false,
         dialogWarning: '',
-        // items: ["Buah", "Lusin", "Box"],
         keyword: '',
         deleteDialog: '',
         dialogDetailLayanan: false,
@@ -432,7 +429,7 @@
           updateLog_by: sessionStorage.getItem('Nama'),
         },
         layanan: new FormData(),
-        hargalayanan: new FormData(),
+        layananharga: new FormData(),
         hargalayananrows: [],
         ukuranrows: [],
         typeInput: 'new',
@@ -442,7 +439,7 @@
     },
     methods: {
       cekKosong() {
-        if (this.form.nama === '') {
+        if (this.form.nama_layanan === '') {
           this.dialogWarning = true;
         } else {
           this.sendDataLayanan();
@@ -517,8 +514,8 @@
         });
       },
       sendDataLayanan() {
-        this.layanan.append('nama', this.form.nama);
-        this.layanan.append('created_by', this.form.created_by);
+        this.layanan.append('nama_layannan', this.form.nama);
+        this.layanan.append('updateLog_by', this.form.updateLog_by);
 
         var uri = this.$apiUrl4 + 'Layanan';
         this.load = true;
@@ -540,15 +537,15 @@
         for (let index = 0; index < this.hargalayananrows.length; index++) {
           this.hargalayananrows[index].id_layanan = id_layanan;
         }
-        this.hargalayanan.append(
+        this.layananharga.append(
           'harga_layanan',
           JSON.stringify(this.hargalayananrows)
         );
 
-        var uri = this.$apiUrl4 + 'HargaLayanan/insertMultiple';
+        var uri = this.$apiUrl4 + 'layananharga/insertMultiple';
         this.load = true;
         this.$http
-          .post(uri, this.hargalayanan)
+          .post(uri, this.layananharga)
           .then((response) => {
             this.snackbar = true; //mengaktifkan snackbar
             this.color = 'green'; //memberi warna snackbar
@@ -593,20 +590,20 @@
           });
       },
       updateDataHargaLayanan() {
-        this.hargalayanan.append(
+        this.layananharga.append(
           'id_layanan',
           this.editHargaLayananItem.id_layanan
         );
-        this.hargalayanan.append(
+        this.layananharga.append(
           'id_ukuranHewan',
           this.editHargaLayananItem.id_ukuranHewan
         );
-        this.hargalayanan.append('harga', this.formHargaLayanan.harga);
-        this.hargalayanan.append('updateLog_by', this.form.updateLog_by);
-        var uri = this.$apiUrl4 + 'HargaLayanan/' + 'update/' + this.updatedId;
+        this.layananharga.append('harga', this.formHargaLayanan.harga);
+        this.layananharga.append('updateLog_by', this.form.updateLog_by);
+        var uri = this.$apiUrl4 + 'layananharga/' + 'update/' + this.updatedId;
         this.load = true;
         this.$http
-          .post(uri, this.hargalayanan)
+          .post(uri, this.layananharga)
           .then((response) => {
             this.snackbar = true; //mengaktifkan snackbar
             this.color = 'green'; //memberi warna snackbar
