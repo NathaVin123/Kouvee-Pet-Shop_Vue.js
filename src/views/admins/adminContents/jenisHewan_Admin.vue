@@ -33,7 +33,7 @@
             :headers="headers"
             :items="users"
             :search="keyword"
-            :loading="load">
+            >
             <template v-slot:body="{ items }" >
               <tbody>
                 <tr v-for="(item, index) in items" :key="item.id_jenisHewan">
