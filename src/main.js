@@ -20,8 +20,9 @@ Vue.use(VueGoogleMaps, {
 Vue.config.productionTip = false
 
 new Vue({
+  render: h => h(App),
   router,
   VueGoogleMaps,
   vuetify,
-  render: h => h(App)
+  components: { App },
 }).$mount('#app')

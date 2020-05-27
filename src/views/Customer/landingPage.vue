@@ -108,82 +108,11 @@
                To support us, write in the comments column what is still a weakness of the KouveePetShop website.
                We are very happy and thankful, because of all of you we can continue to accompany you in listening to music.
                <br><br>
-               <!-- <v-btn
-                v-for="item in dashboard"
-                :key="item.text" 
-                text small color="warning"
-                class="mr-4"
-                router :to="item.route"
-              >FIND THE LYRICS</v-btn> -->
             </v-container>
           </center>
         </v-card>
       </v-container>
     </div>
-    <!-- <v-container grid-list-md mb-0>
-        <br><br>
-        <center>
-            <h1 class="subheading grey--text"><p class="text-center">COMMENT</p></h1>  
-        </center>       
-        <v-layout row wrap style="margin:10px">   
-          <v-flex xs6>
-          </v-flex>        
-          <v-flex xs6 class="text-right">               
-              <v-btn            
-                depressed               
-                dark               
-                rounded               
-                style="text-transform: none !important;"               
-                color = "blue accent-3"               
-                @click="dialog = true"               
-                >               
-                <v-icon size="18" >mdi-pencil-plus</v-icon>                   
-                    Add Comment              
-              </v-btn>           
-          </v-flex>           
-          <v-flex xs6 class="text-right">      
-          </v-flex>         
-        </v-layout> 
-        <v-data-table             
-            :headers="headers"             
-            :items="users"               
-            :loading="load"           
-            >             
-              <template v-slot:body="{ items }">               
-                <tbody>                 
-                  <tr v-for="(item) in items" :key="item.id">                   
-                    <td>{{ item.name }}</td>                   
-                    <td>{{ item.comment}}</td>               
-                  </tr>               
-                </tbody>             
-            </template>           
-        </v-data-table>   
-    </v-container>
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">Add Comment</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field label="Name" v-model="form.name" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Comment" v-model="form.comment"></v-text-field>
-              </v-col>
-              
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>   -->
   
   <v-footer padless dark>
     <v-col

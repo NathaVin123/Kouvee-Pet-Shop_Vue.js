@@ -71,21 +71,16 @@ function loadTransaksiLayanan(view) {
     import(`./views/Cashier/transaksiLayanan/${view}.vue`);
 }
 
-const routes = [
-
-]
-
-
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '',
+      path: '/',
       component: navbarBeforeLogin,
       children: [
         {
-          path: '',
+          path: '/',
           name: 'Welcome',
           component: loadViewBefore('Welcome')           
         },
@@ -183,49 +178,50 @@ export default new Router({
           },
           {           
             name: 'layanan_Admin',           
-            path: '/admins/adminContents/layanan_Admin',           
-            component: loadView('layanan_Admin')         
+            path: '/admins/layanan/MenuLayanan',           
+            component: loadLayanan('MenuLayanan')         
           },
           {
-            name: 'produkAdmin',           
-            path: '/admins/adminContents/produk_Admin',           
-            component: loadView('produk_Admin')
+            name: 'produk_Admin',           
+            path: '/admins/produk/MenuProduk',           
+            component: loadProduk('MenuProduk')
           },
           {
             name: 'pegawai_Admin',           
-            path: '/admins/adminContents/pegawai_Admin',           
-            component: loadView('pegawai_Admin')
+            path: '/admins/pegawai/MenuPegawai',           
+            component: loadPegawai('MenuPegawai')
+          },
+          {
+            name: 'supplier_Admin',           
+            path: '/admins/supplier/MenuSupplier',           
+            component: loadSupplier('MenuSupplier')
+          },
+          {
+            name: 'jenisHewan_Admin',           
+            path: '/admins/jenisHewan/MenuJenisHewan',           
+            component: loadJenis('MenuJenisHewan')
+          },
+          {
+            name: 'ukuranHewan_Admin',           
+            path: '/admins/ukuran/MenuUkuran',           
+            component: loadUkuran('MenuUkuran')
+          },
+          {
+            name: 'pengadaan_Admin',           
+            path: '/admins/pengadaan/MenuPengadaan',           
+            component: loadPengadaan('MenuPengadaan')
           },
           {
             name: 'customer_Admin',           
             path: '/admins/adminContents/customer_Admin',           
             component: loadView('customer_Admin')
-          },
-          {
-            name: 'supplier_Admin',           
-            path: '/admins/adminContents/supplier_Admin',           
-            component: loadView('supplier_Admin')
-          },    
+          },   
           {
             name: 'hewan_Admin',           
             path: '/admins/adminContents/hewan_Admin',           
             component: loadView('hewan_Admin')
           },
-          {
-            name: 'jenisHewan_Admin',           
-            path: '/admins/adminContents/jenisHewan_Admin',           
-            component: loadView('jenisHewan_Admin')
-          },
-          {
-            name: 'ukuranHewan_Admin',           
-            path: '/admins/adminContents/ukuranHewan_Admin',           
-            component: loadView('ukuranHewan_Admin')
-          },
-          {
-            name: 'pengadaan_Admin',           
-            path: '/admins/adminContents/pengadaan_Admin',           
-            component: loadView('pengadaan_Admin')
-          },
+          
           {
             name: 'penjualanLayanan_Admin',           
             path: '/admins/adminContents/penjualanLayanan_Admin',           
