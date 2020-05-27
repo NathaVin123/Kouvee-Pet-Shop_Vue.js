@@ -19,7 +19,9 @@
                                     <v-text-field
                                     v-model="form.NIP"
                                     label="NIP"
-                                    :rules="emailRules"
+                                    name="NIP"
+                                    prepend-icon="mdi mdi-account"
+                                    :rules="NIPRules"
                                     hint="Masukkan NIP yang telah terdaftar"      
                                     outlined
                                     height=50
@@ -29,9 +31,10 @@
                                     v-model="form.password"
                                     label="Password"
                                     type="password"
+                                    prepend-icon="mdi mdi-lock"
                                     :rules="[rules.required, rules.min]"
                                     outlined
-                                    hint="At least 8 characters"
+                                    hint="minimal 8 karakter"
                                     height=50
                                     ></v-text-field>
 
@@ -67,6 +70,21 @@
 export default {
     data () {
         return {
+            loading: false,
+            load: false,
+            snackbar: false,
+            hidePassword: true,
+            error: false,
+            color: null,
+            text: '',
+
+            rules: {
+                required: (value) => !!value || 'Required.',
+            },
+            user: new FormData(),
+            pegawai: [],
+            typeInput: 'new',
+            errors: '',
             valid: true,
             checkbox: false,
             form : {
@@ -79,7 +97,7 @@ export default {
             { text: 'Home', route: '/views/signUp'}
             ],
             
-            emailRules: [
+            NIPRules: [
               v => !!v || 'NIP harus dimasukkan',
             ],
             
@@ -87,37 +105,17 @@ export default {
             rules: {
                 required: value => !!value || 'password harus diisi',
             },
-
-            user: new FormData,
         }
     },
     methods :{
         login(){
-            // var url = this.$apiUrl + '/auth'
-            // this.user = new FormData()
-            // this.user.append('NIP', this.form.NIP)
-            // this.user.append('password', this.form.password)
-            // this.$http.post(url,this.user).then(response =>{
-            // if(this.form.NIP == "admin" && this.form.password == "adminadmin"){
-            //     this.$router.push({name: 'welcomeAdmin'})
-            //     alert('Berhasil login sebagai admin!')
-            // }
-            // else if(response.data.token){
-            //     localStorage.setItem("token", response.data.token)
-            //     this.$router.push({name : 'produkUser'})
-            //     alert('Sukses, Selamat datang di Kouvee PetShop !')
-            // }else{
-            //     alert('Failed')
-            // }
-            // })
-
-            if (this.form.username == 'admin') {
+            if (this.form.NIP == 'admin') {
           if (this.form.password == 'admin123') {
             sessionStorage.setItem('Nama', 'admin');
             this.snackbar = true;
             this.text = 'Login Berhasil';
             this.color = 'green';
-            this.$router.push({ name: 'Pegawai' });
+            this.$router.push({ name: 'welcomeAdmin' });
             console.log('admin');
           } else {
             this.snackbar = true;
@@ -127,7 +125,7 @@ export default {
         } else {
           this.user.append('NIP', this.form.NIP);
           this.user.append('password', this.form.password);
-          var url = this.$apiUrl + 'Pegawai/' + 'auth';
+          var url = this.$apiUrl4 + 'Pegawai/' + 'auth';
           this.load = true;
           this.$http
             .post(url, this.user)
@@ -142,7 +140,7 @@ export default {
                   );
                   sessionStorage.setItem(
                     'Nama',
-                    response.data.message.username
+                    response.data.message.NIP
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
@@ -157,7 +155,7 @@ export default {
                   );
                   sessionStorage.setItem(
                     'Nama',
-                    response.data.message.username
+                    response.data.message.NIP
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
@@ -184,7 +182,14 @@ export default {
         }
         }
     },
-}
+    mounted() {
+      window.addEventListener('keyup', (event) => {
+        if (event.keyCode === 13) {
+          this.login();
+        }
+      });
+    },
+  };
 </script>
 
 <style>
