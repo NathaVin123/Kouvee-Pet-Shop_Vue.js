@@ -96,14 +96,14 @@
                     :rules="rules"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12">
+                <!-- <v-col cols="12">
                   <v-text-field
                     label="Diubah Oleh*"
                     v-model="form.updateLog_by"
                     required
                     :rules="rules"
                   ></v-text-field>
-                </v-col>
+                </v-col> -->
               </v-row>
             </v-form>
           </v-container>
@@ -289,10 +289,8 @@ export default {
     },
     resetForm() {
       this.form = {
-          nama: '',
-          created_by: sessionStorage.getItem('Nama'),
-          delete_by: sessionStorage.getItem('Nama'),
-          modified_by: sessionStorage.getItem('Nama'),
+          nama_jenisHewan: '',
+          updateLog_by: sessionStorage.getItem('Nama'),
         };
     }
   },
