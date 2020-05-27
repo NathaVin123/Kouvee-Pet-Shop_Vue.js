@@ -33,21 +33,22 @@
             :headers="headers"
             :items="users"
             :search="keyword"
-            :loading="load">
+            >
             <template v-slot:body="{ items }" >
               <tbody>
-                <tr v-for="(item) in items" :key="item.id_supplier">
+                <tr v-for="(item, index) in items" :key="item.id_supplier">
+                  <td>{{ index + 1 }}</td>
                   <td>{{ item.id_supplier }}</td>
                   <td>{{ item.nama_supplier }}</td>
                   <td>{{ item.alamat_supplier }}</td>
                   <td>{{ item.telepon_supplier }}</td>
-                  <td>{{ item.stok_supplier }}</td>
+                  <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_by }}</td>
                   <td class="text-center">
                     <v-btn icon color="indigo" light @click="editHandler(item)">
                       <v-icon>mdi-pencil</v-icon>
                     </v-btn>
-                    <v-btn icon color="error" light @click="deleteData(item.id_supplier)">
+                    <v-btn icon color="error" light @click="deleteRow(item)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </td>
@@ -58,6 +59,36 @@
         </v-container>
       </v-container>
     </v-card>
+    <div class="text-center">
+      <v-dialog width="500" v-model="deleteDialog">
+        <v-card>
+          <v-card-title
+            class="headline Red lighten-2"
+            primary-title
+            >Konfirmasi Hapus</v-card-title
+          >
+          <v-card-text
+            >Data yang akan dihapus, Lanjutkan ?</v-card-text
+          >
+          <v-divider></v-divider>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              text
+              @click="deleteDialog = false"
+              >Batal</v-btn
+            >
+            <v-btn
+              color="primary"
+              text
+              @click="deleteData(deleteId)"
+              >Hapus</v-btn
+            >
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
@@ -66,23 +97,29 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <!-- <v-col cols="12">
-                <v-text-field label="ID Supplier" v-model="form.id_supplier" required></v-text-field>
-              </v-col> -->
               <v-col cols="12">
-                <v-text-field label="Nama Supplier" v-model="form.nama_supplier" required></v-text-field>
+                <v-text-field 
+                  label="Nama Supplier" 
+                  v-model="form.nama_supplier" 
+                  required
+                  :rules="rules"
+                ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Alamat Supplier" v-model="form.alamat_supplier" required></v-text-field>
+                <v-text-field 
+                  label="Alamat Supplier" 
+                  v-model="form.alamat_supplier"
+                  required
+                  :rules="rules"
+                ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Telepon Supplier" v-model="form.telepon_supplier" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Stok Supplier" v-model="form.stok_supplier" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Update Log By (NIP)" v-model="form.updateLog_by" required></v-text-field>
+                <v-text-field 
+                  label="Telepon Supplier" 
+                  v-model="form.telepon_supplier" 
+                  required
+                  :rules="rules"
+                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -91,7 +128,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="cekKosong()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -108,7 +145,12 @@ export default {
     return {
       dialog: false,
       keyword: '',
+      deleteDialog: '',
       headers: [
+        {
+          text: 'No',
+          value: 'index'
+        },
         {
           text: 'ID Supplier',
           value: 'id_supplier'
@@ -118,15 +160,19 @@ export default {
           value: 'nama_supplier'
         },
         {
+          text: 'Alamat supplier',
+          value: 'alamat_supplier'
+        },
+        {
           text: 'Telepon Supplier',
           value: 'telepon_supplier'
         },
         {
-          text: 'Stok Supplier',
-          value: 'stok_supplier'
+          text: 'Tanggal Dibuat',
+          value: 'updateLog_at'
         },
         {
-          text: 'Update Log By (NIP)',
+          text: 'Diubah oleh',
           value: 'updateLog_by'
         },
         {
@@ -141,12 +187,10 @@ export default {
       text: '',
       load: false,
       form: {
-        id_supplier: '',
         nama_supplier: '',
         alamat_supplier: '',
         telepon_supplier: '',
-        stok_supplier: '',
-        updateLog_by: ''
+        updateLog_by: sessionStorage.getItem('Nama'),
       },
       user: new FormData,
       typeInput: 'new',
@@ -155,11 +199,34 @@ export default {
     }
   },
   methods: {
+    cekKosong() {
+      if (
+        this.form.nama_supplier === '' ||
+        this.form.alamat_supplier === '' ||
+        this.form.telepon_supplier === ''
+      ) {
+        this.dialogWarning = true;
+      } else {
+        this.setForm();
+        this.resetForm();
+        this.reset();
+        this.dialog = false;
+      }
+    },
+    reset() {
+      this.$refs.form.resetValidation();
+    },
     getData() {
-      var uri = this.$apiUrl4 + '/supplier'
+      var uri = this.$apiUrl4 + 'supplier/' + 'getAll'
       this.$http.get(uri).then(response => {
         this.users = response.data.message
       })
+    },
+    updateMunculke(item) {
+      if (this.munculke == 0) this.munculke = item.id_supplier;
+      else if (this.munculke == item.id_supplier) this.munculke = 0;
+      else this.munculke = item.id_supplier;
+      // console.log(this.produks[i])
     },
     dialogTambah(){
       this.resetForm();
@@ -167,15 +234,15 @@ export default {
       this.tambah = true;
     },
     sendData() {
-      this.user.append('id_supplier', this.form.id_supplier);
       this.user.append('nama_supplier', this.form.nama_supplier);
       this.user.append('alamat_supplier', this.form.alamat_supplier);
       this.user.append('telepon_supplier', this.form.telepon_supplier);
-      this.user.append('stok_supplier', this.form.stok_supplier);
       this.user.append('updateLog_by', this.form.updateLog_by);
       var uri = this.$apiUrl4 + '/supplier'
       this.load = true
-      this.$http.post(uri, this.user).then(response => {
+      this.$http
+        .post(uri, this.user)
+        .then(response => {
           this.snackbar = true;
           this.color = 'green';
           this.text = response.data.message;
@@ -194,13 +261,11 @@ export default {
         })
     },
     updateData() {
-      this.user.append('id_supplier', this.form.id_supplier);
       this.user.append('nama_supplier', this.form.nama_supplier);
       this.user.append('alamat_supplier', this.form.alamat_supplier);
       this.user.append('telepon_supplier', this.form.telepon_supplier);
-      this.user.append('stok_supplier', this.form.stok_supplier);
       this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/supplier/' + this.updatedId;
+      var uri = this.$apiUrl4 + '/supplier/' + 'update/' + this.updatedId;
       this.load = true
       this.$http
         .post(uri, this.user)
@@ -227,28 +292,33 @@ export default {
       this.typeInput = 'edit';
       this.tambah = false;
       this.dialog = true;
-      this.form.id_supplier = item.id_supplier;
       this.form.nama_supplier = item.nama_supplier;
       this.form.alamat_supplier = item.alamat_supplier;
       this.form.telepon_supplier = item.telepon_supplier;
-      this.form.stok_supplier = item.stok_supplier;
-      this.form.updateLog_by = item.updateLog_by;
       this.updatedId = item.id_supplier;
     },
+    deleteRow(item) {
+      this.deleteId = item.id_supplier;
+      this.deleteDialog = true;
+    },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + '/supplier/' + deleteId;
-      this.$http.delete(uri).then(response =>{
+      var uri = this.$apiUrl4 + 'supplier' + '/delete/' + deleteId; //data dihapus berdasarkan id
+      this.load = true;
+      this.$http
+        .post(uri, this.user)
+        .then((response) => {
           this.snackbar = true;
           this.text = response.data.message;
-          this.color = 'green'
+          this.color = 'green';
           this.deleteDialog = false;
           this.getData();
-        }).catch(error => {
-          this.errors = error
-          this.snackbar = true;
-          this.text = 'Try Again';
-          this.color = 'red';
         })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = 'Coba Lagi';
+          this.color = 'red';
+        });
     },
     setForm() {
       if (this.typeInput === 'new') {
@@ -259,12 +329,11 @@ export default {
     },
     resetForm() {
       this.form = {
-        id_supplier: '',
         nama_supplier: '',
         alamat_supplier: '',
         telepon_supplier: '',
         stok_supplier: '',
-        updateLog_by: ''
+        updateLog_by: sessionStorage.getItem('Nama'),
       }
     }
   },
