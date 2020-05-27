@@ -167,7 +167,7 @@ export default {
         nama_jenisHewan: '',
         updateLog_by: sessionStorage.getItem('Nama'),
       },
-      user: new FormData,
+      user: new FormData(),
       deleteDialog: false,
       typeInput: 'new',
       errors: '',
@@ -186,9 +186,9 @@ export default {
         }
     },
     getData() {
-      var uri = this.$apiUrl4 + 'jenishewan'
+      var uri = this.$apiUrl4 + '/jenishewan'
       this.$http.get(uri).then(response => {
-        this.users = response.data.message
+        this.users = response.data.message;
       })
     },
     dialogTambah(){
@@ -259,7 +259,7 @@ export default {
       this.deleteDialog = true;
     },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + 'jenisHewan' + '/delete/' + deleteId;
+      var uri = this.$apiUrl4 + 'jenishewan' + '/delete/' + deleteId;
       this.load = true;
       this.$http
         .post(uri, this.jenishewan)
