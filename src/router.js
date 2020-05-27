@@ -30,9 +30,50 @@ function loadViewAfter(view) {
 }
 
 ////////////////////// load tiap fungsi data master dan transaksi //////////////////////////////
-function loadLayanan(view) {
-  return () => import(`./views/admins/adminContents/${view}.vue`)
+function loadJenis(view) {
+  return () => import(`./views/admins/jenisHewan/${view}.vue`);
 }
+function loadLayanan(view) {
+  return () => import(`./views/admins/layanan/${view}.vue`);
+}
+function loadPegawai(view) {
+  return () => import(`./views/admins/pegawai/${view}.vue`);
+}
+function loadPengadaan(view) {
+  return () => import(`./views/admins/pengadaan/${view}.vue`);
+}
+function loadProduk(view) {
+  return () => import(`./views/admins/produk/${view}.vue`);
+}
+function loadSupplier(view) {
+  return () => import(`./views/admins/supplier/${view}.vue`);
+}
+function loadUkuran(view) {
+  return () => import(`./views/admins/ukuran/${view}.vue`);
+}
+function loadHewan(view) {
+  return () => import(`./views/Customer_service/hewan/${view}.vue`);
+}
+function loadCustomer(view) {
+  return () =>
+    import(`./views/Customer_service/Customer/${view}.vue`);
+}
+function loadTransaksi(view) {
+  return () =>
+    import(`./views/Customer_service/transaksi/${view}.vue`);
+}
+function loadTransaksiProduk(view) {
+  return () =>
+    import(`./views/Cashier/transaksiProduk/${view}.vue`);
+}
+function loadTransaksiLayanan(view) {
+  return () =>
+    import(`./views/Cashier/transaksiLayanan/${view}.vue`);
+}
+
+const routes = [
+
+]
 
 
 export default new Router({
