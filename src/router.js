@@ -50,6 +50,9 @@ function loadSupplier(view) {
 function loadUkuran(view) {
   return () => import(`./views/admins/ukuran/${view}.vue`);
 }
+function loadStok(view) {
+  return () => import(`./views/admins/produk/${view}.vue`);
+}
 function loadHewan(view) {
   return () => import(`./views/Customer_service/hewan/${view}.vue`);
 }
@@ -267,6 +270,45 @@ export default new Router({
           name: "pengadaan_Admin",
           path: "/admins/pengadaan/MenuPengadaan",
           component: loadPengadaan("MenuPengadaan"),
+        },
+        {
+          beforeEnter(to, from, next) {
+            if (sessionStorage.getItem("Nama") != null) {
+              next();
+            } else {
+              sessionStorage.removeItem("Nama");
+              next({ path: "/views/signin" });
+            }
+          },
+          name: "stok_Admin",
+          path: "/admins/produk/Stok",
+          component: loadStok("Stok"),
+        },
+        {
+          // beforeEnter(to, from, next) {
+          //   if (sessionStorage.getItem("Nama") != null) {
+          //     next();
+          //   } else {
+          //     sessionStorage.removeItem("Nama");
+          //     next({ path: "/views/signin" });
+          //   }
+          // },
+          name: "pengadaan_Diproses",
+          path: "/admins/pengadaan/PengadaanDiproses",
+          component: loadPengadaan("PengadaanDiproses"),
+        },
+        {
+          // beforeEnter(to, from, next) {
+          //   if (sessionStorage.getItem("Nama") != null) {
+          //     next();
+          //   } else {
+          //     sessionStorage.removeItem("Nama");
+          //     next({ path: "/views/signin" });
+          //   }
+          // },
+          name: "pengadaan_Selesai",
+          path: "/admins/pengadaan/PengadaanSelesai",
+          component: loadPengadaan("PengadaanSelesai"),
         },
       ],
     },
