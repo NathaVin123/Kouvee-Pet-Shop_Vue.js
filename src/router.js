@@ -156,47 +156,119 @@ export default new Router({
       path: '/admins/dashboardAdmin',       
       component: dashboardAdmin,       
       children: [         
-          {           
+          {  
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },         
             name: 'userAdmin',           
             path: '/admins/adminContents/userAdmin',           
             component: loadView('userAdmin')         
           },
-          {           
+          {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },          
             name: 'welcomeAdmin',           
             path: '/admins/welcomeAdmin',           
             component: loadView('welcomeAdmin')         
           },
-          {           
+          {    
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },       
             name: 'layanan_Admin',           
             path: '/admins/layanan/MenuLayanan',           
             component: loadLayanan('MenuLayanan')         
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'produk_Admin',           
             path: '/admins/produk/MenuProduk',           
             component: loadProduk('MenuProduk')
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'pegawai_Admin',           
             path: '/admins/pegawai/MenuPegawai',           
             component: loadPegawai('MenuPegawai')
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'supplier_Admin',           
             path: '/admins/supplier/MenuSupplier',           
             component: loadSupplier('MenuSupplier')
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'jenisHewan_Admin',           
             path: '/admins/jenisHewan/MenuJenisHewan',           
             component: loadJenis('MenuJenisHewan')
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'ukuranHewan_Admin',           
             path: '/admins/ukuran/MenuUkuran',           
             component: loadUkuran('MenuUkuran')
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'pengadaan_Admin',           
             path: '/admins/pengadaan/MenuPengadaan',           
             component: loadPengadaan('MenuPengadaan')
@@ -207,17 +279,41 @@ export default new Router({
       path: '/Customer_service/dashboardCS',       
       component: dashboardCS,       
       children: [         
-          {           
+          {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },       
             name: 'customer_Admin',           
             path: '/Customer_service/customer/MenuCustomer',           
             component: loadCustomer('MenuCustomer')         
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'hewan_Admin',           
             path: '/Customer_service/hewan/MenuHewan',           
             component: loadHewan('MenuHewan')
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'transaksi_Amin',           
             path: '/Customer_service/transaksi/MenuTransaksi',           
             component: loadTransaksi('MenuTransaksi')
@@ -229,11 +325,27 @@ export default new Router({
       component: dashboardCashier,       
       children: [                  
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'penjualanLayanan_Admin',           
             path: '/Cashier/transaksiLayanan/MenuTransaksiLayanan',           
             component: loadTransaksiLayanan('MenuTransaksiLayanan')
           },
           {
+            beforeEnter(to, from, next) {
+              if (sessionStorage.getItem('Nama') != null) {
+                next();
+              } else {
+                sessionStorage.removeItem('Nama');
+                next({ path: '/views/signin' });
+              }
+            },
             name: 'penjualanProduk_Admin',           
             path: '/Cashier/transaksiProduk/MenuTransaksiProduk',           
             component: loadTransaksiProduk('MenuTransaksiProduk')

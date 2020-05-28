@@ -91,17 +91,11 @@ export default {
                 NIP : null,
                 password : null,
             },
-            NIP: '',
-            
-            signin: [
-            { text: 'Home', route: '/views/signUp'}
-            ],
             
             NIPRules: [
               v => !!v || 'NIP harus dimasukkan',
             ],
             
-            password: 'Password',
             rules: {
                 required: value => !!value || 'password harus diisi',
             },
@@ -147,8 +141,7 @@ export default {
                   // );
                   sessionStorage.setItem(
                     'Nama',
-                    // response.data.message.NIP
-                    'CS'
+                    response.data.message.NIP
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
@@ -166,8 +159,7 @@ export default {
                   // );
                   sessionStorage.setItem(
                     'Nama',
-                    // response.data.message.NIP
-                    'Kasir'
+                    response.data.message.NIP
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
@@ -178,6 +170,7 @@ export default {
                 } else {
                   this.snackbar = true;
                   this.text = 'Login Gagal';
+                  alert('Gagal login sebagai CS atau Kasir, coba lagi !');
                   this.color = 'red';
                 }
               } else {
