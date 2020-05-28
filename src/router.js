@@ -314,7 +314,7 @@ export default new Router({
                 next({ path: '/views/signin' });
               }
             },
-            name: 'transaksi_Amin',           
+            name: 'transaksi_Admin',           
             path: '/Customer_service/transaksi/MenuTransaksi',           
             component: loadTransaksi('MenuTransaksi')
           },
