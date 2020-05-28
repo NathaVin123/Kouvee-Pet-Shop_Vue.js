@@ -73,7 +73,7 @@
                 <td>{{ item.nama_hewan }}</td>
                 <td>{{ item.total }}</td>
                 <td>{{ item.status_transaksi }}</td>
-                <td>{{ item.created_at }}</td>
+                <td>{{ item.createLog_at }}</td>
                 <td>{{ item.updateLog_at }}</td>
 
                 <td>
@@ -237,7 +237,7 @@
                   <td>{{ item.total }}</td>
                   <td>{{ item.proses }}</td>
                   <td>{{ item.status_transaksi }}</td>
-                  <td>{{ item.created_at }}</td>
+                  <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_at }}</td>
 
                   <td>
@@ -383,31 +383,31 @@
             <v-simple-table height="50%">
               <thead>
                 <tr>
-                  <th class="text-left">Id Detail Transaksi</th>
+                  <th class="text-left">Id Detail Layanan</th>
                   <th class="text-left">Nama Layanan</th>
                   <th class="text-left">Ukuran Hewan</th>
                   <th class="text-left">Harga Satuan</th>
                   <th class="text-left">Jumlah</th>
                   <th class="text-left">Total Harga</th>
                   <th class="text-left">Tanggal Dibuat</th>
-                  <th class="text-left">Dibuat Oleh</th>
+                  <!-- <th class="text-left">Dibuat Oleh</th> -->
                   <th class="text-left">Tanggal Diubah</th>
-                  <th class="text-left">Diubah Oleh</th>
+                  <!-- <th class="text-left">Diubah Oleh</th> -->
                   <th class="text-left">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   v-for="item in filteredItems(detailItem)"
-                  :key="item.id_detail_transaksi_layanan"
+                  :key="item.id_detaillayanan"
                 >
-                  <td>{{ item.id_detail_transaksi_layanan }}</td>
+                  <td>{{ item.id_detaillayanan }}</td>
                   <td>{{ item.nama_layanan }}</td>
-                  <td>{{ item.ukuran_hewan }}</td>
+                  <td>{{ item.id_ukuranHewan }}</td>
                   <td>{{ item.harga }}</td>
-                  <td>{{ item.jumlah }}</td>
+                  <td>{{ item.jml_transaksi_layanan }}</td>
                   <td>{{ item.total_harga }}</td>
-                  <td>{{ item.created_at }}</td>
+                  <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_at }}</td>
                   <td>
                     <div>
@@ -491,7 +491,7 @@
                 <td class="text-right">
                   <tr>
                     <td>
-                      <h3>{{ 'Nama Pelanggan : ' }}</h3>
+                      <h3>{{ 'Nama Customer : ' }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.nama_customer }}</h3>
@@ -510,7 +510,7 @@
                       <h3>{{ 'Jenis Hewan : ' }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.jenis_hewan }}</h3>
+                      <h3>{{ detailItem.nama_jenisHewan }}</h3>
                     </td>
                   </tr>
                   <tr>
@@ -518,7 +518,7 @@
                       <h3>{{ 'Nomor Telpon : ' }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.telp }}</h3>
+                      <h3>{{ detailItem.noTelp_customer }}</h3>
                     </td>
                   </tr>
                 </td>
@@ -609,29 +609,29 @@
             <v-simple-table height="50%">
               <thead>
                 <tr>
-                  <th class="text-left">Id Detail Transaksi</th>
+                  <th class="text-left">Id Detail Produk</th>
                   <th class="text-left">Nama Produk</th>
                   <th class="text-left">Harga Satuan</th>
                   <th class="text-left">Jumlah</th>
                   <th class="text-left">Total Harga</th>
                   <th class="text-left">Tanggal Dibuat</th>
-                  <th class="text-left">Dibuat Oleh</th>
+                  <!-- <th class="text-left">Dibuat Oleh</th> -->
                   <th class="text-left">Tanggal Diubah</th>
-                  <th class="text-left">Diubah Oleh</th>
+                  <!-- <th class="text-left">Diubah Oleh</th> -->
                   <th class="text-left">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   v-for="item in filteredItems2(detailItem2)"
-                  :key="item.id_detail_transaksi_produk"
+                  :key="item.id_detailproduk"
                 >
-                  <td>{{ item.id_detail_transaksi_produk }}</td>
+                  <td>{{ item.id_detailproduk }}</td>
                   <td>{{ item.nama_produk }}</td>
-                  <td>{{ item.harga }}</td>
-                  <td>{{ item.jumlah }}</td>
+                  <td>{{ item.id_produkHarga }}</td>
+                  <td>{{ item.jml_transaksi_produk }}</td>
                   <td>{{ item.total_harga }}</td>
-                  <td>{{ item.created_at }}</td>
+                  <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_at }}</td>
                   <td>
                     <div>
@@ -734,7 +734,7 @@
                       <h3>{{ 'Jenis Hewan : ' }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem2.jenis_hewan }}</h3>
+                      <h3>{{ detailItem2.id_jenisHewan }}</h3>
                     </td>
                   </tr>
                   <tr>
@@ -742,7 +742,7 @@
                       <h3>{{ 'Nomor Telpon : ' }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem2.telp }}</h3>
+                      <h3>{{ detailItem2.noTelp_customer }}</h3>
                     </td>
                   </tr>
                 </td>
@@ -832,7 +832,7 @@
                 <v-col cols="2">
                   <v-text-field
                     label="Jumlah*"
-                    v-model="formProduk.jumlah"
+                    v-model="formProduk.jml_transaksi_produk"
                     color="purple"
                     type="number"
                     outlined
@@ -844,7 +844,7 @@
                 <v-col cols="2">
                   <v-text-field
                     label="Harga Produk*"
-                    v-model="formProduk.harga"
+                    v-model="formProduk.harga_produk"
                     value
                     outlined
                     readonly
@@ -911,7 +911,7 @@
                     width
                     :items="hewans"
                     item-value="id_hewan"
-                    item-text="nama"
+                    item-text="nama_hewan"
                     label="Nama Hewan*"
                     outlined
                     color="purple"
@@ -980,7 +980,7 @@
                     width
                     :items="hewans"
                     item-value="id_hewan"
-                    item-text="nama"
+                    item-text="nama_hewan"
                     label="Nama Hewan*"
                     outlined
                     color="purple"
@@ -1151,7 +1151,7 @@
                     <v-col cols="2">
                       <v-text-field
                         label="Jumlah*"
-                        v-model="detilTransaksi.jumlah"
+                        v-model="detilTransaksi.jml_transaksi_produk"
                         color="purple"
                         type="number"
                         outlined
@@ -1164,7 +1164,7 @@
                     <v-col cols="2">
                       <v-text-field
                         label="Harga Produk*"
-                        v-model="detilTransaksi.harga"
+                        v-model="detilTransaksi.harga_produk"
                         value
                         outlined
                         readonly
@@ -1344,7 +1344,7 @@
                         :items="layanans"
                         @change="filteredHargaLayanan(index), setTotal2(index)"
                         item-value="id_layanan"
-                        item-text="nama"
+                        item-text="nama_layanan"
                         label="Nama Layanan*"
                         outlined
                         color="purple"
@@ -1354,13 +1354,13 @@
                     </v-col>
                     <v-col cols="2">
                       <v-autocomplete
-                        v-model="detilLayanan.id_ukuran_hewan"
+                        v-model="detilLayanan.id_ukuranHewan"
                         required
                         width
                         :items="ukurans"
                         @change="filteredHargaLayanan(index), setTotal2(index)"
-                        item-value="id_ukuran_hewan"
-                        item-text="nama"
+                        item-value="id_ukuranHewan"
+                        item-text="nama_ukuranHewan"
                         label="Ukuran*"
                         outlined
                         color="purple"
@@ -1371,7 +1371,7 @@
                     <v-col cols="1">
                       <v-text-field
                         label="Jumlah*"
-                        v-model="detilLayanan.jumlah"
+                        v-model="detilLayanan.jml_transaksi_layanan"
                         color="purple"
                         type="number"
                         outlined
@@ -1385,7 +1385,7 @@
                     <v-col cols="2">
                       <v-text-field
                         label="Harga Layanan*"
-                        v-model="detilLayanan.harga"
+                        v-model="detilLayanan.layananharga"
                         value
                         outlined
                         readonly
@@ -1489,12 +1489,12 @@
                 </v-col>
                 <v-col cols="2">
                   <v-autocomplete
-                    v-model="formLayanan.id_ukuran_hewan"
+                    v-model="formLayanan.id_ukuranHewan"
                     required
                     width
                     :items="ukurans"
                     @change="setHargaLayananEdit()"
-                    item-value="id_ukuran_hewan"
+                    item-value="id_ukuranHewan"
                     item-text="nama_ukuranHewan"
                     label="Ukuran*"
                     outlined
@@ -1506,7 +1506,7 @@
                 <v-col cols="2">
                   <v-text-field
                     label="Jumlah*"
-                    v-model="formLayanan.jumlah"
+                    v-model="formLayanan.jml_transaksi_layanan"
                     color="purple"
                     type="number"
                     outlined
@@ -1519,7 +1519,7 @@
                 <v-col cols="2">
                   <v-text-field
                     label="Harga Layanan*"
-                    v-model="formLayanan.harga"
+                    v-model="formLayanan.layananharga"
                     value
                     outlined
                     readonly
@@ -1722,12 +1722,12 @@
           diskon: '',
           kode_penjualan_produk: '',
           subtotal: '',
-          harga: '',
+          harga_produk: '',
           total_harga: '',
           id_produk: '',
-          created_by: sessionStorage.getItem('Nama'),
-          delete_by: sessionStorage.getItem('Nama'),
-          modified_by: sessionStorage.getItem('Nama'),
+          // created_by: sessionStorage.getItem('Nama'),
+          // delete_by: sessionStorage.getItem('Nama'),
+          // modified_by: sessionStorage.getItem('Nama'),
           id_cs: sessionStorage.getItem('Id'),
         },
         formLayanan: {
@@ -1937,7 +1937,7 @@
           diskon: '',
           kode_penjualan_produk: '',
           subtotal: '',
-          harga: '',
+          harga_produk: '',
           total_harga: '',
           id_produk: '',
           created_by: sessionStorage.getItem('Nama'),
@@ -1970,7 +1970,7 @@
           id_produk: '',
           jumlah: '',
           total_harga: '',
-          harga: '',
+          harga_produk: '',
           created_at: '',
           created_by: sessionStorage.getItem('Nama'),
           updateLog_at: '',
@@ -1999,23 +1999,23 @@
       filteredProduk(index) {
         var uri =
           this.$apiUrl4 +
-          'Produk/' +
+          'produk/' +
           'search/' +
           this.detilTransaksis[index].id_produk;
         this.$http.get(uri).then((response) => {
-          this.detilTransaksis[index].harga = response.data.message.harga;
+          this.detilTransaksis[index].harga_produk = response.data.message.harga_produk;
           this.detilTransaksis[index].total_harga =
-            this.detilTransaksis[index].harga *
-            this.detilTransaksis[index].jumlah;
+            this.detilTransaksis[index].harga_produk *
+            this.detilTransaksis[index].jml_transaksi_produk;
         });
       },
       getHargaEditProduk() {
         var uri =
           this.$apiUrl4 + 'Produk/' + 'search/' + this.formProduk.id_produk;
         this.$http.get(uri).then((response) => {
-          this.formProduk.harga = response.data.message.harga;
+          this.formProduk.harga_produk = response.data.message.harga_produk;
           this.formProduk.total_harga =
-            this.formProduk.harga * this.formProduk.jumlah;
+            this.formProduk.harga_produk * this.formProduk.jml_transaksi_produk;
         });
       },
 
@@ -2032,7 +2032,7 @@
 
       setTotalEditProduk() {
         this.formProduk.total_harga =
-          this.formProduk.harga * this.formProduk.jumlah;
+          this.formProduk.harga_produk * this.formProduk.jml_transaksi_produk;
       },
 
       filteredHargaLayanan(index) {
@@ -2121,7 +2121,7 @@
         });
       },
       getDataTransaksiProduk() {
-        var uri = this.$apiUrl4 + 'DetailTransaksiProduk/' + 'getWithJoin';
+        var uri = this.$apiUrl4 + 'detailtransaksiproduk/' + 'getWithJoin';
         this.$http.get(uri).then((response) => {
           this.detailTransaksiProduks = response.data.message;
         });
@@ -2192,7 +2192,7 @@
           for (var i = 0; i < this.detailIdTransaksiProduks.length; i++) {
             this.detailIdTransaksiProduksFiltered[
               i
-            ] = this.detailIdTransaksiProduks[i].id_detail_transaksi_produk;
+            ] = this.detailIdTransaksiProduks[i].id_detailproduk;
           }
           console.log(this.detailIdTransaksiProduksFiltered);
         });
@@ -2224,10 +2224,10 @@
           this.formProduk.kode_penjualan_produk
         );
         this.user.append('id_produk', this.formProduk.id_produk);
-        this.user.append('created_by', this.formProduk.created_by);
+        // this.user.append('created_by', this.formProduk.created_by);
         this.user.append('total_harga', this.formProduk.total_harga);
-        this.user.append('jumlah', this.formProduk.jumlah);
-        var uri = this.$apiUrl4 + 'DetailTransaksiProduk';
+        this.user.append('jml_transaksi_produk', this.formProduk.jml_transaksi_produk);
+        var uri = this.$apiUrl4 + 'detailtransaksiproduk';
         this.load = true;
         this.$http
           .post(uri, this.user)
@@ -2262,7 +2262,7 @@
         this.user2.append('jumlah', this.formLayanan.jumlah);
         this.user2.append('total_harga', this.formLayanan.total_harga);
         this.user2.append('created_by', this.formLayanan.created_by);
-        var uri = this.$apiUrl4 + 'DetailTransaksiLayanan';
+        var uri = this.$apiUrl4 + 'detailtransaksilayanan';
         this.load = true;
         this.$http
           .post(uri, this.user2)
@@ -2321,10 +2321,10 @@
           this.detilTransaksis[i].kode_penjualan_produk = kode_penjualan_produk;
         }
         this.user.append(
-          'detail_transaksi_produk',
+          'detailtransaksiproduks',
           JSON.stringify(this.detilTransaksis)
         );
-        var uri = this.$apiUrl4 + 'DetailTransaksiProduk/insertMultiple';
+        var uri = this.$apiUrl4 + 'detailtransaksiproduk/' + 'insertMultiple';
         this.load = true;
         this.$http
           .post(uri, this.user)
@@ -2451,11 +2451,11 @@
         this.dialogEditProduk = true;
         this.formProduk.id_produk = item.id_produk;
         this.formProduk.jumlah = item.jumlah;
-        this.formProduk.harga = item.harga;
+        this.formProduk.harga_produk = item.harga_produk;
         this.formProduk.total_harga = item.total_harga;
         this.formProduk.kode_penjualan_produk = item.kode_penjualan_produk;
         console.log(this.formProduk.kode_penjualan_produk);
-        this.updatedId = item.id_detail_transaksi_produk;
+        this.updatedId = item.id_detailproduk;
       },
       editHandlerLayanan(item) {
         this.typeInput = 'edit';
@@ -2654,7 +2654,7 @@
       },
       deleteMultipleDataDetailProduk() {
         this.deleteProduk.append(
-          'id_detail_transaksi_produk',
+          'id_detailproduk',
           JSON.stringify(this.detailIdTransaksiProduksFiltered)
         );
         var uri = this.$apiUrl4 + 'DetailTransaksiProduk/' + 'deleteMultiple';
@@ -2702,7 +2702,7 @@
         this.deleteDialog = true;
       },
       deleteRowDetailProduk(item) {
-        this.deleteId = item.id_detail_transaksi_produk;
+        this.deleteId = item.id_detailproduk;
         this.deleteDetailDialog = true;
       },
       deleteDataLayanan(deleteId) {
