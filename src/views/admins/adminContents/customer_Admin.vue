@@ -6,35 +6,37 @@
           <v-layout row wrap style="margin:10px">
             <v-flex xs6>
               <v-container class="my-5">
-              <h1 class="subheading grey-darken--text">Data Customer</h1>
+                <h1 class="subheading grey-darken--text">Data Customer</h1>
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
-                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
-                Tambah Customer
+              <v-btn
+                depressed
+                dark
+                rounded
+                style="text-transform: none !important;"
+                color="green accent-3"
+                @click="dialogTambah()"
+              >
+                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>Tambah Customer
               </v-btn>
             </v-flex>
           </v-layout>
 
           <v-text-field
-          class="mx-0"
-          flat
-          hide-details
-          label="Search"
-          v-model="keyword"
-          prepend-inner-icon="mdi-magnify"
-          solo-inverted
-        ></v-text-field>
-        
-        <br>
-          
-          <v-data-table
-            :headers="headers"
-            :items="users"
-            :search="keyword"
-            >
-            <template v-slot:body="{ items }" >
+            class="mx-0"
+            flat
+            hide-details
+            label="Search"
+            v-model="keyword"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+          ></v-text-field>
+
+          <br />
+
+          <v-data-table :headers="headers" :items="users" :search="keyword">
+            <template v-slot:body="{ items }">
               <tbody>
                 <tr v-for="(item, index) in items" :key="item.id_customer">
                   <td>{{ index + 1 }}</td>
@@ -63,21 +65,13 @@
     <div class="text-center">
       <v-dialog width="500" v-model="deleteDialog">
         <v-card>
-          <v-card-title class="headline Red lighten-2" primary-title>
-            Konfirmasi Hapus
-          </v-card-title>
-          <v-card-text>
-            Data yang akan dihapus, Lanjutkan ?
-          </v-card-text>
+          <v-card-title class="headline Red lighten-2" primary-title>Konfirmasi Hapus</v-card-title>
+          <v-card-text>Data yang akan dihapus, Lanjutkan ?</v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="deleteDialog = false">
-              Batal
-            </v-btn>
-            <v-btn color="primary" text @click="deleteData(deleteId)">
-              Hapus
-            </v-btn>
+            <v-btn color="primary" text @click="deleteDialog = false">Batal</v-btn>
+            <v-btn color="primary" text @click="deleteData(deleteId)">Hapus</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -91,18 +85,10 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field 
-                  label="Nama Customer*" 
-                  v-model="form.nama_customer" 
-                  required
-                ></v-text-field>
+                <v-text-field label="Nama Customer*" v-model="form.nama_customer" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field 
-                  label="Alamat Custumer" 
-                  v-model="form.alamat_customer" 
-                  required
-                ></v-text-field>
+                <v-text-field label="Alamat Custumer" v-model="form.alamat_customer" required></v-text-field>
               </v-col>
               <v-col cols="20">
                 <v-menu
@@ -128,12 +114,12 @@
                     min="1960-01-01"
                     @change="save"
                   ></v-date-picker>
-                  </v-menu>
-                </v-col>
+                </v-menu>
+              </v-col>
               <v-col cols="12">
-                <v-text-field 
-                  label="Nomor Telepon Customer*" 
-                  v-model="form.noTelp_customer" 
+                <v-text-field
+                  label="Nomor Telepon Customer*"
+                  v-model="form.noTelp_customer"
                   required
                 ></v-text-field>
               </v-col>
@@ -150,7 +136,7 @@
     </v-dialog>
     <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
       {{ text }}
-      <v-btn dark text @click="snackbar = false"> Close </v-btn>
+      <v-btn dark text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
   </v-container>
 </template>

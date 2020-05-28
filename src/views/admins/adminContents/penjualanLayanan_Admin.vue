@@ -6,35 +6,37 @@
           <v-layout row wrap style="margin:10px">
             <v-flex xs6>
               <v-container class="my-5">
-              <h1 class="subheading grey-darken--text">Data Penjualan Layanan</h1>
+                <h1 class="subheading grey-darken--text">Data Penjualan Layanan</h1>
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
-                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
-                Tambah penjualan layanan
+              <v-btn
+                depressed
+                dark
+                rounded
+                style="text-transform: none !important;"
+                color="green accent-3"
+                @click="dialogTambah()"
+              >
+                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>Tambah penjualan layanan
               </v-btn>
             </v-flex>
           </v-layout>
 
           <v-text-field
-          class="mx-0"
-          flat
-          hide-details
-          label="Search"
-          v-model="keyword"
-          prepend-inner-icon="mdi-magnify"
-          solo-inverted
-        ></v-text-field>
-        
-        <br>
-          
-          <v-data-table
-            :headers="headers"
-            :items="users"
-            :search="keyword"
-            :loading="load">
-            <template v-slot:body="{ items }" >
+            class="mx-0"
+            flat
+            hide-details
+            label="Search"
+            v-model="keyword"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+          ></v-text-field>
+
+          <br />
+
+          <v-data-table :headers="headers" :items="users" :search="keyword" :loading="load">
+            <template v-slot:body="{ items }">
               <tbody>
                 <tr v-for="(item) in items" :key="item.kode_penjualan">
                   <td>{{ item.kode_penjualan }}</td>
@@ -92,7 +94,11 @@
                 </v-menu>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Jumlah Transaksi" v-model="form.jml_transaksi_layanan" required></v-text-field>
+                <v-text-field
+                  label="Jumlah Transaksi"
+                  v-model="form.jml_transaksi_layanan"
+                  required
+                ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field label="Subtotal" v-model="form.subtotal" required></v-text-field>
@@ -110,7 +116,7 @@
     </v-dialog>
     <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
       {{ text }}
-      <v-btn dark text @click="snackbar = false"> Close </v-btn>
+      <v-btn dark text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
   </v-container>
 </template>

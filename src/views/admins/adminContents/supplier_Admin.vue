@@ -6,35 +6,37 @@
           <v-layout row wrap style="margin:10px">
             <v-flex xs6>
               <v-container class="my-5">
-              <h1 class="subheading grey-darken--text">Data Supplier</h1>
+                <h1 class="subheading grey-darken--text">Data Supplier</h1>
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
-                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
-                Tambah Supplier
+              <v-btn
+                depressed
+                dark
+                rounded
+                style="text-transform: none !important;"
+                color="green accent-3"
+                @click="dialogTambah()"
+              >
+                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>Tambah Supplier
               </v-btn>
             </v-flex>
           </v-layout>
 
           <v-text-field
-          class="mx-0"
-          flat
-          hide-details
-          label="Search"
-          v-model="keyword"
-          prepend-inner-icon="mdi-magnify"
-          solo-inverted
-        ></v-text-field>
-        
-        <br>
-          
-          <v-data-table
-            :headers="headers"
-            :items="users"
-            :search="keyword"
-            >
-            <template v-slot:body="{ items }" >
+            class="mx-0"
+            flat
+            hide-details
+            label="Search"
+            v-model="keyword"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+          ></v-text-field>
+
+          <br />
+
+          <v-data-table :headers="headers" :items="users" :search="keyword">
+            <template v-slot:body="{ items }">
               <tbody>
                 <tr v-for="(item, index) in items" :key="item.id_supplier">
                   <td>{{ index + 1 }}</td>
@@ -62,29 +64,13 @@
     <div class="text-center">
       <v-dialog width="500" v-model="deleteDialog">
         <v-card>
-          <v-card-title
-            class="headline Red lighten-2"
-            primary-title
-            >Konfirmasi Hapus</v-card-title
-          >
-          <v-card-text
-            >Data yang akan dihapus, Lanjutkan ?</v-card-text
-          >
+          <v-card-title class="headline Red lighten-2" primary-title>Konfirmasi Hapus</v-card-title>
+          <v-card-text>Data yang akan dihapus, Lanjutkan ?</v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn
-              color="primary"
-              text
-              @click="deleteDialog = false"
-              >Batal</v-btn
-            >
-            <v-btn
-              color="primary"
-              text
-              @click="deleteData(deleteId)"
-              >Hapus</v-btn
-            >
+            <v-btn color="primary" text @click="deleteDialog = false">Batal</v-btn>
+            <v-btn color="primary" text @click="deleteData(deleteId)">Hapus</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -98,25 +84,25 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field 
-                  label="Nama Supplier" 
-                  v-model="form.nama_supplier" 
+                <v-text-field
+                  label="Nama Supplier"
+                  v-model="form.nama_supplier"
                   required
                   :rules="rules"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field 
-                  label="Alamat Supplier" 
+                <v-text-field
+                  label="Alamat Supplier"
                   v-model="form.alamat_supplier"
                   required
                   :rules="rules"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field 
-                  label="Telepon Supplier" 
-                  v-model="form.telepon_supplier" 
+                <v-text-field
+                  label="Telepon Supplier"
+                  v-model="form.telepon_supplier"
                   required
                   :rules="rules"
                 ></v-text-field>
@@ -134,7 +120,7 @@
     </v-dialog>
     <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
       {{ text }}
-      <v-btn dark text @click="snackbar = false"> Close </v-btn>
+      <v-btn dark text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
   </v-container>
 </template>

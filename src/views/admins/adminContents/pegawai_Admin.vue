@@ -620,7 +620,7 @@
         if (this.typeInput === 'new') {
           this.sendData();
         } else {
-          console.log('data berhasil diubah');
+          // console.log('data berhasil diubah');
           this.updateData();
         }
       },

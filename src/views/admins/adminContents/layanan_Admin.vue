@@ -481,7 +481,7 @@
           });
           count++;
         });
-        console.log(this.hargalayananrows);
+        // console.log(this.hargalayananrows);
         this.dialogAddLayanan = true;
       },
       filteredItems(value) {
@@ -525,7 +525,7 @@
             this.sendDataHargaLayanan(response.data.message);
           })
           .catch((error) => {
-            console.log('masuk error data layanan');
+            // console.log('masuk error data layanan');
             this.errors = error;
             this.snackbar = true;
             this.text = 'Coba Lagi';
@@ -557,7 +557,7 @@
             this.closeForm(); //mengambil [harga layanan]
           })
           .catch((error) => {
-            console.log('masuk error data harga layanan');
+            // console.log('masuk error data harga layanan');
             this.errors = error;
             this.snackbar = true;
             this.text = 'Coba Lagi';
@@ -660,24 +660,23 @@
             this.color = 'red';
           });
       },
-      deleteLayananPermanent(deleteId) {
-        //mengahapus data
-        var uri = this.$apiUrl4 + 'Layanan/' + deleteId; //data dihapus berdasarkan id
-        this.load = true;
-        this.$http
-          .delete(uri)
-          .then((response) => {
-            console.log(response.data.message);
-            console.log('berhasil menghapus layanan ber id: ' + deleteId);
-          })
-          .catch((error) => {
-            console.log(error);
-            console.log('gagal menghapus layanan ber id: ' + deleteId);
-          });
-      },
+      // deleteLayananPermanent(deleteId) {
+      //   //mengahapus data
+      //   // var uri = this.$apiUrl4 + 'Layanan/' + deleteId; //data dihapus berdasarkan id
+      //   // this.load = true;
+      //   // this.$http
+      //   //   .delete(uri)
+      //   //   .then((response) => {
+      //   //     // console.log(response.data.message);
+      //   //     // console.log('berhasil menghapus layanan ber id: ' + deleteId);
+      //   //   })
+      //   //   .catch((error) => {
+      //   //     // console.log(error);
+      //   //     // console.log('gagal menghapus layanan ber id: ' + deleteId);
+      //   //   });
+      // },
       setIdLayanan(item) {
         this.form.id_layanan = item.id_layanan;
-        console.log(this.form.id_layanan);
       },
       resetForm() {
         this.form = {

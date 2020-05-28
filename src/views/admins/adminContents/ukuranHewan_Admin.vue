@@ -6,35 +6,37 @@
           <v-layout row wrap style="margin:10px">
             <v-flex xs6>
               <v-container class="my-5">
-              <h1 class="subheading grey-darken--text">Data Ukuran Hewan</h1>
+                <h1 class="subheading grey-darken--text">Data Ukuran Hewan</h1>
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
-                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
-                Tambah Ukuran Hewan
+              <v-btn
+                depressed
+                dark
+                rounded
+                style="text-transform: none !important;"
+                color="green accent-3"
+                @click="dialogTambah()"
+              >
+                <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>Tambah Ukuran Hewan
               </v-btn>
             </v-flex>
           </v-layout>
 
           <v-text-field
-          class="mx-0"
-          flat
-          hide-details
-          label="Search"
-          v-model="keyword"
-          prepend-inner-icon="mdi-magnify"
-          solo-inverted
-        ></v-text-field>
-        
-        <br>
-          
-          <v-data-table
-            :headers="headers"
-            :items="users"
-            :search="keyword"
-            >
-            <template v-slot:body="{ items }" >
+            class="mx-0"
+            flat
+            hide-details
+            label="Search"
+            v-model="keyword"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+          ></v-text-field>
+
+          <br />
+
+          <v-data-table :headers="headers" :items="users" :search="keyword">
+            <template v-slot:body="{ items }">
               <tbody>
                 <tr v-for="(item, index) in items" :key="item.id_ukuranHewan">
                   <td>{{ index + 1 }}</td>
@@ -66,9 +68,9 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field 
-                  label="Nama Ukuran Hewan*" 
-                  v-model="form.nama_ukuranHewan" 
+                <v-text-field
+                  label="Nama Ukuran Hewan*"
+                  v-model="form.nama_ukuranHewan"
                   required
                   :rules="rules"
                 ></v-text-field>
@@ -86,68 +88,51 @@
       <div class="text-center">
         <v-dialog width="500" v-model="deleteDialog">
           <v-card>
-            <v-card-title class="headline Red lighten-2" primary-title>
-              Konfirmasi Hapus
-            </v-card-title>
-            <v-card-text>
-              Data yang akan dihapus, Lanjutkan ?
-            </v-card-text>
+            <v-card-title class="headline Red lighten-2" primary-title>Konfirmasi Hapus</v-card-title>
+            <v-card-text>Data yang akan dihapus, Lanjutkan ?</v-card-text>
             <v-divider></v-divider>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="primary" text @click="deleteDialog = false">
-                Batal
-              </v-btn>
-              <v-btn color="primary" text @click="deleteData(deleteId)">
-                Hapus
-              </v-btn>
+              <v-btn color="primary" text @click="deleteDialog = false">Batal</v-btn>
+              <v-btn color="primary" text @click="deleteData(deleteId)">Hapus</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </div>
     </v-dialog>
     <v-dialog v-model="dialogEdit" persistent max-width="600px">
-        <v-card>
-          <v-card-title>
-            <v-spacer />
-            <span class="headline">Ubah Ukuran Hewan</span>
-            <v-spacer />
-          </v-card-title>
-          <v-card-text>
-            <v-container>
-              <v-form ref="form">
-                <v-row>
-                  <v-col cols="12">
-                    <v-text-field
-                      label="Nama*"
-                      v-model="form.nama"
-                      required
-                      outlined=""
-                      :rules="rules"
-                    ></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-form>
-            </v-container>
-            <small>*wajib diisi</small>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="blue darken-1"
-              text
-              @click="resetForm(), reset(), (dialogEdit = false)"
-              >Tutup</v-btn
-            >
-            <v-btn color="blue darken-1" text @click="cekKosong()"
-              >Simpan</v-btn
-            >
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <v-card>
+        <v-card-title>
+          <v-spacer />
+          <span class="headline">Ubah Ukuran Hewan</span>
+          <v-spacer />
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-form ref="form">
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field label="Nama*" v-model="form.nama" required outlined :rules="rules"></v-text-field>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-container>
+          <small>*wajib diisi</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="resetForm(), reset(), (dialogEdit = false)"
+          >Tutup</v-btn>
+          <v-btn color="blue darken-1" text @click="cekKosong()">Simpan</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
       {{ text }}
-      <v-btn dark text @click="snackbar = false"> Close </v-btn>
+      <v-btn dark text @click="snackbar = false">Close</v-btn>
     </v-snackbar>
   </v-container>
 </template>

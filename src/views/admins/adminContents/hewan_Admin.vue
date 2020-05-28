@@ -10,7 +10,7 @@
         <span>Non Aktif</span>
         <v-icon>mdi-delete-empty</v-icon>
       </v-btn>
-    </v-bottom-navigation> -->
+    </v-bottom-navigation>-->
     <v-card>
       <div class="pt-5">
         <h1 class="subheading grey-darken--text">Data Hewan</h1>
@@ -24,19 +24,18 @@
               color="green accent-3"
               @click="showAddDialog"
             >
-              <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
-              Tambah Hewan
+              <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>Tambah Hewan
             </v-btn>
           </v-flex>
         </v-layout>
         <v-text-field
-                  class="mx-0"
-                  flat
-                  hide-details
-                  label="Search"
-                  v-model="keyword"
-                  prepend-inner-icon="mdi-magnify"
-                  solo-inverted
+          class="mx-0"
+          flat
+          hide-details
+          label="Search"
+          v-model="keyword"
+          prepend-inner-icon="mdi-magnify"
+          solo-inverted
         ></v-text-field>
         <v-data-table :headers="headers" :items="hewans" :search="keyword">
           <template v-slot:body="{ items }">
@@ -52,7 +51,7 @@
                 <td>{{ item.updateLog_at }}</td>
                 <td>{{ item.updateLog_by }}</td>
                 <!-- <td>{{ item.delete_by }}</td>
-                <td>{{ item.delete_at }}</td> -->
+                <td>{{ item.delete_at }}</td>-->
                 <!-- <td>{{ item.aktif }}</td> -->
                 <td>
                   <div>
@@ -61,13 +60,7 @@
                     </v-btn>
                   </div>
                   <div>
-                    <v-btn
-                      icon
-                      color="red lighten-2"
-                      dark
-                      v-on="on"
-                      @click="deleteRow(item)"
-                    >
+                    <v-btn icon color="red lighten-2" dark v-on="on" @click="deleteRow(item)">
                       <v-icon>mdi-delete</v-icon>
                     </v-btn>
                   </div>
@@ -82,21 +75,13 @@
     <div class="text-center">
       <v-dialog width="500" v-model="deleteDialog">
         <v-card>
-          <v-card-title class="headline Red lighten-2" primary-title>
-            Konfirmasi Hapus
-          </v-card-title>
-          <v-card-text>
-            Data yang akan dihapus, Lanjutkan ?
-          </v-card-text>
+          <v-card-title class="headline Red lighten-2" primary-title>Konfirmasi Hapus</v-card-title>
+          <v-card-text>Data yang akan dihapus, Lanjutkan ?</v-card-text>
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="deleteDialog = false">
-              Batal
-            </v-btn>
-            <v-btn color="primary" text @click="deleteData(deleteId)">
-              Hapus
-            </v-btn>
+            <v-btn color="primary" text @click="deleteDialog = false">Batal</v-btn>
+            <v-btn color="primary" text @click="deleteData(deleteId)">Hapus</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -105,15 +90,11 @@
     <div class="text-center">
       <v-dialog width="500" v-model="dialogWarning">
         <v-card>
-          <v-card-title class="headline Red lighten-2" primary-title
-            >Data Harus Diisi Semua !</v-card-title
-          >
+          <v-card-title class="headline Red lighten-2" primary-title>Data Harus Diisi Semua !</v-card-title>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="dialogWarning = false"
-              >Kembali</v-btn
-            >
+            <v-btn color="primary" text @click="dialogWarning = false">Kembali</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -200,12 +181,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="resetForm(), reset(), (dialog = false)"
-            >Tutup</v-btn
-          >
+          <v-btn color="blue darken-1" text @click="resetForm(), reset(), (dialog = false)">Tutup</v-btn>
           <v-btn color="blue darken-1" text @click="cekKosong()">Simpan</v-btn>
         </v-card-actions>
       </v-card>
@@ -222,12 +198,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field
-                  label="Nama Hewan*"
-                  v-model="form.nama_hewan"
-                  required
-                  outlined=""
-                ></v-text-field>
+                <v-text-field label="Nama Hewan*" v-model="form.nama_hewan" required outlined></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-autocomplete
@@ -239,7 +210,7 @@
                   color="white"
                   item-text="nama_jenisHewan"
                   label="Jenis Hewan*"
-                  outlined=""
+                  outlined
                 ></v-autocomplete>
               </v-col>
               <v-col cols="12">
@@ -253,7 +224,7 @@
                   color="white"
                   item-text="nama_customer"
                   label="Nama Pemilik*"
-                  outlined=""
+                  outlined
                 ></v-autocomplete>
               </v-col>
               <v-col cols="20">
@@ -271,7 +242,7 @@
                       label="Tanggal Lahir*"
                       readonly
                       v-on="on"
-                      outlined=""
+                      outlined
                     ></v-text-field>
                   </template>
                   <v-date-picker
@@ -293,22 +264,14 @@
             color="blue darken-1"
             text
             @click="resetForm(), reset(), (dialogEdit = false)"
-            >Tutup</v-btn
-          >
+          >Tutup</v-btn>
           <v-btn color="blue darken-1" text @click="setForm()">Simpan</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-snackbar
-      v-model="snackbar"
-      :color="color"
-      :multi-line="true"
-      :timeout="3000"
-    >
+    <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
       {{ text }}
-      <v-btn dark text @click="snackbar = false">
-        Tutup
-      </v-btn>
+      <v-btn dark text @click="snackbar = false">Tutup</v-btn>
     </v-snackbar>
   </div>
 </template>
@@ -533,7 +496,6 @@
         if (this.typeInput === 'new') {
           this.sendData();
         } else {
-          console.log('data berhasil diubah');
           this.updateData();
         }
       },

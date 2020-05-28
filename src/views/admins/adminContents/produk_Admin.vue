@@ -8,17 +8,9 @@
             <v-toolbar flat color="white">
               <v-dialog v-model="dialog" max-width="500px">
                 <template v-slot:activator="{ on }">
-                  <v-btn
-                    color="green accent-3"
-                    depressed
-                    rounded
-                    dark
-                    class="mb-2"
-                    v-on="on"
-                  >
-                    <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon
-                    >Tambah Produk</v-btn
-                  >
+                  <v-btn color="green accent-3" depressed rounded dark class="mb-2" v-on="on">
+                    <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>Tambah Produk
+                  </v-btn>
                 </template>
 
                 <v-card>
@@ -36,7 +28,7 @@
                               label="Nama*"
                               v-model="form.nama_produk"
                               required
-                              outlined=""
+                              outlined
                               value="nama_produk"
                               :rules="rules"
                             ></v-text-field>
@@ -46,7 +38,7 @@
                               label="Stok Minimal*"
                               v-model="form.min_stok_produk"
                               required
-                              outlined=""
+                              outlined
                               value="min_stok_produk"
                               :rules="rules"
                             ></v-text-field>
@@ -56,7 +48,7 @@
                               label="Jumlah Stok*"
                               v-model="form.stok_produk"
                               required
-                              outlined=""
+                              outlined
                               value="stok_produk"
                               :rules="rules"
                             ></v-text-field>
@@ -67,7 +59,7 @@
                               v-model="form.harga_produk"
                               required
                               value="harga_produk"
-                              outlined=""
+                              outlined
                               prefix="Rp. "
                               :rules="rules"
                             ></v-text-field>
@@ -79,10 +71,9 @@
                               value="satuan_produk"
                               :items="items"
                               required
-                              outlined=""
+                              outlined
                               :rules="rules"
-                            >
-                            </v-select>
+                            ></v-select>
                           </v-col>
                           <v-col cols="12">
                             <template>
@@ -105,31 +96,26 @@
                       color="blue darken-1"
                       text
                       @click="resetForm(), reset(), (dialog = false)"
-                      >Tutup</v-btn
-                    >
-                    <v-btn color="blue darken-1" text @click="cekKosong()"
-                      >Simpan</v-btn
-                    >
+                    >Tutup</v-btn>
+                    <v-btn color="blue darken-1" text @click="cekKosong()">Simpan</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-dialog>
               <v-spacer></v-spacer>
-              
+
               <v-divider class="mx-4" inset vertical></v-divider>
-              <v-flex xs6 class="text-right">
-                
-              </v-flex>
+              <v-flex xs6 class="text-right"></v-flex>
             </v-toolbar>
           </v-layout>
           <v-text-field
-                  class="mx-0"
-                  flat
-                  hide-details
-                  label="Search"
-                  v-model="keyword"
-                  prepend-inner-icon="mdi-magnify"
-                  solo-inverted
-                ></v-text-field>
+            class="mx-0"
+            flat
+            hide-details
+            label="Search"
+            v-model="keyword"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+          ></v-text-field>
         </template>
         <v-layout class="mx-4">
           <v-flex>
@@ -144,25 +130,14 @@
                       height="200"
                     />
 
-                    <v-card-title>
-                      {{ item.nama_produk }}
-                    </v-card-title>
+                    <v-card-title>{{ item.nama_produk }}</v-card-title>
 
-                    <v-card-subtitle>
-                      ID Produk: {{ item.id_produk }}
-                    </v-card-subtitle>
+                    <v-card-subtitle>ID Produk: {{ item.id_produk }}</v-card-subtitle>
 
                     <v-card-actions>
                       <v-btn text @click="editHandler(item)">Ubah Produk</v-btn>
                       <v-spacer></v-spacer>
-                      <v-btn
-                        color="red lighten-2"
-                        text
-                        v-on="on"
-                        @click="deleteRow(item)"
-                      >
-                        Hapus
-                      </v-btn>
+                      <v-btn color="red lighten-2" text v-on="on" @click="deleteRow(item)">Hapus</v-btn>
 
                       <!-- ------------------Dialog untuk konfirmasi delete-------------------------------------- -->
                       <div class="text-center">
@@ -171,26 +146,13 @@
                             <v-card-title
                               class="headline Red lighten-2"
                               primary-title
-                              >Konfirmasi Hapus</v-card-title
-                            >
-                            <v-card-text
-                              >Data yang akan dihapus, Lanjutkan ?</v-card-text
-                            >
+                            >Konfirmasi Hapus</v-card-title>
+                            <v-card-text>Data yang akan dihapus, Lanjutkan ?</v-card-text>
                             <v-divider></v-divider>
                             <v-card-actions>
                               <v-spacer></v-spacer>
-                              <v-btn
-                                color="primary"
-                                text
-                                @click="deleteDialog = false"
-                                >Batal</v-btn
-                              >
-                              <v-btn
-                                color="primary"
-                                text
-                                @click="deleteData(deleteId)"
-                                >Hapus</v-btn
-                              >
+                              <v-btn color="primary" text @click="deleteDialog = false">Batal</v-btn>
+                              <v-btn color="primary" text @click="deleteData(deleteId)">Hapus</v-btn>
                             </v-card-actions>
                           </v-card>
                         </v-dialog>
@@ -199,11 +161,13 @@
 
                       <!-- <v-btn icon @click="show = !show"> -->
                       <v-btn icon @click="updateMunculke(item)">
-                        <v-icon>{{
+                        <v-icon>
+                          {{
                           item.id_produk == munculke
-                            ? 'mdi-chevron-up'
-                            : 'mdi-chevron-down'
-                        }}</v-icon>
+                          ? 'mdi-chevron-up'
+                          : 'mdi-chevron-down'
+                          }}
+                        </v-icon>
                       </v-btn>
                     </v-card-actions>
 
@@ -214,26 +178,27 @@
 
                         <v-card-text>
                           <v-card-subtitle>
-                            Jumlah Stok :{{ item.stok_produk }}<br />
-                            Stok Minimal : {{ item.min_stok_produk }}<br />
-                            Harga : {{ item.harga_produk }}<br />
-                            Satuan : {{ item.satuan_produk }}<br />
-                            Tanggal Dibuat : {{ item.createLog_at }}<br />
-                            Diubah Oleh : {{ item.updateLog_by }}<br />
+                            Jumlah Stok :{{ item.stok_produk }}
+                            <br />
+                            Stok Minimal : {{ item.min_stok_produk }}
+                            <br />
+                            Harga : {{ item.harga_produk }}
+                            <br />
+                            Satuan : {{ item.satuan_produk }}
+                            <br />
+                            Tanggal Dibuat : {{ item.createLog_at }}
+                            <br />
+                            Diubah Oleh : {{ item.updateLog_by }}
+                            <br />
                           </v-card-subtitle>
                         </v-card-text>
                       </div>
                     </v-expand-transition>
                   </v-card>
 
-                  <v-snackbar
-                    v-model="snackbar"
-                    :color="color"
-                    :multi-line="true"
-                    :timeout="3000"
-                  >
+                  <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
                     {{ text }}
-                    <v-btn dark text @click="snackbar = false"> Tutup </v-btn>
+                    <v-btn dark text @click="snackbar = false">Tutup</v-btn>
                   </v-snackbar>
                 </v-col>
               </v-row>
@@ -246,15 +211,11 @@
     <div class="text-center">
       <v-dialog width="500" v-model="dialogWarning">
         <v-card>
-          <v-card-title class="headline Red lighten-2" primary-title
-            >Data Harus Diisi Semua !</v-card-title
-          >
+          <v-card-title class="headline Red lighten-2" primary-title>Data Harus Diisi Semua !</v-card-title>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text @click="dialogWarning = false"
-              >Kembali</v-btn
-            >
+            <v-btn color="primary" text @click="dialogWarning = false">Kembali</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -447,7 +408,6 @@
         if (this.typeInput === 'new') {
           this.sendData();
         } else {
-          console.log('data berhasil diubah');
           this.updateData();
         }
       },
@@ -469,7 +429,7 @@
   };
 </script>
 <style scoped>
-  /* .v-toolbar__content,
+/* .v-toolbar__content,
   .v-toolbar__extension {
     color: white;
   } */
