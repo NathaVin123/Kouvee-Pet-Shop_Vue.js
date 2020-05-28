@@ -8,9 +8,9 @@ const dashboardAdmin = () => import("./views/admins/dashboardAdmin.vue");
 const dashboardCS = () => import("./views/Customer_service/dashboardCS.vue");
 const dashboardCashier = () => import("./views/Cashier/dashboardCashier.vue");
 
-////////////////// login dan landing page ////////////////////////
-const loginLayout = () => import("./views/SignIn.vue");
-const landingPageLayout = () => import("./views/Customer/landingPage.vue");
+// ////////////////// login dan landing page ////////////////////////
+// const loginLayout = () => import("./views/SignIn.vue");
+// const landingPageLayout = () => import("./views/Customer/landingPage.vue");
 
 ///////////////// load gemblung sebelum dibenerin ////////////////////
 const navbarBeforeLogin = () => import("./views/navbarHome.vue");
