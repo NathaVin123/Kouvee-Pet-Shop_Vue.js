@@ -1,65 +1,49 @@
 <template>
   <div class="mt-5">
-      <v-container class="my-5">
-        <v-carousel
-          cycle
-          height="350"
-          hide-delimiter-background
-          show-arrows-on-hover
-          interval:3000
-        >
-          <v-carousel-item
-            v-for="(slide, i) in slides"
-            :key="i"
-          >
-            <v-sheet
-              :color="colors[i]"
-              height="100%"
-            >
-              <v-row
-                class="fill-height"
-                align="center"
-                justify="center"
-              >
+    <v-container class="my-5">
+      <v-carousel cycle height="350" hide-delimiter-background show-arrows-on-hover interval:3000>
+        <v-carousel-item v-for="(slide, i) in slides" :key="i">
+          <v-sheet :color="colors[i]" height="100%">
+            <v-row class="fill-height" align="center" justify="center">
               <center>
                 <div class="display-1">{{ slide }}</div>
               </center>
-              </v-row>
-            </v-sheet>
-          </v-carousel-item>
-        </v-carousel>
-      </v-container>
+            </v-row>
+          </v-sheet>
+        </v-carousel-item>
+      </v-carousel>
+    </v-container>
     <div class="mt-8">
       <v-container class="my-5">
-            <h1 class="subheading grey--text"><p class="text-center">Apa itu Kouvee Pet Shop ?</p></h1>
-            <br>
-            Kouvee Pet Shop merupakan pet shop ternama di yogyakarta. Kami menyediakan berbagai macam produk dan layanan untuk hewan kesayangan Anda.
+        <h1 class="subheading grey--text">
+          <p class="text-center">Apa itu Kouvee Pet Shop ?</p>
+        </h1>
+        <br />Kouvee Pet Shop merupakan pet shop ternama di yogyakarta. Kami menyediakan berbagai macam produk dan layanan untuk hewan kesayangan Anda.
       </v-container>
       <!-- <v-container class="my-5">
             You can also add lyrics that are not yet on LyricLibs, and your friends can also see the lyrics you have made. LyricLibs will faithfully accompany when listening to your song. Because life needs words.
-      </v-container> -->
+      </v-container>-->
     </div>
     <div class="mt-6">
       <v-container class="my-5">
-        <v-card
-        color="#385F73"
-        dark
-        mt-5>
+        <v-card color="#385F73" dark mt-5>
           <center>
             <v-container class="my-5">
-              <h1 class="subheading grey--text"><p class="text-center">Nikmati Berbagai Layanan Kouvee Pet Shop</p></h1>
-              <br>
-              Currently KouveePetShop is still in the development stage, to enjoy it you don't need to pay for it.
-               To support us, write in the comments column what is still a weakness of the KouveePetShop website.
-               We are very happy and thankful, because of all of you we can continue to accompany you in listening to music.
-               <br><br>
-               <!-- <v-btn
+              <h1 class="subheading grey--text">
+                <p class="text-center">Nikmati Berbagai Layanan Kouvee Pet Shop</p>
+              </h1>
+              <br />Currently KouveePetShop is still in the development stage, to enjoy it you don't need to pay for it.
+              To support us, write in the comments column what is still a weakness of the KouveePetShop website.
+              We are very happy and thankful, because of all of you we can continue to accompany you in listening to music.
+              <br />
+              <br />
+              <!-- <v-btn
                 v-for="item in dashboard"
                 :key="item.text" 
                 text small color="warning"
                 class="mr-4"
                 router :to="item.route"
-              >FIND THE LYRICS</v-btn> -->
+              >FIND THE LYRICS</v-btn>-->
             </v-container>
           </center>
         </v-card>
@@ -128,17 +112,14 @@
           <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>   -->
-  
-  <v-footer padless dark>
-    <v-col
-      class="text-center"
-      cols="12"
-    > 
-    {{ new Date().getFullYear() }}  — Kouvee Pet Shop <strong>Made with ❤ by P3L G 3</strong>
-    </v-col>
-  </v-footer>
-  
+    </v-dialog>-->
+
+    <v-footer padless dark>
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — Kouvee Pet Shop
+        <strong>Made with ❤ by P3L G 3</strong>
+      </v-col>
+    </v-footer>
   </div>
 </template>
 

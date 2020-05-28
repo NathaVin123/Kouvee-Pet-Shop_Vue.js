@@ -27,6 +27,7 @@
     "dotenv": "^8.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "prettier": "2.0.5",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-cli-plugin-vuetify": "^2.0.5",
