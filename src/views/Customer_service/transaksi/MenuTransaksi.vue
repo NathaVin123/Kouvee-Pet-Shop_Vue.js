@@ -30,7 +30,6 @@
               dark
               rounded
               class="elevation-2"
-              x-large
               style="text-transform: none !important;"
               color="green accent-3"
               @click="(dialog = true), resetDynamic()"
