@@ -124,15 +124,14 @@ export default {
         } 
         else 
         {
-          this.user.append('NIP', this.form.NIP);
+          this.user.append('nama_pegawai', this.form.NIP);
           this.user.append('password', this.form.password);
           var url = this.$apiUrl4 + 'Pegawai/' + 'auth';
           this.load = true;
           this.$http
             .post(url, this.user)
             .then((response) => {
-              this.pegawais = response.data.message;
-              if (this.pegawais.NIP != null) {
+              this.pegawais = response.data.message
                 if (this.pegawais.stat.toLowerCase() == 'customer service') {
                   //login ke menu customer
                   // sessionStorage.setItem(
@@ -173,12 +172,6 @@ export default {
                   alert('Gagal login sebagai CS atau Kasir, coba lagi !');
                   this.color = 'red';
                 }
-              } else {
-                this.snackbar = true;
-                this.text = 'Login Gagal';
-                alert('NIP atau Password anda salah harap coba lagi');
-                this.color = 'red';
-              }
             })
             .catch((error) => {
               this.errors = error;
