@@ -82,7 +82,7 @@ export default {
                 required: (value) => !!value || 'Required.',
             },
             user: new FormData(),
-            pegawai: [],
+            pegawais: [],
             typeInput: 'new',
             errors: '',
             valid: true,
@@ -109,7 +109,8 @@ export default {
     },
     methods :{
         login(){
-            if (this.form.NIP == 'admin') {
+            if (this.form.NIP == 'admin') 
+            {
           if (this.form.password == 'admin123') {
             sessionStorage.setItem('Nama', 'admin');
             this.snackbar = true;
@@ -118,12 +119,17 @@ export default {
             this.$router.push({ name: 'welcomeAdmin' });
             alert('Login sebagai admin, sukses !');
             console.log('admin');
-          } else {
+          } 
+          else 
+          {
             this.snackbar = true;
             this.text = 'Login Gagal';
+            alert('Gagal login sebagai admin, coba lagi !');
             this.color = 'red';
           }
-        } else {
+        } 
+        else 
+        {
           this.user.append('NIP', this.form.NIP);
           this.user.append('password', this.form.password);
           var url = this.$apiUrl4 + 'Pegawai/' + 'auth';
@@ -133,15 +139,16 @@ export default {
             .then((response) => {
               this.pegawais = response.data.message;
               if (this.pegawais.NIP != null) {
-                if (this.pegawais.stat.toLowerCase() == 'Customer Service') {
+                if (this.pegawais.stat.toLowerCase() == 'customer service') {
                   //login ke menu customer
-                  sessionStorage.setItem(
-                    'Id',
-                    response.data.message.NIP
-                  );
+                  // sessionStorage.setItem(
+                  //   'Id',
+                  //   response.data.message.NIP
+                  // );
                   sessionStorage.setItem(
                     'Nama',
-                    response.data.message.nama_pegawai
+                    // response.data.message.NIP
+                    'CS'
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
@@ -149,15 +156,18 @@ export default {
                   this.$router.push({ name: 'customer_Admin' });
                   alert('Login sebagai CS, sukses !');
                   console.log('customer service');
-                } else if (this.pegawais.stat.toLowerCase() == 'kasir') {
+                } else 
+                if (this.pegawais.stat.toLowerCase() == 'kasir') 
+                {
                   //code untuk login ke kasir
-                  sessionStorage.setItem(
-                    'Id',
-                    response.data.message.NIP
-                  );
+                  // sessionStorage.setItem(
+                  //   'Id',
+                  //   response.data.message.NIP
+                  // );
                   sessionStorage.setItem(
                     'Nama',
-                    response.data.message.nama_pegawai
+                    // response.data.message.NIP
+                    'Kasir'
                   );
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
@@ -173,6 +183,7 @@ export default {
               } else {
                 this.snackbar = true;
                 this.text = 'Login Gagal';
+                alert('NIP atau Password anda salah harap coba lagi');
                 this.color = 'red';
               }
             })
