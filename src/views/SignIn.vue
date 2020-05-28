@@ -18,11 +18,11 @@
                                 <div class="form">
                                     <v-text-field
                                     v-model="form.NIP"
-                                    label="NIP"
-                                    name="NIP"
+                                    label="Nama Pegawai"
+                                    name="nama_pegawai"
                                     prepend-icon="mdi mdi-account"
                                     :rules="NIPRules"
-                                    hint="Masukkan NIP yang telah terdaftar"      
+                                    hint="Masukkan Nama Pegawai yang telah terdaftar"      
                                     outlined
                                     height=50
                                     ></v-text-field>
@@ -34,7 +34,7 @@
                                     prepend-icon="mdi mdi-lock"
                                     :rules="[rules.required, rules.min]"
                                     outlined
-                                    hint="minimal 8 karakter"
+                                    hint="masukkan password yang sesuai"
                                     height=50
                                     ></v-text-field>
 
@@ -93,7 +93,7 @@ export default {
             },
             
             NIPRules: [
-              v => !!v || 'NIP harus dimasukkan',
+              v => !!v || 'Nama Pegawai harus dimasukkan',
             ],
             
             rules: {
@@ -163,7 +163,7 @@ export default {
                   this.snackbar = true;
                   this.text = 'Login Berhasil';
                   this.color = 'green';
-                  this.$router.push({ name: 'TransaksiProduk' });
+                  this.$router.push({ name: 'penjualanLayanan_Admin' });
                   alert('Login sebagai Kasir, sukses !');
                   console.log('customer service');
                 } else {
