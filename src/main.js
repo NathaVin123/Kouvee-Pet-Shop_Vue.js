@@ -4,6 +4,7 @@ import router from "./router";
 import Axios from "axios";
 import vuetify from "./plugins/vuetify";
 import * as VueGoogleMaps from "vue2-google-maps";
+import Snotify, { SnotifyPosition } from 'vue-snotify';
 
 Vue.prototype.$http = Axios;
 Vue.prototype.$apiUrl = "http://localhost/LyricLibs_CI/index.php";
@@ -24,5 +25,6 @@ new Vue({
   router,
   VueGoogleMaps,
   vuetify,
+  Snotify,
   components: { App },
 }).$mount("#app");
