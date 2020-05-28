@@ -20,8 +20,10 @@
         </v-bottom-navigation>
         <v-card>
           <div class="pa-5">
-            <h2 class="subheading grey-darken--text">Pengadaan Produk Selesai</h2>
-            <v-layout row wrap style="margin:10px">
+            <h2 class="subheading grey-darken--text">
+              Pengadaan Produk Selesai
+            </h2>
+            <v-layout row wrap style="margin: 10px;">
               <!-- <v-flex xs6 class="text-right">
             <v-text-field
               v-model="keyword"
@@ -37,15 +39,12 @@
             <v-data-table :headers="headers" :items="filterProgres(pengadaans)">
               <template v-slot:body="{ items }">
                 <tbody>
-                  <tr
-                    v-for="(item, index) in items"
-                    :key="item.no_order"
-                  >
+                  <tr v-for="(item, index) in items" :key="item.no_order">
                     <td>{{ index + 1 }}</td>
                     <td
                       class="underlinetext"
                       @click="showDetail(item)"
-                      style="cursor:pointer"
+                      style="cursor: pointer;"
                     >
                       {{ item.no_order }}
                     </td>
@@ -78,7 +77,7 @@
           <v-card-title>
             <v-spacer />
             <h2 class="text-md-center">
-              {{ 'No Order: ' + detailItem.no_order }}
+              {{ "No Order: " + detailItem.no_order }}
             </h2>
             <v-spacer />
           </v-card-title>
@@ -121,7 +120,7 @@
                 <td class="text-right">
                   <tr>
                     <td>
-                      <h3>{{ 'Total : Rp' }}</h3>
+                      <h3>{{ "Total : Rp" }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.total_harga }}</h3>
@@ -162,289 +161,286 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        headers: [
-          {
-            text: 'No',
-            value: 'index',
-          },
-          {
-            text: 'No Order',
-            value: 'no_order',
-          },
-          {
-            text: 'Nama Supplier',
-            value: 'nama_supplier',
-          },
-          {
-            text: 'Total',
-            value: 'total_harga',
-          },
-          {
-            text: 'Status',
-            value: 'status_pengadaan',
-          },
-          {
-            text: 'Tanggal Dibuat',
-            value: 'createLog_at',
-          },
-          {
-            text: 'Tanggal Diubah',
-            value: 'updateLog_by',
-          },
-          
-        ],
-        activeBtn: 2,
-        dialog: false,
-        confirmationDialog: false,
-        editedIndex: -1,
-        produks: [],
-        pengadaans: [],
-        detailPengadaans: [],
-        suppliers: [],
-        detailTambah: [],
-        detailIdPengadaanFilteredDelete: [],
-        deleteDialog: false,
-        id_supplier: null,
-        empty: null,
-        dialogDetailPengadaanProduk: false,
-        detailItem: '',
-        on: '',
-        deletePengadaan: new FormData(),
-        user: new FormData(),
-        user2: new FormData(),
-        form: {
-          subtotal: 0,
+export default {
+  data() {
+    return {
+      headers: [
+        {
+          text: "No",
+          value: "index",
         },
-        typeInput: 'new',
-        search: '',
-        snackbar: false,
-        color: null,
-        text: '',
-        load: false,
-      };
-    },
-    watch: {
-      id_supplier() {
-        this.empty = 'null';
+        {
+          text: "No Order",
+          value: "no_order",
+        },
+        {
+          text: "Nama Supplier",
+          value: "nama_supplier",
+        },
+        {
+          text: "Total",
+          value: "total_harga",
+        },
+        {
+          text: "Status",
+          value: "status_pengadaan",
+        },
+        {
+          text: "Tanggal Dibuat",
+          value: "createLog_at",
+        },
+        {
+          text: "Tanggal Diubah",
+          value: "updateLog_by",
+        },
+      ],
+      activeBtn: 2,
+      dialog: false,
+      confirmationDialog: false,
+      editedIndex: -1,
+      produks: [],
+      pengadaans: [],
+      detailPengadaans: [],
+      suppliers: [],
+      detailTambah: [],
+      detailIdPengadaanFilteredDelete: [],
+      deleteDialog: false,
+      id_supplier: null,
+      empty: null,
+      dialogDetailPengadaanProduk: false,
+      detailItem: "",
+      on: "",
+      deletePengadaan: new FormData(),
+      user: new FormData(),
+      user2: new FormData(),
+      form: {
+        subtotal: 0,
       },
+      typeInput: "new",
+      search: "",
+      snackbar: false,
+      color: null,
+      text: "",
+      load: false,
+    };
+  },
+  watch: {
+    id_supplier() {
+      this.empty = "null";
     },
+  },
 
-    methods: {
-      Pengadaan() {
-        this.$router.push({ name: 'pengadaan_Admin' });
-      },
-      PengadaanDiproses() {
-        this.$router.push({ name: 'pengadaan_Diproses' });
-      },
-      PengadaanSelesai() {
-        this.$router.push({ name: 'pengadaan_Selesai' });
-      },
-      getSupplier() {
-        var uri = this.$apiUrl4 + 'Supplier';
-        this.$http.get(uri).then((response) => {
-          this.suppliers = response.data.message;
-        });
-      },
-      getProduk() {
-        var uri = this.$apiUrl4 + 'Produk/' + 'all';
-        this.$http.get(uri).then((response) => {
-          this.produks = response.data.message;
-        });
-      },
-      getPengadaan() {
-        var uri = this.$apiUrl4 + 'Pengadaan/' + 'getWithJoin';
-        this.$http.get(uri).then((response) => {
-          this.pengadaans = response.data.message;
-        });
-      },
-      getDetailPengadaan() {
-        var uri = this.$apiUrl4 + 'DetailPengadaan/' + 'getWithJoin';
-        this.$http.get(uri).then((response) => {
-          this.detailPengadaans = response.data.message;
-        });
-      },
-      setTotal(index) {
-        this.detailTambah[index].total_harga =
-          this.detailTambah[index].jumlah_stok_pengadaan * this.detailTambah[index].harga;
-      },
-      setTotal2() {
-        this.form.total_harga = this.form.jumlah_stok_pengadaan * this.form.harga;
-      },
-      setSubtotal() {
-        this.form.subtotal = 0;
+  methods: {
+    Pengadaan() {
+      this.$router.push({ name: "pengadaan_Admin" });
+    },
+    PengadaanDiproses() {
+      this.$router.push({ name: "pengadaan_Diproses" });
+    },
+    PengadaanSelesai() {
+      this.$router.push({ name: "pengadaan_Selesai" });
+    },
+    getSupplier() {
+      var uri = this.$apiUrl4 + "Supplier";
+      this.$http.get(uri).then((response) => {
+        this.suppliers = response.data.message;
+      });
+    },
+    getProduk() {
+      var uri = this.$apiUrl4 + "Produk/" + "all";
+      this.$http.get(uri).then((response) => {
+        this.produks = response.data.message;
+      });
+    },
+    getPengadaan() {
+      var uri = this.$apiUrl4 + "Pengadaan/" + "getWithJoin";
+      this.$http.get(uri).then((response) => {
+        this.pengadaans = response.data.message;
+      });
+    },
+    getDetailPengadaan() {
+      var uri = this.$apiUrl4 + "DetailPengadaan/" + "getWithJoin";
+      this.$http.get(uri).then((response) => {
+        this.detailPengadaans = response.data.message;
+      });
+    },
+    setTotal(index) {
+      this.detailTambah[index].total_harga =
+        this.detailTambah[index].jumlah_stok_pengadaan *
+        this.detailTambah[index].harga;
+    },
+    setTotal2() {
+      this.form.total_harga = this.form.jumlah_stok_pengadaan * this.form.harga;
+    },
+    setSubtotal() {
+      this.form.subtotal = 0;
+      for (var i = 0; i < this.detailTambah.length; i++) {
+        this.form.subtotal =
+          this.form.subtotal + this.detailTambah[i].total_harga;
+      }
+    },
+    setIdPengadaan(detailItem) {
+      this.form.no_order = detailItem.no_order;
+    },
+    addTambah() {
+      this.detailTambah.push({
+        no_order: "",
+        no_order: "",
+        id_supplier: "",
+        id_produk: "",
+        jumlah_stok_pengadaan: "",
+        harga: "",
+        total_harga: "",
+        createLog_at: "",
+        updateLog_at: "",
+      });
+    },
+    deleteRow(tambah) {
+      this.detailTambah.splice(this.detailTambah.indexOf(tambah), 1);
+    },
+    resetDynamic() {
+      while (this.detailTambah.length != 0) {
         for (var i = 0; i < this.detailTambah.length; i++) {
-          this.form.subtotal =
-            this.form.subtotal + this.detailTambah[i].total_harga;
+          this.detailTambah.splice(this.detailTambah[i], 1);
         }
-      },
-      setIdPengadaan(detailItem) {
-        this.form.no_order = detailItem.no_order;
-      },
-      addTambah() {
-        this.detailTambah.push({
-          no_order: '',
-          no_order: '',
-          id_supplier: '',
-          id_produk: '',
-          jumlah_stok_pengadaan: '',
-          harga: '',
-          total_harga: '',
-          createLog_at: '',
-          updateLog_at: '',
+      }
+      this.id_supplier = null;
+    },
+    filterProgres() {
+      return this.pengadaans.filter((pengadaan) => {
+        return pengadaan.status_pengadaan.match("Pesanan Selesai");
+      });
+    },
+    filteredItems2(value) {
+      return this.detailPengadaans.filter((i) => {
+        return !value.no_order || i.no_order === value.no_order;
+      });
+    },
+    showDetail(item) {
+      this.detailItem = item;
+      this.dialogDetailPengadaanProduk = true;
+    },
+
+    deleteDataProduk(deletedId) {
+      var uri = this.$apiUrl4 + "Pengadaan/" + deletedId; //data dihapus berdasarkan id
+      this.$http
+        .delete(uri)
+        .then((response) => {
+          this.text = response.data.message;
+          this.deleteMultipleDataDetailPengadaan();
+          console.log(this.text);
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
         });
-      },
-      deleteRow(tambah) {
-        this.detailTambah.splice(this.detailTambah.indexOf(tambah), 1);
-      },
-      resetDynamic() {
-        while (this.detailTambah.length != 0) {
-          for (var i = 0; i < this.detailTambah.length; i++) {
-            this.detailTambah.splice(this.detailTambah[i], 1);
-          }
+    },
+
+    deleteMultipleDataDetailPengadaan() {
+      this.deletePengadaan.append(
+        "no_order",
+        JSON.stringify(this.detailIdPengadaanFilteredDelete)
+      );
+      var uri = this.$apiUrl4 + "DetailPengadaan/" + "deleteMultiple";
+      this.load = true;
+      this.$http
+        .post(uri, this.deletePengadaan)
+        .then((response) => {
+          this.snackbar = true;
+          this.color = "green";
+          this.text = response.data.message;
+          this.load = false;
+          this.deleteDialog = false;
+          this.getPengadaan();
+          this.getDetailPengadaan();
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+        });
+    },
+
+    deleteRowPengadaan(item) {
+      this.deletedId = item.no_order;
+      this.deleteDialog = true;
+    },
+    getDetailPengadaanId(item) {
+      var uri =
+        this.$apiUrl4 +
+        "DetailPengadaan/" +
+        "getByIdPengadaan/" +
+        item.no_order;
+      this.$http.get(uri).then((response) => {
+        this.detailIdPengadaanFiltered = response.data.message;
+        for (var i = 0; i < this.detailIdPengadaanFiltered.length; i++) {
+          this.detailIdPengadaanFilteredDelete[
+            i
+          ] = this.detailIdPengadaanFiltered[i].no_order;
         }
-        this.id_supplier = null;
-      },
-      filterProgres() {
-        return this.pengadaans.filter((pengadaan) => {
-          return pengadaan.status_pengadaan.match('Pesanan Selesai');
-        });
-      },
-      filteredItems2(value) {
-        return this.detailPengadaans.filter((i) => {
-          return (
-            !value.no_order ||
-            i.no_order === value.no_order
-          );
-        });
-      },
-      showDetail(item) {
-        this.detailItem = item;
-        this.dialogDetailPengadaanProduk = true;
-      },
-
-      deleteDataProduk(deletedId) {
-        var uri = this.$apiUrl4 + 'Pengadaan/' + deletedId; //data dihapus berdasarkan id
-        this.$http
-          .delete(uri)
-          .then((response) => {
-            this.text = response.data.message;
-            this.deleteMultipleDataDetailPengadaan();
-            console.log(this.text);
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-          });
-      },
-
-      deleteMultipleDataDetailPengadaan() {
-        this.deletePengadaan.append(
-          'no_order',
-          JSON.stringify(this.detailIdPengadaanFilteredDelete)
-        );
-        var uri = this.$apiUrl4 + 'DetailPengadaan/' + 'deleteMultiple';
-        this.load = true;
-        this.$http
-          .post(uri, this.deletePengadaan)
-          .then((response) => {
-            this.snackbar = true;
-            this.color = 'green';
-            this.text = response.data.message;
-            this.load = false;
-            this.deleteDialog = false;
-            this.getPengadaan();
-            this.getDetailPengadaan();
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-          });
-      },
-
-      deleteRowPengadaan(item) {
-        this.deletedId = item.no_order;
-        this.deleteDialog = true;
-      },
-      getDetailPengadaanId(item) {
-        var uri =
-          this.$apiUrl4 +
-          'DetailPengadaan/' +
-          'getByIdPengadaan/' +
-          item.no_order;
-        this.$http.get(uri).then((response) => {
-          this.detailIdPengadaanFiltered = response.data.message;
-          for (var i = 0; i < this.detailIdPengadaanFiltered.length; i++) {
-            this.detailIdPengadaanFilteredDelete[
-              i
-            ] = this.detailIdPengadaanFiltered[i].no_order;
-          }
-          console.log(this.detailIdPengadaanFilteredDelete);
-        });
-      },
-      resetArray() {
-        this.detailIdPengadaanFiltered = [];
-        this.detailIdPengadaanFilteredDelete = [];
-      },
-      editHandlerPengadaan(item) {
-        this.updatedId = item.no_order;
-        this.id_supplier = item.id_supplier;
-        this.form.total_harga = item.total_harga;
-        console.log(item.total_harga);
-        this.dialogEditPengadaan = true;
-      },
-      editHandlerProduk(item) {
-        this.updatedId = item.no_order;
-        this.form.id_produk = item.id_produk;
-        this.form.total_harga = item.total_harga;
-        this.form.harga = item.harga;
-        this.form.jumlah_stok_pengadaan = item.jumlah_stok_pengadaan;
-        this.dialogEditProduk = true;
-      },
-      resetForm() {
-        this.id_supplier = null;
-        this.form.no_order = '';
-        this.form.id_produk = '';
-        this.form.jumlah_stok_pengadaan = '';
-        this.form.harga = '';
-        this.form.total_harga = '';
-        this.form.id_supplier = '';
-        this.form.subtotal = 0;
-        this.form.status_pengadaan = 'Sedang Diproses';
-      },
-      customFilter(item, queryText) {
-        const textOne = item.nama.toLowerCase();
-        const textTwo = item.nama.toLowerCase();
-        const searchText = queryText.toLowerCase();
-
-        return (
-          textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
-        );
-      },
+        console.log(this.detailIdPengadaanFilteredDelete);
+      });
     },
-    mounted() {
-      this.getProduk();
-      this.getSupplier();
-      this.getPengadaan();
-      this.getDetailPengadaan();
+    resetArray() {
+      this.detailIdPengadaanFiltered = [];
+      this.detailIdPengadaanFilteredDelete = [];
     },
-  };
+    editHandlerPengadaan(item) {
+      this.updatedId = item.no_order;
+      this.id_supplier = item.id_supplier;
+      this.form.total_harga = item.total_harga;
+      console.log(item.total_harga);
+      this.dialogEditPengadaan = true;
+    },
+    editHandlerProduk(item) {
+      this.updatedId = item.no_order;
+      this.form.id_produk = item.id_produk;
+      this.form.total_harga = item.total_harga;
+      this.form.harga = item.harga;
+      this.form.jumlah_stok_pengadaan = item.jumlah_stok_pengadaan;
+      this.dialogEditProduk = true;
+    },
+    resetForm() {
+      this.id_supplier = null;
+      this.form.no_order = "";
+      this.form.id_produk = "";
+      this.form.jumlah_stok_pengadaan = "";
+      this.form.harga = "";
+      this.form.total_harga = "";
+      this.form.id_supplier = "";
+      this.form.subtotal = 0;
+      this.form.status_pengadaan = "Sedang Diproses";
+    },
+    customFilter(item, queryText) {
+      const textOne = item.nama.toLowerCase();
+      const textTwo = item.nama.toLowerCase();
+      const searchText = queryText.toLowerCase();
+
+      return (
+        textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
+      );
+    },
+  },
+  mounted() {
+    this.getProduk();
+    this.getSupplier();
+    this.getPengadaan();
+    this.getDetailPengadaan();
+  },
+};
 </script>
 <style scoped>
-  .text-md-center {
-    font-family: 'Raleway', sans-serif;
-  }
-  .text-center {
-    font-family: 'Raleway', sans-serif;
-  }
-  .v-card__title {
-    color: black;
-  }
+.text-md-center {
+  font-family: "Raleway", sans-serif;
+}
+.text-center {
+  font-family: "Raleway", sans-serif;
+}
+.v-card__title {
+  color: black;
+}
 </style>

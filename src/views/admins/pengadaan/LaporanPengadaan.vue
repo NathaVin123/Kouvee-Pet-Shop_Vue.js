@@ -16,7 +16,7 @@
                         <h2 class="text--primary">
                           Laporan Pengadaan Bulanan
                         </h2>
-                        <div class=" text--primary">
+                        <div class="text--primary">
                           Mencetak laporan pengadaan sesuai bulan dan tahun yang
                           dipilih.<br />
                           Silahkan masukan bulan dan tahun pengadaan.
@@ -51,7 +51,7 @@
                         <h2 class="text--primary">
                           Laporan Pengadaan Tahunan
                         </h2>
-                        <div class=" text--primary">
+                        <div class="text--primary">
                           Mencetak laporan pengadaan sesuai tahun yang
                           dipilih.<br />
                           Silahkan masukan tahun pengadaan.
@@ -86,7 +86,7 @@
                         <h2 class="text--primary">
                           Laporan Pendapatan Bulanan
                         </h2>
-                        <div class=" text--primary">
+                        <div class="text--primary">
                           Mencetak laporan Pendapatan sesuai bulan dan tahun
                           yang dipilih.<br />
                           Silahkan masukan bulan dan tahun pengadaan.
@@ -121,7 +121,7 @@
                         <h2 class="text--primary">
                           Laporan Pendapatan Tahunan
                         </h2>
-                        <div class=" text--primary">
+                        <div class="text--primary">
                           Mencetak laporan Pendapatan sesuai tahun yang
                           dipilih.<br />
                           Silahkan masukan tahun pengadaan.
@@ -156,7 +156,7 @@
                         <h2 class="text--primary">
                           Laporan Produk Terlaris
                         </h2>
-                        <div class=" text--primary">
+                        <div class="text--primary">
                           Mencetak laporan produk terlaris dalam satu tahun.<br />
                           Silahkan masukan tahun untuk mencetak.
                         </div>
@@ -190,7 +190,7 @@
                         <h2 class="text--primary">
                           Laporan Layanan Terlaris
                         </h2>
-                        <div class=" text--primary">
+                        <div class="text--primary">
                           Mencetak laporan layanan terlaris dalam satu tahun.<br />
                           Silahkan masukan tahun untuk mencetak.
                         </div>
@@ -445,7 +445,6 @@
                               counter="4"
                               @input="onlyNumbers"
                             />
-                           
                           </v-col>
                         </v-row>
                       </v-container>
@@ -495,124 +494,120 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        message: '12',
-        max: 4,
-        date1: null,
-        date2: null,
-        date3: null,
-        date4: null,
-        landscape: false,
-        menu1: false,
-        menu2: false,
-        modal1: false,
-        modal2: false,
-        e13: 1,
-        bulan: '',
-        dialogPengadaanBulanan: false,
-        dialogPengadaanTahunan: false,
-        dialogPendapatanBulanan: false,
-        dialogPendapatanTahunan: false,
-        dialogProdukTerlaris: false,
-        dialogLayananTerlaris: false,
-        dialogWarning: false,
-      };
+export default {
+  data() {
+    return {
+      message: "12",
+      max: 4,
+      date1: null,
+      date2: null,
+      date3: null,
+      date4: null,
+      landscape: false,
+      menu1: false,
+      menu2: false,
+      modal1: false,
+      modal2: false,
+      e13: 1,
+      bulan: "",
+      dialogPengadaanBulanan: false,
+      dialogPengadaanTahunan: false,
+      dialogPendapatanBulanan: false,
+      dialogPendapatanTahunan: false,
+      dialogProdukTerlaris: false,
+      dialogLayananTerlaris: false,
+      dialogWarning: false,
+    };
+  },
+  watch: {
+    menu(val) {
+      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
     },
-    watch: {
-      menu(val) {
-        val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'));
-      },
-    },
-   
+  },
 
-    methods: {
-      save(date) {
-        this.$refs.menu.save(date);
-      },
-      cekKosongProdukTerlaris(param) {
-        if (param == null) {
-          this.dialogWarning = true;
-        } else {
-          this.cetakProdukTerlaris(param);
-          this.dialogProdukTerlaris = false;
-        }
-      },
-      onlyNumbers: function() {
-       this.message = this.message.replace(/[^0-9.]/g,'');
-      },
-      cekKosongLaporanPengadaan(param) {
-        if (param == null) {
-          this.dialogWarning = true;
-        } else {
-          this.cetakLaporanBulanan(param);
-          this.dialogPengadaanBulanan = false;
-        }
-      },
-      cekKosongPendapatanBulanan(param) {
-        if (param == null) {
-          this.dialogWarning = true;
-        } else {
-          this.cetakPendapatanBulanan(param);
-          this.dialogPendapatanBulanan = false;
-        }
-      },
-      cekKosongPendapatanTahunan(param) {
-        if (param == null) {
-          this.dialogWarning = true;
-        } else {
-          this.cetakPendapatanTahunan(param);
-          this.dialogPendapatanTahunan = false;
-        }
-      },
-      cetakLaporanBulanan(pengadaanBulanan) {
-        var uri =
-          this.$apiUrl + 'Laporan/laporanPengadaanBulanan/' + pengadaanBulanan;
-        window.open(uri, '_blank');
-        this.resetForm();
-      },
-      cetakPendapatanBulanan(pendapatanBulanan) {
-        var uri =
-          this.$apiUrl +
-          'Laporan/laporanPendapatanBulanan/' +
-          pendapatanBulanan;
-        window.open(uri, '_blank');
-        this.resetForm();
-      },
-      cetakProdukTerlaris(produkTerlaris) {
-        var uri =
-          this.$apiUrl + 'Laporan/laporanProdukTerlaris/' + produkTerlaris;
-        window.open(uri, '_blank');
-        this.resetForm();
-      },
-      cetakPendapatanTahunan(pendapatanTahunan) {
-        var uri =
-          this.$apiUrl + 'Laporan/laporanPendapatanTahunan/' + pendapatanTahunan;
-        window.open(uri, '_blank');
-        this.resetForm();
-      },
-      resetForm() {
-        this.date1 = null;
-        this.date2 = null;
-        this.date3 = null;
-        this.date4 = null;
-      },
-      
+  methods: {
+    save(date) {
+      this.$refs.menu.save(date);
     },
-    mounted() {},
-  };
+    cekKosongProdukTerlaris(param) {
+      if (param == null) {
+        this.dialogWarning = true;
+      } else {
+        this.cetakProdukTerlaris(param);
+        this.dialogProdukTerlaris = false;
+      }
+    },
+    onlyNumbers: function () {
+      this.message = this.message.replace(/[^0-9.]/g, "");
+    },
+    cekKosongLaporanPengadaan(param) {
+      if (param == null) {
+        this.dialogWarning = true;
+      } else {
+        this.cetakLaporanBulanan(param);
+        this.dialogPengadaanBulanan = false;
+      }
+    },
+    cekKosongPendapatanBulanan(param) {
+      if (param == null) {
+        this.dialogWarning = true;
+      } else {
+        this.cetakPendapatanBulanan(param);
+        this.dialogPendapatanBulanan = false;
+      }
+    },
+    cekKosongPendapatanTahunan(param) {
+      if (param == null) {
+        this.dialogWarning = true;
+      } else {
+        this.cetakPendapatanTahunan(param);
+        this.dialogPendapatanTahunan = false;
+      }
+    },
+    cetakLaporanBulanan(pengadaanBulanan) {
+      var uri =
+        this.$apiUrl + "Laporan/laporanPengadaanBulanan/" + pengadaanBulanan;
+      window.open(uri, "_blank");
+      this.resetForm();
+    },
+    cetakPendapatanBulanan(pendapatanBulanan) {
+      var uri =
+        this.$apiUrl + "Laporan/laporanPendapatanBulanan/" + pendapatanBulanan;
+      window.open(uri, "_blank");
+      this.resetForm();
+    },
+    cetakProdukTerlaris(produkTerlaris) {
+      var uri =
+        this.$apiUrl + "Laporan/laporanProdukTerlaris/" + produkTerlaris;
+      window.open(uri, "_blank");
+      this.resetForm();
+    },
+    cetakPendapatanTahunan(pendapatanTahunan) {
+      var uri =
+        this.$apiUrl + "Laporan/laporanPendapatanTahunan/" + pendapatanTahunan;
+      window.open(uri, "_blank");
+      this.resetForm();
+    },
+    resetForm() {
+      this.date1 = null;
+      this.date2 = null;
+      this.date3 = null;
+      this.date4 = null;
+    },
+  },
+  mounted() {},
+};
 </script>
 <style scoped>
-  .text-md-center {
-    font-family: 'Raleway', sans-serif;
-  }
-  .text-center {
-    font-family: 'Raleway', sans-serif;
-  }
-  .v-card__title {
-    color: black;
-  }
+.text-md-center {
+  font-family: "Raleway", sans-serif;
+}
+.text-center {
+  font-family: "Raleway", sans-serif;
+}
+.v-card__title {
+  color: black;
+}
 
-  @import '~vue-snotify/styles/material.css';
+@import "~vue-snotify/styles/material.css";
 </style>

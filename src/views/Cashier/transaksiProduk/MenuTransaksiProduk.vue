@@ -12,7 +12,7 @@
         </div>
         <div v-if="this.layananTab == 'layananTab-2'">
           <h2 class="text-md-center">Data Transaksi Produk Kouvee Petshop</h2>
-          <v-layout row wrap style="margin:10px">
+          <v-layout row wrap style="margin: 10px;">
             <v-flex xs6 class="text-right">
               <v-text-field
                 v-model="keyword"
@@ -40,7 +40,7 @@
                   <td
                     class="underlinetext"
                     @click="showDetail2(item)"
-                    style="cursor:pointer"
+                    style="cursor: pointer;"
                   >
                     {{ item.id_transaksi_produk }}
                   </td>
@@ -75,7 +75,7 @@
         </div>
         <div v-if="this.layananTab == 'layananTab-1'">
           <h2 class="text-md-center">Data Transaksi Produk Kouvee Petshop</h2>
-          <v-layout row wrap style="margin:10px">
+          <v-layout row wrap style="margin: 10px;">
             <v-flex xs6 class="text-right">
               <v-text-field
                 v-model="keyword"
@@ -103,7 +103,7 @@
                   <td
                     class="underlinetext"
                     @click="showDetail2(item)"
-                    style="cursor:pointer"
+                    style="cursor: pointer;"
                   >
                     {{ item.id_transaksi_produk }}
                   </td>
@@ -380,7 +380,7 @@
           <v-card-title>
             <v-spacer />
             <h2 class="text-md-center">
-              {{ 'Id Transaksi Produk: ' + detailItem.id_transaksi_produk }}
+              {{ "Id Transaksi Produk: " + detailItem.id_transaksi_produk }}
             </h2>
             <v-spacer />
           </v-card-title>
@@ -474,7 +474,7 @@
                 <td class="text-right">
                   <tr>
                     <td>
-                      <h3>{{ 'Subtotal : Rp' }}</h3>
+                      <h3>{{ "Subtotal : Rp" }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.subtotal }}</h3>
@@ -482,7 +482,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Diskon : Rp' }}</h3>
+                      <h3>{{ "Diskon : Rp" }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.diskon }}</h3>
@@ -490,7 +490,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Total : Rp' }}</h3>
+                      <h3>{{ "Total : Rp" }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.total }}</h3>
@@ -501,7 +501,7 @@
                 <td class="text-right">
                   <tr>
                     <td>
-                      <h3>{{ 'Nama Pelanggan : ' }}</h3>
+                      <h3>{{ "Nama Pelanggan : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.nama_pelanggan }}</h3>
@@ -509,7 +509,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Nama Hewan : ' }}</h3>
+                      <h3>{{ "Nama Hewan : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.nama_hewan }}</h3>
@@ -517,7 +517,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Jenis Hewan : ' }}</h3>
+                      <h3>{{ "Jenis Hewan : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.jenis_hewan }}</h3>
@@ -525,7 +525,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Nomor Telpon : ' }}</h3>
+                      <h3>{{ "Nomor Telpon : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.telp }}</h3>
@@ -533,7 +533,7 @@
                   </tr>
                   <tr v-if="this.layananTab == 'layananTab-2'">
                     <td>
-                      <h3>{{ 'Tanggal Lunas : ' }}</h3>
+                      <h3>{{ "Tanggal Lunas : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.tanggal_lunas }}</h3>
@@ -544,7 +544,7 @@
                 <td class="text-right">
                   <tr>
                     <td>
-                      <h3>{{ 'Id Customer Service : ' }}</h3>
+                      <h3>{{ "Id Customer Service : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.id_customer_service }}</h3>
@@ -552,7 +552,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Id Kasir : ' }}</h3>
+                      <h3>{{ "Id Kasir : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.id_kasir }}</h3>
@@ -560,7 +560,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Nama Customer Service : ' }}</h3>
+                      <h3>{{ "Nama Customer Service : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.nama_customer_service }}</h3>
@@ -568,7 +568,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <h3>{{ 'Nama Kasir : ' }}</h3>
+                      <h3>{{ "Nama Kasir : " }}</h3>
                     </td>
                     <td>
                       <h3>{{ detailItem.nama_kasir }}</h3>
@@ -621,584 +621,334 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        cari: '',
-        tabs: 0,
-        dialog: false,
-        cekHewans: false,
-        detilTransaksis: [],
-        detailTransaksiProduks: [],
-        detailIdTransaksiProduksFiltered: [],
-        dialogEditProduk: false,
-        dialogEditTransaksiProduk: false,
-        selectedIndex: 0,
-        detailItem: '',
-        transaksiProduks: [],
-        keyword: '',
-        jenishewans: [],
-        ukurans: [],
-        hewans: [],
-        pelanggans: [],
-        produks: [],
-        bottomNav: 1,
-        menu: false,
-        on: '',
-        deleteDialog: '',
-        deleteDetailDialog: '',
-        submit: '',
-        headers: [
-          {
-            text: 'No',
-            value: 'index',
-          },
-          {
-            text: 'Id Transaksi Produk',
-            value: 'id_transaksi_produk',
-          },
-          {
-            text: 'Nama Pelanggan',
-            value: 'nama_pelanggan',
-          },
-          {
-            text: 'Nama Hewan',
-            value: 'nama_hewan',
-          },
-          {
-            text: 'Total',
-            value: 'total',
-          },
-          {
-            text: 'Status',
-            value: 'status',
-          },
-          {
-            text: 'Tanggal Dibuat',
-            value: 'created_at',
-          },
-          {
-            text: 'Dibuat Oleh',
-            value: 'created_by',
-          },
-          {
-            text: 'Tanggal Diubah',
-            value: 'modified_by',
-          },
-          {
-            text: 'Diubah Oleh',
-            value: 'modified_by',
-          },
-          {
-            text: 'Aksi',
-            value: null,
-          },
-        ],
-        layananTab: null,
-        detilJudulProduk: 0,
-        dialogWarning: '',
-        dialogEdit: '',
-        dialogPassword: '',
-        dialogDetailTransaksiProduk: false,
-        pesan: '',
-        empty: null,
-        id_hewan: null,
-        search: '',
-        snackbar: false,
-        color: null,
-        text: '',
-        load: false,
-        form: {
-          subtotal: '',
-          diskon: '',
-          id_jenis_hewan: '',
-          created_by: sessionStorage.getItem('Nama'),
-          delete_by: sessionStorage.getItem('Nama'),
-          modified_by: sessionStorage.getItem('Nama'),
-          id_customer_service: sessionStorage.getItem('Id'),
+export default {
+  data() {
+    return {
+      cari: "",
+      tabs: 0,
+      dialog: false,
+      cekHewans: false,
+      detilTransaksis: [],
+      detailTransaksiProduks: [],
+      detailIdTransaksiProduksFiltered: [],
+      dialogEditProduk: false,
+      dialogEditTransaksiProduk: false,
+      selectedIndex: 0,
+      detailItem: "",
+      transaksiProduks: [],
+      keyword: "",
+      jenishewans: [],
+      ukurans: [],
+      hewans: [],
+      pelanggans: [],
+      produks: [],
+      bottomNav: 1,
+      menu: false,
+      on: "",
+      deleteDialog: "",
+      deleteDetailDialog: "",
+      submit: "",
+      headers: [
+        {
+          text: "No",
+          value: "index",
         },
-        formProduk: {
-          id_hewan: '',
-          total: '',
-          diskon: '',
-          id_transaksi_produk: '',
-          subtotal: '',
-          harga: '',
-          total_harga: '',
-          id_produk: '',
-          created_by: sessionStorage.getItem('Nama'),
-          delete_by: sessionStorage.getItem('Nama'),
-          modified_by: sessionStorage.getItem('Nama'),
-          id_customer_service: sessionStorage.getItem('Id'),
+        {
+          text: "Id Transaksi Produk",
+          value: "id_transaksi_produk",
         },
-        user: new FormData(),
-        detil: new FormData(),
-        transaksiProduk: new FormData(),
-        deleteProduk: new FormData(),
-        typeInput: 'new',
-        errors: '',
-        updatedId: '',
-      };
+        {
+          text: "Nama Pelanggan",
+          value: "nama_pelanggan",
+        },
+        {
+          text: "Nama Hewan",
+          value: "nama_hewan",
+        },
+        {
+          text: "Total",
+          value: "total",
+        },
+        {
+          text: "Status",
+          value: "status",
+        },
+        {
+          text: "Tanggal Dibuat",
+          value: "created_at",
+        },
+        {
+          text: "Dibuat Oleh",
+          value: "created_by",
+        },
+        {
+          text: "Tanggal Diubah",
+          value: "modified_by",
+        },
+        {
+          text: "Diubah Oleh",
+          value: "modified_by",
+        },
+        {
+          text: "Aksi",
+          value: null,
+        },
+      ],
+      layananTab: null,
+      detilJudulProduk: 0,
+      dialogWarning: "",
+      dialogEdit: "",
+      dialogPassword: "",
+      dialogDetailTransaksiProduk: false,
+      pesan: "",
+      empty: null,
+      id_hewan: null,
+      search: "",
+      snackbar: false,
+      color: null,
+      text: "",
+      load: false,
+      form: {
+        subtotal: "",
+        diskon: "",
+        id_jenis_hewan: "",
+        created_by: sessionStorage.getItem("Nama"),
+        delete_by: sessionStorage.getItem("Nama"),
+        modified_by: sessionStorage.getItem("Nama"),
+        id_customer_service: sessionStorage.getItem("Id"),
+      },
+      formProduk: {
+        id_hewan: "",
+        total: "",
+        diskon: "",
+        id_transaksi_produk: "",
+        subtotal: "",
+        harga: "",
+        total_harga: "",
+        id_produk: "",
+        created_by: sessionStorage.getItem("Nama"),
+        delete_by: sessionStorage.getItem("Nama"),
+        modified_by: sessionStorage.getItem("Nama"),
+        id_customer_service: sessionStorage.getItem("Id"),
+      },
+      user: new FormData(),
+      detil: new FormData(),
+      transaksiProduk: new FormData(),
+      deleteProduk: new FormData(),
+      typeInput: "new",
+      errors: "",
+      updatedId: "",
+    };
+  },
+  watch: {
+    id_hewan() {
+      this.empty = "";
     },
-    watch: {
-      id_hewan() {
-        this.empty = '';
-      },
-    },
-    methods: {
-      isHaveHewan() {
-        var hewan = false;
-        this.hewans.forEach((item) => {
-          if (item.id_hewan == this.id_hewan) {
-            console.log(
-              'id hewan: ' + item.id_hewan + ', id input: ' + this.id_hewan
-            );
-            this.cekHewans = true;
-            hewan = true;
-          }
-        });
-        if (!hewan) {
-          this.form.diskon = 0;
-          this.cekHewans = false;
-        }
-      },
-      isGuestProduk() {
-        for (var i = 0; i < this.transaksiProduks.length; i++) {
-          if (this.transaksiProduks[i].id_hewan == null) {
-            this.transaksiProduks[i].nama_hewan = '-';
-            this.transaksiProduks[i].jenis_hewan = '-';
-            this.transaksiProduks[i].nama_pelanggan = 'Guest';
-            this.transaksiProduks[i].telp = '-';
-            this.transaksiProduks[i].diskon = '0';
-          }
-        }
-      },
-      isHaveKasirProduk() {
-        for (var i = 0; i < this.transaksiProduks.length; i++) {
-          if (this.transaksiProduks[i].id_kasir == null) {
-            this.transaksiProduks[i].id_kasir = '-';
-            this.transaksiProduks[i].nama_kasir = '-';
-          }
-        }
-      },
-      isHaveDiskonProduk() {
-        for (var i = 0; i < this.transaksiProduks.length; i++) {
-          if (this.transaksiProduks[i].diskon == null) {
-            this.transaksiProduks[i].diskon = '0';
-          }
-        }
-      },
-      filterProgress() {
-        return this.transaksiProduks.filter((transaksiProduk) => {
-          return transaksiProduk.status.match('Lunas');
-        });
-      },
-      filteredItems2(value) {
-        return this.detailTransaksiProduks.filter((i) => {
-          return (
-            !value.id_transaksi_produk ||
-            i.id_transaksi_produk === value.id_transaksi_produk
+  },
+  methods: {
+    isHaveHewan() {
+      var hewan = false;
+      this.hewans.forEach((item) => {
+        if (item.id_hewan == this.id_hewan) {
+          console.log(
+            "id hewan: " + item.id_hewan + ", id input: " + this.id_hewan
           );
-        });
-      },
-      filterProgress2() {
-        return this.transaksiProduks.filter((transaksiProduk) => {
-          return transaksiProduk.status.match('Menunggu Pembayaran');
-        });
-      },
-      selectTabs(selectedTabs) {
-        this.tabs = selectedTabs;
-      },
-      deleteRow(_detilTransaksi) {
-        this.detilTransaksis.splice(
-          this.detilTransaksis.indexOf(_detilTransaksi),
-          1
-        );
-      },
-      resetArray() {
-        this.detailIdTransaksiProduksFiltered = [];
-      },
-      resetDynamic() {
-        while (this.detilTransaksis.length != 0) {
-          for (var i = 0; i < this.detilTransaksis.length; i++) {
-            this.detilTransaksis.splice(this.detilTransaksis[i], 1);
-          }
+          this.cekHewans = true;
+          hewan = true;
         }
-        this.resetForm();
-      },
-      filteredProduk(index) {
-        var uri =
-          this.$apiUrl +
-          'Produk/' +
-          'search/' +
-          this.detilTransaksis[index].id_produk;
-        this.$http.get(uri).then((response) => {
-          this.detilTransaksis[index].harga = response.data.message.harga;
-          this.detilTransaksis[index].total_harga =
-            this.detilTransaksis[index].harga *
-            this.detilTransaksis[index].jumlah;
-        });
-      },
-      getHargaEditProduk() {
-        var uri =
-          this.$apiUrl + 'Produk/' + 'search/' + this.formProduk.id_produk;
-        this.$http.get(uri).then((response) => {
-          this.formProduk.harga = response.data.message.harga;
-          this.formProduk.total_harga =
-            this.formProduk.harga * this.formProduk.jumlah;
-        });
-      },
-
-      setIdTransaksiProduk(item) {
-        this.detilJudulProduk = 1;
-        this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
-        console.log(this.formProduk.id_transaksi_produk);
-      },
-      setTotalEditProduk() {
-        this.formProduk.total_harga =
-          this.formProduk.harga * this.formProduk.jumlah;
-      },
-      setTotal(index) {
+      });
+      if (!hewan) {
+        this.form.diskon = 0;
+        this.cekHewans = false;
+      }
+    },
+    isGuestProduk() {
+      for (var i = 0; i < this.transaksiProduks.length; i++) {
+        if (this.transaksiProduks[i].id_hewan == null) {
+          this.transaksiProduks[i].nama_hewan = "-";
+          this.transaksiProduks[i].jenis_hewan = "-";
+          this.transaksiProduks[i].nama_pelanggan = "Guest";
+          this.transaksiProduks[i].telp = "-";
+          this.transaksiProduks[i].diskon = "0";
+        }
+      }
+    },
+    isHaveKasirProduk() {
+      for (var i = 0; i < this.transaksiProduks.length; i++) {
+        if (this.transaksiProduks[i].id_kasir == null) {
+          this.transaksiProduks[i].id_kasir = "-";
+          this.transaksiProduks[i].nama_kasir = "-";
+        }
+      }
+    },
+    isHaveDiskonProduk() {
+      for (var i = 0; i < this.transaksiProduks.length; i++) {
+        if (this.transaksiProduks[i].diskon == null) {
+          this.transaksiProduks[i].diskon = "0";
+        }
+      }
+    },
+    filterProgress() {
+      return this.transaksiProduks.filter((transaksiProduk) => {
+        return transaksiProduk.status.match("Lunas");
+      });
+    },
+    filteredItems2(value) {
+      return this.detailTransaksiProduks.filter((i) => {
+        return (
+          !value.id_transaksi_produk ||
+          i.id_transaksi_produk === value.id_transaksi_produk
+        );
+      });
+    },
+    filterProgress2() {
+      return this.transaksiProduks.filter((transaksiProduk) => {
+        return transaksiProduk.status.match("Menunggu Pembayaran");
+      });
+    },
+    selectTabs(selectedTabs) {
+      this.tabs = selectedTabs;
+    },
+    deleteRow(_detilTransaksi) {
+      this.detilTransaksis.splice(
+        this.detilTransaksis.indexOf(_detilTransaksi),
+        1
+      );
+    },
+    resetArray() {
+      this.detailIdTransaksiProduksFiltered = [];
+    },
+    resetDynamic() {
+      while (this.detilTransaksis.length != 0) {
+        for (var i = 0; i < this.detilTransaksis.length; i++) {
+          this.detilTransaksis.splice(this.detilTransaksis[i], 1);
+        }
+      }
+      this.resetForm();
+    },
+    filteredProduk(index) {
+      var uri =
+        this.$apiUrl +
+        "Produk/" +
+        "search/" +
+        this.detilTransaksis[index].id_produk;
+      this.$http.get(uri).then((response) => {
+        this.detilTransaksis[index].harga = response.data.message.harga;
         this.detilTransaksis[index].total_harga =
           this.detilTransaksis[index].harga *
           this.detilTransaksis[index].jumlah;
-      },
-      setNewEditTotal() {
-        this.formProduk.total =
-          this.formProduk.subtotal - this.formProduk.diskon;
-      },
-      setSubtotal() {
-        this.form.subtotal = 0;
-        for (var i = 0; i < this.detilTransaksis.length; i++) {
-          this.form.subtotal =
-            this.form.subtotal + this.detilTransaksis[i].total_harga;
-        }
-        this.form.subtotal = this.form.subtotal - this.form.diskon;
-        if (this.form.subtotal < 0) {
-          this.form.subtotal = 0;
-        }
-      },
-      getDataProduk() {
-        var uri = this.$apiUrl + 'TransaksiProduk/' + 'getWithJoin';
-        this.$http.get(uri).then((response) => {
-          this.transaksiProduks = response.data.message;
-          this.isGuestProduk();
-          this.isHaveKasirProduk();
-          this.isHaveDiskonProduk();
-        });
-      },
-      getDataTransaksiProduk() {
-        var uri = this.$apiUrl + 'DetailTransaksiProduk/' + 'getWithJoin';
-        this.$http.get(uri).then((response) => {
-          this.detailTransaksiProduks = response.data.message;
-        });
-      },
-      getHewan() {
-        var uri = this.$apiUrl + 'Hewan/' + 'all';
-        this.$http.get(uri).then((response) => {
-          this.hewans = response.data.message;
-        });
-      },
-      getJenisHewan() {
-        var uri = this.$apiUrl + 'JenisHewan';
-        this.$http.get(uri).then((response) => {
-          this.jenishewans = response.data.message;
-        });
-      },
-      cek() {
-        console.log(this.hewans);
-      },
-      getPelanggan() {
-        var uri = this.$apiUrl + 'Pelanggan/' + 'all';
-        this.$http.get(uri).then((response) => {
-          this.pelanggans = response.data.message;
-        });
-      },
-      getProduk() {
-        var uri = this.$apiUrl + 'Produk/' + 'all';
-        this.$http.get(uri).then((response) => {
-          this.produks = response.data.message;
-        });
-      },
-      getDetailTransaksiProdukById(item) {
-        this.updatedId = item.id_transaksi_produk;
-        var uri =
-          this.$apiUrl +
-          'DetailTransaksiProduk/' +
-          'getByTransactionId/' +
-          this.updatedId;
-        this.$http.get(uri).then((response) => {
-          this.detailIdTransaksiProduks = response.data.message;
-          for (var i = 0; i < this.detailIdTransaksiProduks.length; i++) {
-            this.detailIdTransaksiProduksFiltered[
-              i
-            ] = this.detailIdTransaksiProduks[i].id_detail_transaksi_produk;
-          }
-          console.log(this.detailIdTransaksiProduksFiltered);
-        });
-      },
-      editHandlerProduk(item) {
-        this.typeInput = 'edit';
-        this.detilJudulProduk = 0;
-        this.dialogEditProduk = true;
-        this.formProduk.id_produk = item.id_produk;
-        this.formProduk.jumlah = item.jumlah;
-        this.formProduk.harga = item.harga;
-        this.formProduk.total_harga = item.total_harga;
-        this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
-        console.log(this.formProduk.id_transaksi_produk);
-        this.updatedId = item.id_detail_transaksi_produk;
-      },
-      editHandlerTransaksiProduk(item) {
-        this.typeInput = 'edit';
-        this.dialogEditTransaksiProduk = true;
-        this.formProduk.id_hewan = item.id_hewan;
-        this.formProduk.subtotal = item.subtotal;
-        this.formProduk.total = item.total;
-        this.formProduk.diskon = item.diskon;
-        this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
-        this.updatedId = item.id_transaksi_produk;
-      },
-      setFormProduk() {
-        if (this.typeInput === 'new') {
-          this.addProdukDetil();
-        } else {
-          console.log('data berhasil diubah');
-          this.updateDataDetilTransaksi();
-        }
-      },
-      updateStatusProduk(detailItem) {
-        this.updatedId = detailItem.id_transaksi_produk;
-        this.transaksiProduk.append('id_kasir', sessionStorage.getItem('Id'));
-        this.transaksiProduk.append(
-          'modified_by',
-          sessionStorage.getItem('Nama')
-        );
-        console.log(detailItem.id_transaksi_produk);
-        var uri =
-          this.$apiUrl + 'TransaksiProduk/' + 'updateStatus/' + this.updatedId;
-        this.load = true;
-        this.$http
-          .post(uri, this.transaksiProduk)
-          .then(() => {
-            this.snackbar = true; //mengaktifkan snackbar
-            this.color = 'green'; //memberi warna snackbar
-            this.text = 'Produk Berhasil Dibayar'; //memasukkan pesan kesnackbar
-            this.load = false;
-            this.dialogEdit = false;
-            this.getDataProduk();
-            this.getDataTransaksiProduk(); //mengambil data transaksi layanan
-            this.typeInput = 'new';
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-          });
-      },
-      updateDataDetilTransaksi() {
-        this.user.append('id_produk', this.formProduk.id_produk);
-        this.user.append('jumlah', this.formProduk.jumlah);
-        this.user.append('total_harga', this.formProduk.total_harga);
-        this.user.append('modified_by', this.formProduk.modified_by);
-        var uri =
-          this.$apiUrl + 'DetailTransaksiProduk/' + 'update/' + this.updatedId;
-        this.load = true;
-        this.$http
-          .post(uri, this.user)
-          .then((response) => {
-            this.snackbar = true;
-            this.color = 'green';
-            this.text = response.data.message;
-            this.load = false;
-            this.dialogEdit = false;
-            this.getDataTransaksiProduk();
-            this.getDataProduk();
-            this.resetFormProduk();
-            this.typeInput = 'new';
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-            this.typeInput = 'new';
-          });
-      },
-      updateDataTransaksi() {
-        this.detil.append('id_hewan', this.formProduk.id_hewan);
-        this.detil.append('diskon', this.formProduk.diskon);
-        this.detil.append('subtotal', this.formProduk.subtotal);
-        this.detil.append('total', this.formProduk.total);
-        this.detil.append('modified_by', this.formProduk.modified_by);
-        var uri =
-          this.$apiUrl + 'TransaksiProduk/' + 'update/' + this.updatedId;
-        this.load = true;
-        this.$http
-          .post(uri, this.detil)
-          .then((response) => {
-            this.snackbar = true;
-            this.color = 'green';
-            this.text = response.data.message;
-            this.load = false;
-            this.dialogEditTransaksiProduk = false;
-            this.getDataTransaksiProduk();
-            this.getDataProduk();
-            this.typeInput = 'new';
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-            this.typeInput = 'new';
-          });
-      },
-      showDetail2(item) {
-        this.detailItem = item;
-        this.dialogDetailTransaksiProduk = true;
-      },
-      deleteDataProduk(deleteId) {
-        var uri = this.$apiUrl + 'TransaksiProduk/' + deleteId; //data dihapus berdasarkan id
-        this.$http
-          .delete(uri)
-          .then((response) => {
-            this.text = response.data.message;
-            this.deleteMultipleDataDetailProduk();
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-          });
-      },
-      deleteMultipleDataDetailProduk() {
-        this.deleteProduk.append(
-          'id_detail_transaksi_produk',
-          JSON.stringify(this.detailIdTransaksiProduksFiltered)
-        );
-        var uri = this.$apiUrl + 'DetailTransaksiProduk/' + 'deleteMultiple';
-        this.load = true;
-        this.$http
-          .post(uri, this.deleteProduk)
-          .then(() => {
-            this.snackbar = true;
-            this.color = 'green';
-            this.text = 'Berhasil';
-            this.load = false;
-            this.deleteDialog = false;
-            this.getDataProduk();
-            this.getDataTransaksiProduk();
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-          });
-      },
-      async deleteDataDetailProduk(deleteId) {
-        var uri = this.$apiUrl + 'DetailTransaksiProduk/' + deleteId; //data dihapus berdasarkan id
-        await this.$http
-          .delete(uri)
-          .then((response) => {
-            this.snackbar = true;
-            this.text = response.data.message;
-            this.color = 'green';
-            this.deleteDetailDialog = false;
-            this.getDataProduk();
-            this.getDataTransaksiProduk();
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-          });
-      },
-      deleteRowProduk(item) {
-        this.deleteId = item.id_transaksi_produk;
-        this.deleteDialog = true;
-      },
-      deleteRowDetailProduk(item) {
-        this.deleteId = item.id_detail_transaksi_produk;
-        this.deleteDetailDialog = true;
-      },
-
-      customFilter(item, queryText) {
-        const textOne = item.nama.toLowerCase();
-        const textTwo = item.nama.toLowerCase();
-        const searchText = queryText.toLowerCase();
-
-        return (
-          textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
-        );
-      },
-      addProdukDetil() {
-        this.user.append(
-          'id_transaksi_produk',
-          this.formProduk.id_transaksi_produk
-        );
-        this.user.append('id_produk', this.formProduk.id_produk);
-        this.user.append('created_by', this.formProduk.created_by);
-        this.user.append('total_harga', this.formProduk.total_harga);
-        this.user.append('jumlah', this.formProduk.jumlah);
-        var uri = this.$apiUrl + 'DetailTransaksiProduk';
-        this.load = true;
-        this.$http
-          .post(uri, this.user)
-          .then((response) => {
-            this.snackbar = true;
-            this.color = 'green';
-            this.text = response.data.message;
-            this.load = false;
-            this.getDataProduk();
-            this.getDataTransaksiProduk();
-            this.resetFormProduk();
-            this.dialogEditProduk = false;
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-          });
-      },
-      resetFormProduk() {
-        this.formProduk = {
-          id_hewan: '',
-          total: '',
-          diskon: '',
-          id_transaksi_produk: '',
-          subtotal: '',
-          harga: '',
-          total_harga: '',
-          id_produk: '',
-          created_by: sessionStorage.getItem('Nama'),
-          delete_by: sessionStorage.getItem('Nama'),
-          modified_by: sessionStorage.getItem('Nama'),
-          id_customer_service: sessionStorage.getItem('Id'),
-        };
-      },
-      cetakStruk(item) {
-        var uri =
-          this.$apiUrl +
-          'CetakStruk/transaksiProduk/' +
-          item.id_transaksi_produk;
-        window.open(uri, '_blank');
-        console.log(item.id_transaksi_produk);
-      },
+      });
+    },
+    getHargaEditProduk() {
+      var uri =
+        this.$apiUrl + "Produk/" + "search/" + this.formProduk.id_produk;
+      this.$http.get(uri).then((response) => {
+        this.formProduk.harga = response.data.message.harga;
+        this.formProduk.total_harga =
+          this.formProduk.harga * this.formProduk.jumlah;
+      });
     },
 
+    setIdTransaksiProduk(item) {
+      this.detilJudulProduk = 1;
+      this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
+      console.log(this.formProduk.id_transaksi_produk);
+    },
+    setTotalEditProduk() {
+      this.formProduk.total_harga =
+        this.formProduk.harga * this.formProduk.jumlah;
+    },
+    setTotal(index) {
+      this.detilTransaksis[index].total_harga =
+        this.detilTransaksis[index].harga * this.detilTransaksis[index].jumlah;
+    },
+    setNewEditTotal() {
+      this.formProduk.total = this.formProduk.subtotal - this.formProduk.diskon;
+    },
+    setSubtotal() {
+      this.form.subtotal = 0;
+      for (var i = 0; i < this.detilTransaksis.length; i++) {
+        this.form.subtotal =
+          this.form.subtotal + this.detilTransaksis[i].total_harga;
+      }
+      this.form.subtotal = this.form.subtotal - this.form.diskon;
+      if (this.form.subtotal < 0) {
+        this.form.subtotal = 0;
+      }
+    },
+    getDataProduk() {
+      var uri = this.$apiUrl + "TransaksiProduk/" + "getWithJoin";
+      this.$http.get(uri).then((response) => {
+        this.transaksiProduks = response.data.message;
+        this.isGuestProduk();
+        this.isHaveKasirProduk();
+        this.isHaveDiskonProduk();
+      });
+    },
+    getDataTransaksiProduk() {
+      var uri = this.$apiUrl + "DetailTransaksiProduk/" + "getWithJoin";
+      this.$http.get(uri).then((response) => {
+        this.detailTransaksiProduks = response.data.message;
+      });
+    },
+    getHewan() {
+      var uri = this.$apiUrl + "Hewan/" + "all";
+      this.$http.get(uri).then((response) => {
+        this.hewans = response.data.message;
+      });
+    },
+    getJenisHewan() {
+      var uri = this.$apiUrl + "JenisHewan";
+      this.$http.get(uri).then((response) => {
+        this.jenishewans = response.data.message;
+      });
+    },
+    cek() {
+      console.log(this.hewans);
+    },
+    getPelanggan() {
+      var uri = this.$apiUrl + "Pelanggan/" + "all";
+      this.$http.get(uri).then((response) => {
+        this.pelanggans = response.data.message;
+      });
+    },
+    getProduk() {
+      var uri = this.$apiUrl + "Produk/" + "all";
+      this.$http.get(uri).then((response) => {
+        this.produks = response.data.message;
+      });
+    },
+    getDetailTransaksiProdukById(item) {
+      this.updatedId = item.id_transaksi_produk;
+      var uri =
+        this.$apiUrl +
+        "DetailTransaksiProduk/" +
+        "getByTransactionId/" +
+        this.updatedId;
+      this.$http.get(uri).then((response) => {
+        this.detailIdTransaksiProduks = response.data.message;
+        for (var i = 0; i < this.detailIdTransaksiProduks.length; i++) {
+          this.detailIdTransaksiProduksFiltered[
+            i
+          ] = this.detailIdTransaksiProduks[i].id_detail_transaksi_produk;
+        }
+        console.log(this.detailIdTransaksiProduksFiltered);
+      });
+    },
+    editHandlerProduk(item) {
+      this.typeInput = "edit";
+      this.detilJudulProduk = 0;
+      this.dialogEditProduk = true;
+      this.formProduk.id_produk = item.id_produk;
+      this.formProduk.jumlah = item.jumlah;
+      this.formProduk.harga = item.harga;
+      this.formProduk.total_harga = item.total_harga;
+      this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
+      console.log(this.formProduk.id_transaksi_produk);
+      this.updatedId = item.id_detail_transaksi_produk;
+    },
     editHandlerTransaksiProduk(item) {
-      this.typeInput = 'edit';
+      this.typeInput = "edit";
       this.dialogEditTransaksiProduk = true;
       this.formProduk.id_hewan = item.id_hewan;
       this.formProduk.subtotal = item.subtotal;
@@ -1207,32 +957,277 @@
       this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
       this.updatedId = item.id_transaksi_produk;
     },
-    mounted() {
-      this.getDataProduk();
-      this.getHewan();
-      this.getJenisHewan();
-      this.getProduk();
-      this.getDataTransaksiProduk();
+    setFormProduk() {
+      if (this.typeInput === "new") {
+        this.addProdukDetil();
+      } else {
+        console.log("data berhasil diubah");
+        this.updateDataDetilTransaksi();
+      }
     },
-  };
+    updateStatusProduk(detailItem) {
+      this.updatedId = detailItem.id_transaksi_produk;
+      this.transaksiProduk.append("id_kasir", sessionStorage.getItem("Id"));
+      this.transaksiProduk.append(
+        "modified_by",
+        sessionStorage.getItem("Nama")
+      );
+      console.log(detailItem.id_transaksi_produk);
+      var uri =
+        this.$apiUrl + "TransaksiProduk/" + "updateStatus/" + this.updatedId;
+      this.load = true;
+      this.$http
+        .post(uri, this.transaksiProduk)
+        .then(() => {
+          this.snackbar = true; //mengaktifkan snackbar
+          this.color = "green"; //memberi warna snackbar
+          this.text = "Produk Berhasil Dibayar"; //memasukkan pesan kesnackbar
+          this.load = false;
+          this.dialogEdit = false;
+          this.getDataProduk();
+          this.getDataTransaksiProduk(); //mengambil data transaksi layanan
+          this.typeInput = "new";
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+        });
+    },
+    updateDataDetilTransaksi() {
+      this.user.append("id_produk", this.formProduk.id_produk);
+      this.user.append("jumlah", this.formProduk.jumlah);
+      this.user.append("total_harga", this.formProduk.total_harga);
+      this.user.append("modified_by", this.formProduk.modified_by);
+      var uri =
+        this.$apiUrl + "DetailTransaksiProduk/" + "update/" + this.updatedId;
+      this.load = true;
+      this.$http
+        .post(uri, this.user)
+        .then((response) => {
+          this.snackbar = true;
+          this.color = "green";
+          this.text = response.data.message;
+          this.load = false;
+          this.dialogEdit = false;
+          this.getDataTransaksiProduk();
+          this.getDataProduk();
+          this.resetFormProduk();
+          this.typeInput = "new";
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+          this.typeInput = "new";
+        });
+    },
+    updateDataTransaksi() {
+      this.detil.append("id_hewan", this.formProduk.id_hewan);
+      this.detil.append("diskon", this.formProduk.diskon);
+      this.detil.append("subtotal", this.formProduk.subtotal);
+      this.detil.append("total", this.formProduk.total);
+      this.detil.append("modified_by", this.formProduk.modified_by);
+      var uri = this.$apiUrl + "TransaksiProduk/" + "update/" + this.updatedId;
+      this.load = true;
+      this.$http
+        .post(uri, this.detil)
+        .then((response) => {
+          this.snackbar = true;
+          this.color = "green";
+          this.text = response.data.message;
+          this.load = false;
+          this.dialogEditTransaksiProduk = false;
+          this.getDataTransaksiProduk();
+          this.getDataProduk();
+          this.typeInput = "new";
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+          this.typeInput = "new";
+        });
+    },
+    showDetail2(item) {
+      this.detailItem = item;
+      this.dialogDetailTransaksiProduk = true;
+    },
+    deleteDataProduk(deleteId) {
+      var uri = this.$apiUrl + "TransaksiProduk/" + deleteId; //data dihapus berdasarkan id
+      this.$http
+        .delete(uri)
+        .then((response) => {
+          this.text = response.data.message;
+          this.deleteMultipleDataDetailProduk();
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+        });
+    },
+    deleteMultipleDataDetailProduk() {
+      this.deleteProduk.append(
+        "id_detail_transaksi_produk",
+        JSON.stringify(this.detailIdTransaksiProduksFiltered)
+      );
+      var uri = this.$apiUrl + "DetailTransaksiProduk/" + "deleteMultiple";
+      this.load = true;
+      this.$http
+        .post(uri, this.deleteProduk)
+        .then(() => {
+          this.snackbar = true;
+          this.color = "green";
+          this.text = "Berhasil";
+          this.load = false;
+          this.deleteDialog = false;
+          this.getDataProduk();
+          this.getDataTransaksiProduk();
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+        });
+    },
+    async deleteDataDetailProduk(deleteId) {
+      var uri = this.$apiUrl + "DetailTransaksiProduk/" + deleteId; //data dihapus berdasarkan id
+      await this.$http
+        .delete(uri)
+        .then((response) => {
+          this.snackbar = true;
+          this.text = response.data.message;
+          this.color = "green";
+          this.deleteDetailDialog = false;
+          this.getDataProduk();
+          this.getDataTransaksiProduk();
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+        });
+    },
+    deleteRowProduk(item) {
+      this.deleteId = item.id_transaksi_produk;
+      this.deleteDialog = true;
+    },
+    deleteRowDetailProduk(item) {
+      this.deleteId = item.id_detail_transaksi_produk;
+      this.deleteDetailDialog = true;
+    },
+
+    customFilter(item, queryText) {
+      const textOne = item.nama.toLowerCase();
+      const textTwo = item.nama.toLowerCase();
+      const searchText = queryText.toLowerCase();
+
+      return (
+        textOne.indexOf(searchText) > -1 || textTwo.indexOf(searchText) > -1
+      );
+    },
+    addProdukDetil() {
+      this.user.append(
+        "id_transaksi_produk",
+        this.formProduk.id_transaksi_produk
+      );
+      this.user.append("id_produk", this.formProduk.id_produk);
+      this.user.append("created_by", this.formProduk.created_by);
+      this.user.append("total_harga", this.formProduk.total_harga);
+      this.user.append("jumlah", this.formProduk.jumlah);
+      var uri = this.$apiUrl + "DetailTransaksiProduk";
+      this.load = true;
+      this.$http
+        .post(uri, this.user)
+        .then((response) => {
+          this.snackbar = true;
+          this.color = "green";
+          this.text = response.data.message;
+          this.load = false;
+          this.getDataProduk();
+          this.getDataTransaksiProduk();
+          this.resetFormProduk();
+          this.dialogEditProduk = false;
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+        });
+    },
+    resetFormProduk() {
+      this.formProduk = {
+        id_hewan: "",
+        total: "",
+        diskon: "",
+        id_transaksi_produk: "",
+        subtotal: "",
+        harga: "",
+        total_harga: "",
+        id_produk: "",
+        created_by: sessionStorage.getItem("Nama"),
+        delete_by: sessionStorage.getItem("Nama"),
+        modified_by: sessionStorage.getItem("Nama"),
+        id_customer_service: sessionStorage.getItem("Id"),
+      };
+    },
+    cetakStruk(item) {
+      var uri =
+        this.$apiUrl + "CetakStruk/transaksiProduk/" + item.id_transaksi_produk;
+      window.open(uri, "_blank");
+      console.log(item.id_transaksi_produk);
+    },
+  },
+
+  editHandlerTransaksiProduk(item) {
+    this.typeInput = "edit";
+    this.dialogEditTransaksiProduk = true;
+    this.formProduk.id_hewan = item.id_hewan;
+    this.formProduk.subtotal = item.subtotal;
+    this.formProduk.total = item.total;
+    this.formProduk.diskon = item.diskon;
+    this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
+    this.updatedId = item.id_transaksi_produk;
+  },
+  mounted() {
+    this.getDataProduk();
+    this.getHewan();
+    this.getJenisHewan();
+    this.getProduk();
+    this.getDataTransaksiProduk();
+  },
+};
 </script>
 <style scoped>
-  .tombol {
-    margin: 2px;
-  }
-  .tab {
-    margin: 10px;
-  }
-  .btn-clicked {
-    color: #ffffff;
-  }
-  .btn-unclicked {
-    color: #000000;
-  }
-  .underlinetext {
-    text-decoration: underline;
-  }
-  #right {
-    margin-right: 17px;
-  }
+.tombol {
+  margin: 2px;
+}
+.tab {
+  margin: 10px;
+}
+.btn-clicked {
+  color: #ffffff;
+}
+.btn-unclicked {
+  color: #000000;
+}
+.underlinetext {
+  text-decoration: underline;
+}
+#right {
+  margin-right: 17px;
+}
 </style>

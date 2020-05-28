@@ -64,29 +64,52 @@
     </v-footer>
   </div>
 </template>
-      
-      <script>
-      export default {
-        data() {
-          return {
-            team: [
-                { name: 'Lawrence Adi Noman', id_number:'170709410', role: 'Mobile Developer', avatar: '/olen.jpg' },
-                { name: 'Nathaniel Vincent Wibowo', id_number:'170709127', role: 'Desktop Developer', avatar: '/vincent.jpg' },
-                { name: 'Benedictus Gladdenata A', id_number:'170709160', role: 'Desktop Developer', avatar: '/gladd.jpg' },
-                { name: 'Alfarau Al Ababil', id_number:'170709435',role: 'Backend Web Developer', avatar: '/avatar-4.png' },
-                { name: 'Afiq Satrio Nurahman', id_number:'17070926',role: 'Frontend Web Designer', avatar: '/afiq.jpg' }
-        ],
-        center: { lat: -7.7793301, lng: 110.4159397 },
-        Zoom: "100000",
-        mapTypeId: "roadmap",
-        markers: [
-        { position: { lat: -7.7793301, lng: 110.4159397 } }
-      ]
-          }
-        }
-      }
-      </script>
-      <style lang="scss" scoped>
+
+<script>
+export default {
+  data() {
+    return {
+      team: [
+        {
+          name: "Lawrence Adi Noman",
+          id_number: "170709410",
+          role: "Mobile Developer",
+          avatar: "/olen.jpg",
+        },
+        {
+          name: "Nathaniel Vincent Wibowo",
+          id_number: "170709127",
+          role: "Desktop Developer",
+          avatar: "/vincent.jpg",
+        },
+        {
+          name: "Benedictus Gladdenata A",
+          id_number: "170709160",
+          role: "Desktop Developer",
+          avatar: "/gladd.jpg",
+        },
+        {
+          name: "Alfarau Al Ababil",
+          id_number: "170709435",
+          role: "Backend Web Developer",
+          avatar: "/avatar-4.png",
+        },
+        {
+          name: "Afiq Satrio Nurahman",
+          id_number: "17070926",
+          role: "Frontend Web Designer",
+          avatar: "/afiq.jpg",
+        },
+      ],
+      center: { lat: -7.7793301, lng: 110.4159397 },
+      Zoom: "100000",
+      mapTypeId: "roadmap",
+      markers: [{ position: { lat: -7.7793301, lng: 110.4159397 } }],
+    };
+  },
+};
+</script>
+<style lang="scss" scoped>
 .vue-map-container {
   height: 450px;
   max-width: 992px;

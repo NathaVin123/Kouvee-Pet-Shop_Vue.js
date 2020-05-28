@@ -3,14 +3,21 @@
     <v-card>
       <v-container grid-list-md mb-0>
         <v-container class="my-5">
-          <v-layout row wrap style="margin:10px">
+          <v-layout row wrap style="margin: 10px;">
             <v-flex xs6>
               <v-container class="my-5">
-              <h1 class="subheading grey-darken--text">Data Customer</h1>
+                <h1 class="subheading grey-darken--text">Data Customer</h1>
               </v-container>
             </v-flex>
             <v-flex xs6 class="text-right">
-              <v-btn depressed dark rounded style="text-transform: none !important;" color="green accent-3" @click="dialogTambah()">
+              <v-btn
+                depressed
+                dark
+                rounded
+                style="text-transform: none !important;"
+                color="green accent-3"
+                @click="dialogTambah()"
+              >
                 <v-icon size="18" class="mr-2">mdi-pencil-plus</v-icon>
                 Tambah Customer
               </v-btn>
@@ -18,23 +25,19 @@
           </v-layout>
 
           <v-text-field
-          class="mx-0"
-          flat
-          hide-details
-          label="Search"
-          v-model="keyword"
-          prepend-inner-icon="mdi-magnify"
-          solo-inverted
-        ></v-text-field>
-        
-        <br>
-          
-          <v-data-table
-            :headers="headers"
-            :items="users"
-            :search="keyword"
-            >
-            <template v-slot:body="{ items }" >
+            class="mx-0"
+            flat
+            hide-details
+            label="Search"
+            v-model="keyword"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+          ></v-text-field>
+
+          <br />
+
+          <v-data-table :headers="headers" :items="users" :search="keyword">
+            <template v-slot:body="{ items }">
               <tbody>
                 <tr v-for="(item, index) in items" :key="item.id_customer">
                   <td>{{ index + 1 }}</td>
@@ -91,16 +94,16 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field 
-                  label="Nama Customer*" 
-                  v-model="form.nama_customer" 
+                <v-text-field
+                  label="Nama Customer*"
+                  v-model="form.nama_customer"
                   required
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field 
-                  label="Alamat Custumer" 
-                  v-model="form.alamat_customer" 
+                <v-text-field
+                  label="Alamat Custumer"
+                  v-model="form.alamat_customer"
                   required
                 ></v-text-field>
               </v-col>
@@ -128,12 +131,12 @@
                     min="1960-01-01"
                     @change="save"
                   ></v-date-picker>
-                  </v-menu>
-                </v-col>
+                </v-menu>
+              </v-col>
               <v-col cols="12">
-                <v-text-field 
-                  label="Nomor Telepon Customer*" 
-                  v-model="form.noTelp_customer" 
+                <v-text-field
+                  label="Nomor Telepon Customer*"
+                  v-model="form.noTelp_customer"
                   required
                 ></v-text-field>
               </v-col>
@@ -143,12 +146,19 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false"
+            >Close</v-btn
+          >
           <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-snackbar v-model="snackbar" :color="color" :multi-line="true" :timeout="3000">
+    <v-snackbar
+      v-model="snackbar"
+      :color="color"
+      :multi-line="true"
+      :timeout="3000"
+    >
       {{ text }}
       <v-btn dark text @click="snackbar = false"> Close </v-btn>
     </v-snackbar>
@@ -160,79 +170,79 @@ export default {
   data() {
     return {
       dialog: false,
-      keyword: '',
+      keyword: "",
       tanggal: false,
-      on: '',
-      deleteDialog: '',
+      on: "",
+      deleteDialog: "",
       headers: [
         {
-          text: 'No',
-          value: 'index',
+          text: "No",
+          value: "index",
         },
         {
-          text: 'ID Customer',
-          value: 'id_customer'
+          text: "ID Customer",
+          value: "id_customer",
         },
         {
-          text: 'Nama Customer',
-          value: 'nama_customer'
+          text: "Nama Customer",
+          value: "nama_customer",
         },
         {
-          text: 'Alamat Customer',
-          value: 'alamat_customer'
+          text: "Alamat Customer",
+          value: "alamat_customer",
         },
         {
-          text : 'Tanggal Lahir',
-          value: 'tglLahir_customer'
+          text: "Tanggal Lahir",
+          value: "tglLahir_customer",
         },
         {
-          text: 'Nomor Telepon',
-          value: 'noTelp_customer'
+          text: "Nomor Telepon",
+          value: "noTelp_customer",
         },
         {
-          text: 'Tanggal Dibuat',
-          value: 'createLog_at'
+          text: "Tanggal Dibuat",
+          value: "createLog_at",
         },
         {
-          text: 'Diubah Oleh',
-          value: 'updateLog_by'
+          text: "Diubah Oleh",
+          value: "updateLog_by",
         },
         {
-          text: 'Action',
+          text: "Action",
           value: null,
-          sortable : false
+          sortable: false,
         },
       ],
       users: [],
       snackbar: false,
       color: null,
-      text: '',
+      text: "",
       load: false,
       form: {
-        nama_customer: '',
-        alamat_customer: '',
-        tglLahir_customer: '',
-        noTelp_customer: '',
-        updateLog_by: sessionStorage.getItem('Nama'),
+        nama_customer: "",
+        alamat_customer: "",
+        tglLahir_customer: "",
+        noTelp_customer: "",
+        updateLog_by: sessionStorage.getItem("Nama"),
       },
-      user: new FormData,
-      typeInput: 'new',
-      errors: '',
-      updateId: '',
-    }
+      user: new FormData(),
+      typeInput: "new",
+      errors: "",
+      updateId: "",
+    };
   },
   watch: {
     menu(val) {
-      val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'));
+      val && setTimeout(() => (this.$refs.picker.activePicker = "YEAR"));
     },
   },
   methods: {
     cekKosong() {
       if (
-        this.form.nama_customer === '' ||
-        this.form.alamat_customer === '' ||
-        this.form.tglLahir_customer === '' ||
-        this.form.noTelp_customer === ''
+        this.form.nama_customer === "" ||
+        this.form.alamat_customer === "" ||
+        this.form.tglLahir_customer === "" ||
+        this.form.noTelp_customer === ""
       ) {
         this.dialogWarning = true;
       } else {
@@ -250,72 +260,74 @@ export default {
       this.show = false;
     },
     getData() {
-      var uri = this.$apiUrl4 + '/customer'
-      this.$http.get(uri).then(response => {
-        this.users = response.data.message
-      })
+      var uri = this.$apiUrl4 + "/customer";
+      this.$http.get(uri).then((response) => {
+        this.users = response.data.message;
+      });
     },
-    dialogTambah(){
+    dialogTambah() {
       this.resetForm();
       this.dialog = true;
       this.tambah = true;
     },
     sendData() {
-      this.user.append('nama_customer', this.form.nama_customer);
-      this.user.append('alamat_customer', this.form.alamat_customer);
-      this.user.append('tglLahir_customer', this.form.tglLahir_customer);
-      this.user.append('noTelp_customer', this.form.noTelp_customer);
-      this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + '/customer'
-      this.load = true
-      this.$http.post(uri, this.user).then(response => {
-          this.snackbar = true;
-          this.color = 'green';
-          this.text = response.data.message;
-          this.load = false;
-          this.dialog = false
-          this.getData();
-          this.resetForm();
-        })
-        .catch(error => {
-          this.errors = error
-          this.snackbar = true;
-          this.text = 'Try Again';
-          this.color = 'red';
-          this.load = false;
-        })
-    },
-    updateData() {
-      this.user.append('nama_customer', this.form.nama_customer);
-      this.user.append('alamat_customer', this.form.alamat_customer);
-      this.user.append('tglLahir_customer', this.form.tglLahir_customer);
-      this.user.append('noTelp_customer', this.form.noTelp_customer);
-      this.user.append('updateLog_by', this.form.updateLog_by);
-      var uri = this.$apiUrl4 + 'customer/' + 'update/' + this.updatedId;
-      this.load = true
+      this.user.append("nama_customer", this.form.nama_customer);
+      this.user.append("alamat_customer", this.form.alamat_customer);
+      this.user.append("tglLahir_customer", this.form.tglLahir_customer);
+      this.user.append("noTelp_customer", this.form.noTelp_customer);
+      this.user.append("updateLog_by", this.form.updateLog_by);
+      var uri = this.$apiUrl4 + "/customer";
+      this.load = true;
       this.$http
         .post(uri, this.user)
-        .then(response => {
+        .then((response) => {
           this.snackbar = true;
-          this.color = 'green';
+          this.color = "green";
           this.text = response.data.message;
           this.load = false;
-          this.dialog = false
+          this.dialog = false;
           this.getData();
           this.resetForm();
-          this.typeInput = 'new';
         })
-        .catch(error => {
-          this.errors = error
+        .catch((error) => {
+          this.errors = error;
           this.snackbar = true;
-          this.text = 'Try Again';
-          this.color = 'red';
+          this.text = "Try Again";
+          this.color = "red";
           this.load = false;
-          this.typeInput = 'new';
+        });
+    },
+    updateData() {
+      this.user.append("nama_customer", this.form.nama_customer);
+      this.user.append("alamat_customer", this.form.alamat_customer);
+      this.user.append("tglLahir_customer", this.form.tglLahir_customer);
+      this.user.append("noTelp_customer", this.form.noTelp_customer);
+      this.user.append("updateLog_by", this.form.updateLog_by);
+      var uri = this.$apiUrl4 + "customer/" + "update/" + this.updatedId;
+      this.load = true;
+      this.$http
+        .post(uri, this.user)
+        .then((response) => {
+          this.snackbar = true;
+          this.color = "green";
+          this.text = response.data.message;
+          this.load = false;
+          this.dialog = false;
+          this.getData();
+          this.resetForm();
+          this.typeInput = "new";
         })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Try Again";
+          this.color = "red";
+          this.load = false;
+          this.typeInput = "new";
+        });
     },
     editHandler(item) {
-      this.typeInput = 'edit';
+      this.typeInput = "edit";
       this.tambah = false;
       this.dialog = true;
       this.form.nama_customer = item.nama_customer;
@@ -329,43 +341,43 @@ export default {
       this.deleteDialog = true;
     },
     deleteData(deleteId) {
-      var uri = this.$apiUrl4 + 'customer' + '/delete/' + deleteId; //data dihapus berdasarkan id
+      var uri = this.$apiUrl4 + "customer" + "/delete/" + deleteId; //data dihapus berdasarkan id
       this.load = true;
       this.$http
         .post(uri, this.user)
         .then((response) => {
           this.snackbar = true;
           this.text = response.data.message;
-          this.color = 'green';
+          this.color = "green";
           this.deleteDialog = false;
           this.getData();
         })
         .catch((error) => {
           this.errors = error;
           this.snackbar = true;
-          this.text = 'Try Again';
-          this.color = 'red';
+          this.text = "Try Again";
+          this.color = "red";
         });
     },
     setForm() {
-      if (this.typeInput === 'new') {
-        this.sendData()
+      if (this.typeInput === "new") {
+        this.sendData();
       } else {
-        this.updateData()
+        this.updateData();
       }
     },
     resetForm() {
       this.form = {
-        nama_customer: '',
-        alamat_customer: '',
-        tglLahir_customer: '',
-        noTelp_customer: '',
-        updateLog_by: sessionStorage.getItem('Nama'),
-      }
-    }
+        nama_customer: "",
+        alamat_customer: "",
+        tglLahir_customer: "",
+        noTelp_customer: "",
+        updateLog_by: sessionStorage.getItem("Nama"),
+      };
+    },
   },
   mounted() {
     this.getData();
-  }
-}
+  },
+};
 </script>

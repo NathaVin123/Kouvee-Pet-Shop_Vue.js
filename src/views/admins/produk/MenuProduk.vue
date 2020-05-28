@@ -4,7 +4,7 @@
       <v-container grid-list-md mb-0>
         <template>
           <h1 class="subheading grey-darken--text">Data Produk</h1>
-          <v-layout row wrap style="margin:10px">
+          <v-layout row wrap style="margin: 10px;">
             <v-toolbar flat color="white">
               <v-dialog v-model="dialog" max-width="500px">
                 <template v-slot:activator="{ on }">
@@ -114,22 +114,20 @@
                 </v-card>
               </v-dialog>
               <v-spacer></v-spacer>
-              
+
               <v-divider class="mx-4" inset vertical></v-divider>
-              <v-flex xs6 class="text-right">
-                
-              </v-flex>
+              <v-flex xs6 class="text-right"> </v-flex>
             </v-toolbar>
           </v-layout>
           <v-text-field
-                  class="mx-0"
-                  flat
-                  hide-details
-                  label="Search"
-                  v-model="keyword"
-                  prepend-inner-icon="mdi-magnify"
-                  solo-inverted
-                ></v-text-field>
+            class="mx-0"
+            flat
+            hide-details
+            label="Search"
+            v-model="keyword"
+            prepend-inner-icon="mdi-magnify"
+            solo-inverted
+          ></v-text-field>
         </template>
         <v-layout class="mx-4">
           <v-flex>
@@ -201,8 +199,8 @@
                       <v-btn icon @click="updateMunculke(item)">
                         <v-icon>{{
                           item.id_produk == munculke
-                            ? 'mdi-chevron-up'
-                            : 'mdi-chevron-down'
+                            ? "mdi-chevron-up"
+                            : "mdi-chevron-down"
                         }}</v-icon>
                       </v-btn>
                     </v-card-actions>
@@ -263,213 +261,213 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      value: {
-        type: File,
-      },
+export default {
+  props: {
+    value: {
+      type: File,
     },
-    data() {
-      return {
-        rules: [(value) => !!value || 'Wajib diisi.'],
-        munculke: 0,
-        dialogWarning: '',
-        show: false,
-        notShow: [],
-        dialog: false,
-        items: ['Buah', 'Karung', 'Lusin', 'Kaleng', 'Sachet', 'Kardus'],
-        keyword: '',
-        on: '',
-        deleteDialog: '',
-        produks: [],
-        pesan: '',
+  },
+  data() {
+    return {
+      rules: [(value) => !!value || "Wajib diisi."],
+      munculke: 0,
+      dialogWarning: "",
+      show: false,
+      notShow: [],
+      dialog: false,
+      items: ["Buah", "Karung", "Lusin", "Kaleng", "Sachet", "Kardus"],
+      keyword: "",
+      on: "",
+      deleteDialog: "",
+      produks: [],
+      pesan: "",
 
-        snackbar: false,
-        color: null,
-        text: '',
-        load: false,
-        form: {
-          nama_produk: '',
-          satuan_produk: '',
-          stok_produk: '',
-          harga_produk: '',
-          min_stok_produk: '',
-          gambar: '',
-          
-          updateLog_by: sessionStorage.getItem('Nama'),
-        },
-        produk: new FormData(),
-        typeInput: 'new',
-        errors: '',
-        updatedId: '',
+      snackbar: false,
+      color: null,
+      text: "",
+      load: false,
+      form: {
+        nama_produk: "",
+        satuan_produk: "",
+        stok_produk: "",
+        harga_produk: "",
+        min_stok_produk: "",
+        gambar: "",
+
+        updateLog_by: sessionStorage.getItem("Nama"),
+      },
+      produk: new FormData(),
+      typeInput: "new",
+      errors: "",
+      updatedId: "",
+    };
+  },
+  computed: {
+    filteredProduk: function () {
+      return this.produks.filter((item) => {
+        return item.nama_produk.toLowerCase().match(this.keyword.toLowerCase());
+      });
+    },
+  },
+
+  methods: {
+    cekKosong() {
+      if (
+        this.form.nama_produk === "" ||
+        this.form.satuan_produk === "" ||
+        this.form.stok_produk === "" ||
+        this.form.min_stok_produk === "" ||
+        this.form.satuan_produk === "" ||
+        this.form.harga_produk === ""
+      ) {
+        this.dialogWarning = true;
+      } else {
+        this.setForm();
+        this.resetForm();
+        this.reset();
+        this.dialog = false;
+      }
+    },
+    reset() {
+      this.$refs.form.resetValidation();
+      this.show = false;
+    },
+    getData() {
+      var uri = this.$apiUrl4 + "Produk/" + "getAll";
+      this.$http.get(uri).then((response) => {
+        this.produks = response.data.message;
+      });
+    },
+    updateMunculke(item) {
+      if (this.munculke == 0) this.munculke = item.id_produk;
+      else if (this.munculke == item.id_produk) this.munculke = 0;
+      else this.munculke = item.id_produk;
+      // console.log(this.produks[i])
+    },
+    sendData() {
+      this.produk.append("nama_produk", this.form.nama_produk);
+      this.produk.append("satuan_produk", this.form.satuan_produk);
+      this.produk.append("stok_produk", this.form.stok_produk);
+      this.produk.append("harga_produk", this.form.harga_produk);
+      this.produk.append("min_stok_produk", this.form.min_stok_produk);
+      this.produk.append("gambar", this.form.gambar);
+      this.produk.append("updateLog_by", this.form.updateLog_by);
+
+      var uri = this.$apiUrl4 + "Produk";
+      this.load = true;
+      this.$http
+        .post(uri, this.produk)
+        .then((response) => {
+          this.snackbar = true; //mengaktifkan snackbar
+          this.color = "green"; //memberi warna snackbar
+          this.text = response.data.message; //memasukkan pesan kesnackbar
+          this.load = false;
+          this.dialog = false;
+          this.getData(); //mengambil [pegawai]
+          this.resetForm();
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+        });
+    },
+    updateData() {
+      this.produk.append("nama_produk", this.form.nama_produk);
+      this.produk.append("satuan_produk", this.form.satuan_produk);
+      this.produk.append("stok_produk", this.form.stok_produk);
+      this.produk.append("harga_produk", this.form.harga_produk);
+      this.produk.append("min_stok_produk", this.form.min_stok_produk);
+      this.produk.append("gambar", this.form.gambar);
+      this.produk.append("updateLog_by", this.form.updateLog_by);
+      var uri = this.$apiUrl4 + "Produk/" + "update/" + this.updatedId;
+      this.load = true;
+      this.$http
+        .post(uri, this.produk)
+        .then((response) => {
+          this.snackbar = true; //mengaktifkan snackbar
+          this.color = "green"; //memberi warna snackbar
+          this.text = response.data.message; //memasukkan pesan kesnackbar
+          this.load = false;
+          this.dialog = false;
+          this.getData(); //mengambil databong
+          this.resetForm();
+          this.typeInput = "new";
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+          this.load = false;
+          this.typeInput = "new";
+        });
+    },
+    editHandler(item) {
+      this.typeInput = "edit";
+      this.dialog = true;
+      this.form.nama_produk = item.nama_produk;
+      this.form.satuan_produk = item.satuan_produk;
+      this.form.stok_produk = item.stok_produk;
+      this.form.harga_produk = item.harga_produk;
+      this.form.min_stok_produk = item.min_stok_produk;
+      this.form.gambar = item.gambar;
+      this.updatedId = item.id_produk;
+    },
+    deleteRow(item) {
+      this.deleteId = item.id_produk;
+      this.deleteDialog = true;
+    },
+    deleteData(deleteId) {
+      //mengahapus data
+
+      var uri = this.$apiUrl4 + "Produk" + "/delete/" + deleteId; //data dihapus berdasarkan id
+      this.load = true;
+      this.$http
+        .post(uri, this.produk)
+        .then((response) => {
+          this.snackbar = true;
+          this.text = response.data.message;
+          this.color = "green";
+          this.deleteDialog = false;
+          this.getData();
+        })
+        .catch((error) => {
+          this.errors = error;
+          this.snackbar = true;
+          this.text = "Coba Lagi";
+          this.color = "red";
+        });
+    },
+    setForm() {
+      if (this.typeInput === "new") {
+        this.sendData();
+      } else {
+        console.log("data berhasil diubah");
+        this.updateData();
+      }
+    },
+    resetForm() {
+      this.form = {
+        nama_produk: "",
+        satuan_produk: "",
+        stok_produk: "",
+        harga_produk: "",
+        min_stok_produk: "",
+        gambar: "",
+        updateLog_by: sessionStorage.getItem("Nama"),
       };
     },
-    computed: {
-      filteredProduk: function() {
-        return this.produks.filter((item) => {
-          return item.nama_produk.toLowerCase().match(this.keyword.toLowerCase());
-        });
-      },
-    },
-
-    methods: {
-      cekKosong() {
-        if (
-          this.form.nama_produk === '' ||
-          this.form.satuan_produk === '' ||
-          this.form.stok_produk === '' ||
-          this.form.min_stok_produk === '' ||
-          this.form.satuan_produk === '' ||
-          this.form.harga_produk === ''
-        ) {
-          this.dialogWarning = true;
-        } else {
-          this.setForm();
-          this.resetForm();
-          this.reset();
-          this.dialog = false;
-        }
-      },
-      reset() {
-        this.$refs.form.resetValidation();
-        this.show = false;
-      },
-      getData() {
-        var uri = this.$apiUrl4 + 'Produk/' + 'getAll';
-        this.$http.get(uri).then((response) => {
-          this.produks = response.data.message;
-        });
-      },
-      updateMunculke(item) {
-        if (this.munculke == 0) this.munculke = item.id_produk;
-        else if (this.munculke == item.id_produk) this.munculke = 0;
-        else this.munculke = item.id_produk;
-        // console.log(this.produks[i])
-      },
-      sendData() {
-        this.produk.append('nama_produk', this.form.nama_produk);
-        this.produk.append('satuan_produk', this.form.satuan_produk);
-        this.produk.append('stok_produk', this.form.stok_produk);
-        this.produk.append('harga_produk', this.form.harga_produk);
-        this.produk.append('min_stok_produk', this.form.min_stok_produk);
-        this.produk.append('gambar', this.form.gambar);
-        this.produk.append('updateLog_by', this.form.updateLog_by);
-
-        var uri = this.$apiUrl4 + 'Produk';
-        this.load = true;
-        this.$http
-          .post(uri, this.produk)
-          .then((response) => {
-            this.snackbar = true; //mengaktifkan snackbar
-            this.color = 'green'; //memberi warna snackbar
-            this.text = response.data.message; //memasukkan pesan kesnackbar
-            this.load = false;
-            this.dialog = false;
-            this.getData(); //mengambil [pegawai]
-            this.resetForm();
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-          });
-      },
-      updateData() {
-        this.produk.append('nama_produk', this.form.nama_produk);
-        this.produk.append('satuan_produk', this.form.satuan_produk);
-        this.produk.append('stok_produk', this.form.stok_produk);
-        this.produk.append('harga_produk', this.form.harga_produk);
-        this.produk.append('min_stok_produk', this.form.min_stok_produk);
-        this.produk.append('gambar', this.form.gambar);
-        this.produk.append('updateLog_by', this.form.updateLog_by);
-        var uri = this.$apiUrl4 + 'Produk/' + 'update/' + this.updatedId;
-        this.load = true;
-        this.$http
-          .post(uri, this.produk)
-          .then((response) => {
-            this.snackbar = true; //mengaktifkan snackbar
-            this.color = 'green'; //memberi warna snackbar
-            this.text = response.data.message; //memasukkan pesan kesnackbar
-            this.load = false;
-            this.dialog = false;
-            this.getData(); //mengambil databong
-            this.resetForm();
-            this.typeInput = 'new';
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-            this.load = false;
-            this.typeInput = 'new';
-          });
-      },
-      editHandler(item) {
-        this.typeInput = 'edit';
-        this.dialog = true;
-        this.form.nama_produk = item.nama_produk;
-        this.form.satuan_produk = item.satuan_produk;
-        this.form.stok_produk = item.stok_produk;
-        this.form.harga_produk = item.harga_produk;
-        this.form.min_stok_produk = item.min_stok_produk;
-        this.form.gambar = item.gambar;
-        this.updatedId = item.id_produk;
-      },
-      deleteRow(item) {
-        this.deleteId = item.id_produk;
-        this.deleteDialog = true;
-      },
-      deleteData(deleteId) {
-        //mengahapus data
-        
-        var uri = this.$apiUrl4 + 'Produk' + '/delete/' + deleteId; //data dihapus berdasarkan id
-        this.load = true;
-        this.$http
-          .post(uri, this.produk)
-          .then((response) => {
-            this.snackbar = true;
-            this.text = response.data.message;
-            this.color = 'green';
-            this.deleteDialog = false;
-            this.getData();
-          })
-          .catch((error) => {
-            this.errors = error;
-            this.snackbar = true;
-            this.text = 'Coba Lagi';
-            this.color = 'red';
-          });
-      },
-      setForm() {
-        if (this.typeInput === 'new') {
-          this.sendData();
-        } else {
-          console.log('data berhasil diubah');
-          this.updateData();
-        }
-      },
-      resetForm() {
-        this.form = {
-          nama_produk: '',
-          satuan_produk: '',
-          stok_produk: '',
-          harga_produk: '',
-          min_stok_produk: '',
-          gambar: '',
-          updateLog_by: sessionStorage.getItem('Nama'),
-        };
-      },
-    },
-    mounted() {
-      this.getData();
-    },
-  };
+  },
+  mounted() {
+    this.getData();
+  },
+};
 </script>
 <style scoped>
-  /* .v-toolbar__content,
+/* .v-toolbar__content,
   .v-toolbar__extension {
     color: white;
   } */
