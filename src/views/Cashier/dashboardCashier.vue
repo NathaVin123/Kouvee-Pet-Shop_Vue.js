@@ -68,13 +68,13 @@ export default {
       drawer: null,
       items: [
         {
-          title: "Transaksi Produk",
-          icon: "mdi-cash-multiple",
+          title: "Transaksi Layanan",
+          icon: "mdi-bank-transfer",
           route: "/Cashier/transaksiLayanan/MenuTransaksiLayanan",
         },
         {
-          title: "Transaksi Layanan",
-          icon: "mdi-bank-transfer",
+          title: "Transaksi Produk",
+          icon: "mdi-cash-multiple",
           route: "/Cashier/transaksiProduk/MenuTransaksiProduk",
         },
       ],

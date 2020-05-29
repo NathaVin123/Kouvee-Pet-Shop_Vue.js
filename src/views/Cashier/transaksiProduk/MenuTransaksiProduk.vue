@@ -34,7 +34,7 @@
               <tbody>
                 <tr
                   v-for="(item, index) in items"
-                  :key="item.id_transaksi_produk"
+                  :key="item.kode_penjualan_produk"
                 >
                   <td>{{ index + 1 }}</td>
                   <td
@@ -42,16 +42,14 @@
                     @click="showDetail2(item)"
                     style="cursor: pointer;"
                   >
-                    {{ item.id_transaksi_produk }}
+                    {{ item.kode_penjualan_produk }}
                   </td>
-                  <td>{{ item.nama_pelanggan }}</td>
+                  <td>{{ item.nama_customer }}</td>
                   <td>{{ item.nama_hewan }}</td>
                   <td>{{ item.total }}</td>
-                  <td>{{ item.status }}</td>
-                  <td>{{ item.created_at }}</td>
-                  <td>{{ item.created_by }}</td>
-                  <td>{{ item.modified_at }}</td>
-                  <td>{{ item.modified_by }}</td>
+                  <td>{{ item.status_transaksi }}</td>
+                  <td>{{ item.createLog_at }}</td>
+                  <td>{{ item.updateLog_at }}</td>
                   <!-- <td>{{ item.delete_by }}</td>
                 <td>{{ item.delete_at }}</td>-->
 
@@ -97,7 +95,7 @@
               <tbody>
                 <tr
                   v-for="(item, index) in items"
-                  :key="item.id_transaksi_produk"
+                  :key="item.kode_penjualan_produk"
                 >
                   <td>{{ index + 1 }}</td>
                   <td
@@ -105,16 +103,14 @@
                     @click="showDetail2(item)"
                     style="cursor: pointer;"
                   >
-                    {{ item.id_transaksi_produk }}
+                    {{ item.kode_penjualan_produk }}
                   </td>
-                  <td>{{ item.nama_pelanggan }}</td>
+                  <td>{{ item.nama_customer }}</td>
                   <td>{{ item.nama_hewan }}</td>
                   <td>{{ item.total }}</td>
-                  <td>{{ item.status }}</td>
-                  <td>{{ item.created_at }}</td>
-                  <td>{{ item.created_by }}</td>
-                  <td>{{ item.modified_at }}</td>
-                  <td>{{ item.modified_by }}</td>
+                  <td>{{ item.status_transaksi }}</td>
+                  <td>{{ item.createLog_at }}</td>
+                  <td>{{ item.updateLog_at }}</td>
                   <!-- <td>{{ item.delete_by }}</td>
                 <td>{{ item.delete_at }}</td>-->
 
@@ -380,7 +376,7 @@
           <v-card-title>
             <v-spacer />
             <h2 class="text-md-center">
-              {{ "Id Transaksi Produk: " + detailItem.id_transaksi_produk }}
+              {{ "Id Transaksi Produk: " + detailItem.kode_penjualan_produk }}
             </h2>
             <v-spacer />
           </v-card-title>
@@ -399,7 +395,7 @@
                   <th class="text-left">Dibuat Oleh</th>
                   <th class="text-left">Tanggal Diubah</th>
                   <th class="text-left">Diubah Oleh</th>
-                  <th v-if="detailItem.status != 'Lunas'" class="text-left">
+                  <th v-if="detailItem.status_transaksi != 'Lunas'" class="text-left">
                     Aksi
                   </th>
                 </tr>
@@ -415,11 +411,9 @@
                   <td>{{ item.harga }}</td>
                   <td>{{ item.jumlah }}</td>
                   <td>{{ item.total_harga }}</td>
-                  <td>{{ item.created_at }}</td>
-                  <td>{{ item.created_by }}</td>
-                  <td>{{ item.modified_at }}</td>
-                  <td>{{ item.modified_by }}</td>
-                  <td v-if="detailItem.status != 'Lunas'">
+                  <td>{{ item.createLog_at }}</td>
+                  <td>{{ item.updateLog_at }}</td>
+                  <td v-if="detailItem.status_transaksi != 'Lunas'">
                     <div>
                       <v-btn
                         icon
@@ -452,7 +446,7 @@
             <!-- </v-container> -->
             <br />
             <div
-              v-if="detailItem.status != 'Lunas'"
+              v-if="detailItem.status_transaksi != 'Lunas'"
               class="text-right"
               id="right"
             >
@@ -504,7 +498,7 @@
                       <h3>{{ "Nama Pelanggan : " }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.nama_pelanggan }}</h3>
+                      <h3>{{ detailItem.nama_customer }}</h3>
                     </td>
                   </tr>
                   <tr>
@@ -654,12 +648,12 @@ export default {
           value: "index",
         },
         {
-          text: "Id Transaksi Produk",
-          value: "id_transaksi_produk",
+          text: "Kode Penjualan Produk",
+          value: "kode_penjualan_produk",
         },
         {
-          text: "Nama Pelanggan",
-          value: "nama_pelanggan",
+          text: "Nama Customer",
+          value: "nama_customer",
         },
         {
           text: "Nama Hewan",
@@ -670,24 +664,16 @@ export default {
           value: "total",
         },
         {
-          text: "Status",
-          value: "status",
+          text: "Status Transaksi",
+          value: "status_transaksi",
         },
         {
           text: "Tanggal Dibuat",
-          value: "created_at",
-        },
-        {
-          text: "Dibuat Oleh",
-          value: "created_by",
+          value: "createLog_at",
         },
         {
           text: "Tanggal Diubah",
-          value: "modified_by",
-        },
-        {
-          text: "Diubah Oleh",
-          value: "modified_by",
+          value: "updateLog_at",
         },
         {
           text: "Aksi",
@@ -721,7 +707,7 @@ export default {
         id_hewan: "",
         total: "",
         diskon: "",
-        id_transaksi_produk: "",
+        kode_penjualan_produk: "",
         subtotal: "",
         harga: "",
         total_harga: "",
@@ -767,7 +753,7 @@ export default {
         if (this.transaksiProduks[i].id_hewan == null) {
           this.transaksiProduks[i].nama_hewan = "-";
           this.transaksiProduks[i].jenis_hewan = "-";
-          this.transaksiProduks[i].nama_pelanggan = "Guest";
+          this.transaksiProduks[i].nama_customer = "Guest";
           this.transaksiProduks[i].telp = "-";
           this.transaksiProduks[i].diskon = "0";
         }
@@ -790,20 +776,20 @@ export default {
     },
     filterProgress() {
       return this.transaksiProduks.filter((transaksiProduk) => {
-        return transaksiProduk.status.match("Lunas");
+        return transaksiProduk.status_transaksi.match("Lunas");
       });
     },
     filteredItems2(value) {
       return this.detailTransaksiProduks.filter((i) => {
         return (
-          !value.id_transaksi_produk ||
-          i.id_transaksi_produk === value.id_transaksi_produk
+          !value.kode_penjualan_produk ||
+          i.kode_penjualan_produk === value.kode_penjualan_produk
         );
       });
     },
     filterProgress2() {
       return this.transaksiProduks.filter((transaksiProduk) => {
-        return transaksiProduk.status.match("Menunggu Pembayaran");
+        return transaksiProduk.status_transaksi.match("Belum Selesai");
       });
     },
     selectTabs(selectedTabs) {
@@ -828,7 +814,7 @@ export default {
     },
     filteredProduk(index) {
       var uri =
-        this.$apiUrl +
+        this.$apiUrl4 +
         "Produk/" +
         "search/" +
         this.detilTransaksis[index].id_produk;
@@ -841,7 +827,7 @@ export default {
     },
     getHargaEditProduk() {
       var uri =
-        this.$apiUrl + "Produk/" + "search/" + this.formProduk.id_produk;
+        this.$apiUrl4 + "Produk/" + "search/" + this.formProduk.id_produk;
       this.$http.get(uri).then((response) => {
         this.formProduk.harga = response.data.message.harga;
         this.formProduk.total_harga =
@@ -851,8 +837,8 @@ export default {
 
     setIdTransaksiProduk(item) {
       this.detilJudulProduk = 1;
-      this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
-      console.log(this.formProduk.id_transaksi_produk);
+      this.formProduk.kode_penjualan_produk = item.kode_penjualan_produk;
+      console.log(this.formProduk.kode_penjualan_produk);
     },
     setTotalEditProduk() {
       this.formProduk.total_harga =
@@ -877,7 +863,7 @@ export default {
       }
     },
     getDataProduk() {
-      var uri = this.$apiUrl + "TransaksiProduk/" + "getWithJoin";
+      var uri = this.$apiUrl4 + "transaksipenjualanproduk/" + "getWithJoin";
       this.$http.get(uri).then((response) => {
         this.transaksiProduks = response.data.message;
         this.isGuestProduk();
@@ -886,19 +872,19 @@ export default {
       });
     },
     getDataTransaksiProduk() {
-      var uri = this.$apiUrl + "DetailTransaksiProduk/" + "getWithJoin";
+      var uri = this.$apiUrl4 + "detailpenjualanproduk/" + "getWithJoin";
       this.$http.get(uri).then((response) => {
         this.detailTransaksiProduks = response.data.message;
       });
     },
     getHewan() {
-      var uri = this.$apiUrl + "Hewan/" + "all";
+      var uri = this.$apiUrl4 + "Hewan/" + "all";
       this.$http.get(uri).then((response) => {
         this.hewans = response.data.message;
       });
     },
     getJenisHewan() {
-      var uri = this.$apiUrl + "JenisHewan";
+      var uri = this.$apiUrl4 + "JenisHewan";
       this.$http.get(uri).then((response) => {
         this.jenishewans = response.data.message;
       });
@@ -907,22 +893,22 @@ export default {
       console.log(this.hewans);
     },
     getPelanggan() {
-      var uri = this.$apiUrl + "Pelanggan/" + "all";
+      var uri = this.$apiUrl4 + "Pelanggan/" + "all";
       this.$http.get(uri).then((response) => {
         this.pelanggans = response.data.message;
       });
     },
     getProduk() {
-      var uri = this.$apiUrl + "Produk/" + "all";
+      var uri = this.$apiUrl4 + "Produk/" + "all";
       this.$http.get(uri).then((response) => {
         this.produks = response.data.message;
       });
     },
     getDetailTransaksiProdukById(item) {
-      this.updatedId = item.id_transaksi_produk;
+      this.updatedId = item.kode_penjualan_produk;
       var uri =
-        this.$apiUrl +
-        "DetailTransaksiProduk/" +
+        this.$apiUrl4 +
+        "detailpenjualanproduk/" +
         "getByTransactionId/" +
         this.updatedId;
       this.$http.get(uri).then((response) => {
@@ -943,8 +929,8 @@ export default {
       this.formProduk.jumlah = item.jumlah;
       this.formProduk.harga = item.harga;
       this.formProduk.total_harga = item.total_harga;
-      this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
-      console.log(this.formProduk.id_transaksi_produk);
+      this.formProduk.kode_penjualan_produk = item.kode_penjualan_produk;
+      console.log(this.formProduk.kode_penjualan_produk);
       this.updatedId = item.id_detail_transaksi_produk;
     },
     editHandlerTransaksiProduk(item) {
@@ -954,8 +940,8 @@ export default {
       this.formProduk.subtotal = item.subtotal;
       this.formProduk.total = item.total;
       this.formProduk.diskon = item.diskon;
-      this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
-      this.updatedId = item.id_transaksi_produk;
+      this.formProduk.kode_penjualan_produk = item.kode_penjualan_produk;
+      this.updatedId = item.kode_penjualan_produk;
     },
     setFormProduk() {
       if (this.typeInput === "new") {
@@ -966,15 +952,15 @@ export default {
       }
     },
     updateStatusProduk(detailItem) {
-      this.updatedId = detailItem.id_transaksi_produk;
+      this.updatedId = detailItem.kode_penjualan_produk;
       this.transaksiProduk.append("id_kasir", sessionStorage.getItem("Id"));
       this.transaksiProduk.append(
         "modified_by",
         sessionStorage.getItem("Nama")
       );
-      console.log(detailItem.id_transaksi_produk);
+      console.log(detailItem.kode_penjualan_produk);
       var uri =
-        this.$apiUrl + "TransaksiProduk/" + "updateStatus/" + this.updatedId;
+        this.$apiUrl4 + "transaksipenjualanproduk/" + "updateStatus/" + this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.transaksiProduk)
@@ -1002,7 +988,7 @@ export default {
       this.user.append("total_harga", this.formProduk.total_harga);
       this.user.append("modified_by", this.formProduk.modified_by);
       var uri =
-        this.$apiUrl + "DetailTransaksiProduk/" + "update/" + this.updatedId;
+        this.$apiUrl4 + "detailpenjualanproduk/" + "update/" + this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.user)
@@ -1032,7 +1018,7 @@ export default {
       this.detil.append("subtotal", this.formProduk.subtotal);
       this.detil.append("total", this.formProduk.total);
       this.detil.append("modified_by", this.formProduk.modified_by);
-      var uri = this.$apiUrl + "TransaksiProduk/" + "update/" + this.updatedId;
+      var uri = this.$apiUrl4 + "transaksipenjualanproduk/" + "update/" + this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.detil)
@@ -1060,7 +1046,7 @@ export default {
       this.dialogDetailTransaksiProduk = true;
     },
     deleteDataProduk(deleteId) {
-      var uri = this.$apiUrl + "TransaksiProduk/" + deleteId; //data dihapus berdasarkan id
+      var uri = this.$apiUrl4 + "transaksipenjualanproduk/" + deleteId; //data dihapus berdasarkan id
       this.$http
         .delete(uri)
         .then((response) => {
@@ -1079,7 +1065,7 @@ export default {
         "id_detail_transaksi_produk",
         JSON.stringify(this.detailIdTransaksiProduksFiltered)
       );
-      var uri = this.$apiUrl + "DetailTransaksiProduk/" + "deleteMultiple";
+      var uri = this.$apiUrl4 + "detailpenjualanproduk/" + "deleteMultiple";
       this.load = true;
       this.$http
         .post(uri, this.deleteProduk)
@@ -1101,7 +1087,7 @@ export default {
         });
     },
     async deleteDataDetailProduk(deleteId) {
-      var uri = this.$apiUrl + "DetailTransaksiProduk/" + deleteId; //data dihapus berdasarkan id
+      var uri = this.$apiUrl4 + "detailpenjualanproduk/" + deleteId; //data dihapus berdasarkan id
       await this.$http
         .delete(uri)
         .then((response) => {
@@ -1120,7 +1106,7 @@ export default {
         });
     },
     deleteRowProduk(item) {
-      this.deleteId = item.id_transaksi_produk;
+      this.deleteId = item.kode_penjualan_produk;
       this.deleteDialog = true;
     },
     deleteRowDetailProduk(item) {
@@ -1139,14 +1125,14 @@ export default {
     },
     addProdukDetil() {
       this.user.append(
-        "id_transaksi_produk",
-        this.formProduk.id_transaksi_produk
+        "kode_penjualan_produk",
+        this.formProduk.kode_penjualan_produk
       );
       this.user.append("id_produk", this.formProduk.id_produk);
       this.user.append("created_by", this.formProduk.created_by);
       this.user.append("total_harga", this.formProduk.total_harga);
       this.user.append("jumlah", this.formProduk.jumlah);
-      var uri = this.$apiUrl + "DetailTransaksiProduk";
+      var uri = this.$apiUrl4 + "detailpenjualanproduk";
       this.load = true;
       this.$http
         .post(uri, this.user)
@@ -1173,7 +1159,7 @@ export default {
         id_hewan: "",
         total: "",
         diskon: "",
-        id_transaksi_produk: "",
+        kode_penjualan_produk: "",
         subtotal: "",
         harga: "",
         total_harga: "",
@@ -1186,9 +1172,9 @@ export default {
     },
     cetakStruk(item) {
       var uri =
-        this.$apiUrl + "CetakStruk/transaksiProduk/" + item.id_transaksi_produk;
+        this.$apiUrl4 + "CetakStruk/transaksiProduk/" + item.kode_penjualan_produk;
       window.open(uri, "_blank");
-      console.log(item.id_transaksi_produk);
+      console.log(item.kode_penjualan_produk);
     },
   },
 
@@ -1199,8 +1185,8 @@ export default {
     this.formProduk.subtotal = item.subtotal;
     this.formProduk.total = item.total;
     this.formProduk.diskon = item.diskon;
-    this.formProduk.id_transaksi_produk = item.id_transaksi_produk;
-    this.updatedId = item.id_transaksi_produk;
+    this.formProduk.kode_penjualan_produk = item.kode_penjualan_produk;
+    this.updatedId = item.kode_penjualan_produk;
   },
   mounted() {
     this.getDataProduk();

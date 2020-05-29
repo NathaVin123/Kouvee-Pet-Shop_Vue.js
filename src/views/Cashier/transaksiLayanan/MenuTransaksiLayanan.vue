@@ -34,7 +34,7 @@
               <tbody>
                 <tr
                   v-for="(item, index) in items"
-                  :key="item.id_transaksi_layanan"
+                  :key="item.kode_penjualan_layanan"
                 >
                   <td>{{ index + 1 }}</td>
                   <td
@@ -42,16 +42,14 @@
                     @click="showDetail(item)"
                     style="cursor: pointer;"
                   >
-                    {{ item.id_transaksi_layanan }}
+                    {{ item.kode_penjualan_layanan }}
                   </td>
-                  <td>{{ item.nama_pelanggan }}</td>
+                  <td>{{ item.nama_customer }}</td>
                   <td>{{ item.nama_hewan }}</td>
                   <td>{{ item.total }}</td>
-                  <td>{{ item.status }}</td>
-                  <td>{{ item.created_at }}</td>
-                  <td>{{ item.created_by }}</td>
-                  <td>{{ item.modified_at }}</td>
-                  <td>{{ item.modified_by }}</td>
+                  <td>{{ item.status_transaksi }}</td>
+                  <td>{{ item.createLog_at }}</td>
+                  <td>{{ item.updateLog_at }}</td>
                   <!-- <td>{{ item.delete_by }}</td>
                   <td>{{ item.delete_at }}</td>-->
                   <td>
@@ -96,7 +94,7 @@
               <tbody>
                 <tr
                   v-for="(item, index) in items"
-                  :key="item.id_transaksi_layanan"
+                  :key="item.kode_penjualan_layanan"
                 >
                   <td>{{ index + 1 }}</td>
                   <td
@@ -104,16 +102,14 @@
                     @click="showDetail(item)"
                     style="cursor: pointer;"
                   >
-                    {{ item.id_transaksi_layanan }}
+                    {{ item.kode_penjualan_layanan }}
                   </td>
-                  <td>{{ item.nama_pelanggan }}</td>
+                  <td>{{ item.nama_customer }}</td>
                   <td>{{ item.nama_hewan }}</td>
                   <td>{{ item.total }}</td>
-                  <td>{{ item.status }}</td>
-                  <td>{{ item.created_at }}</td>
-                  <td>{{ item.created_by }}</td>
-                  <td>{{ item.modified_at }}</td>
-                  <td>{{ item.modified_by }}</td>
+                  <td>{{ item.status_transaksi }}</td>
+                  <td>{{ item.createLog_at }}</td>
+                  <td>{{ item.updateLog_at }}</td>
                   <!-- <td>{{ item.delete_by }}</td>
                   <td>{{ item.delete_at }}</td>-->
 
@@ -213,7 +209,7 @@
           <v-card-title>
             <v-spacer />
             <h2 class="text-md-center">
-              {{ "Id Transaksi Layanan: " + detailItem.id_transaksi_layanan }}
+              {{ "Id Transaksi Layanan: " + detailItem.kode_penjualan_layanan }}
             </h2>
             <v-spacer />
           </v-card-title>
@@ -232,7 +228,7 @@
                   <th class="text-left">Dibuat Oleh</th>
                   <th class="text-left">Tanggal Diubah</th>
                   <th class="text-left">Diubah Oleh</th>
-                  <th v-if="detailItem.status != 'Lunas'" class="text-left">
+                  <th v-if="detailItem.status_transaksi != 'Lunas'" class="text-left">
                     Aksi
                   </th>
                 </tr>
@@ -248,11 +244,9 @@
                   <td>{{ item.harga }}</td>
                   <td>{{ item.jumlah }}</td>
                   <td>{{ item.total_harga }}</td>
-                  <td>{{ item.created_at }}</td>
-                  <td>{{ item.created_by }}</td>
-                  <td>{{ item.modified_at }}</td>
-                  <td>{{ item.modified_by }}</td>
-                  <td v-if="detailItem.status != 'Lunas'">
+                  <td>{{ item.createLog_at }}</td>
+                  <td>{{ item.updateLog_at }}</td>
+                  <td v-if="detailItem.status_transaksi != 'Lunas'">
                     <div>
                       <v-btn
                         icon
@@ -285,7 +279,7 @@
             <!-- </v-container> -->
             <br />
             <div
-              v-if="detailItem.status != 'Lunas'"
+              v-if="detailItem.status_transaksi != 'Lunas'"
               class="text-right"
               id="right"
             >
@@ -337,7 +331,7 @@
                       <h3>{{ "Nama Pelanggan : " }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.nama_pelanggan }}</h3>
+                      <h3>{{ detailItem.nama_customer }}</h3>
                     </td>
                   </tr>
                   <tr>
@@ -462,7 +456,7 @@
                     width
                     :items="hewans"
                     item-value="id_hewan"
-                    item-text="nama"
+                    item-text="nama_hewan"
                     label="Nama Hewan*"
                     outlined
                     color="purple"
@@ -532,7 +526,7 @@
                     :items="layanans"
                     @change="setHargaLayananEdit()"
                     item-value="id_layanan"
-                    item-text="nama"
+                    item-text="nama_layanan"
                     label="Nama Layanan*"
                     outlined
                     color="purple"
@@ -548,7 +542,7 @@
                     :items="ukurans"
                     @change="setHargaLayananEdit()"
                     item-value="id_ukuran_hewan"
-                    item-text="nama"
+                    item-text="nama_ukuranHewan"
                     label="Ukuran*"
                     outlined
                     color="purple"
@@ -661,12 +655,12 @@ export default {
           value: "index",
         },
         {
-          text: "Id Transaksi Layanan",
-          value: "id_transaksi_layanan",
+          text: "Kode Penjualan Layanan",
+          value: "kode_penjualan_layanan",
         },
         {
-          text: "Nama Pelanggan",
-          value: "nama_pelanggan",
+          text: "Nama Customer",
+          value: "nama_customer",
         },
         {
           text: "Nama Hewan",
@@ -677,24 +671,16 @@ export default {
           value: "total",
         },
         {
-          text: "Status",
-          value: "status",
+          text: "Status Transaksi",
+          value: "status_transaksi",
         },
         {
           text: "Tanggal Dibuat",
-          value: "created_at",
-        },
-        {
-          text: "Dibuat Oleh",
-          value: "created_by",
+          value: "createLog_at",
         },
         {
           text: "Tanggal Diubah",
-          value: "modified_by",
-        },
-        {
-          text: "Diubah Oleh",
-          value: "modified_by",
+          value: "updateLog_at",
         },
         {
           text: "Aksi",
@@ -730,7 +716,7 @@ export default {
         id_hewan: "",
         total: "",
         diskon: "",
-        id_transaksi_layanan: "",
+        kode_penjualan_layanan: "",
         subtotal: "",
         id_harga_layanan: "",
         total_harga: "",
@@ -777,7 +763,7 @@ export default {
         if (this.transaksiLayanans[i].id_hewan == null) {
           this.transaksiLayanans[i].nama_hewan = "-";
           this.transaksiLayanans[i].jenis_hewan = "-";
-          this.transaksiLayanans[i].nama_pelanggan = "Guest";
+          this.transaksiLayanans[i].nama_customer = "Guest";
           this.transaksiLayanans[i].telp = "-";
           this.transaksiLayanans[i].diskon = "0";
         }
@@ -801,16 +787,16 @@ export default {
     filterProgress() {
       return this.transaksiLayanans.filter((transaksiLayanan) => {
         return (
-          transaksiLayanan.status.match("Lunas") &&
-          transaksiLayanan.progress.match("Layanan Selesai")
+          transaksiLayanan.status_transaksi.match("Lunas") &&
+          transaksiLayanan.proses.match("Layanan Selesai")
         );
       });
     },
     filteredItems(value) {
       return this.detailTransaksiLayanans.filter((i) => {
         return (
-          !value.id_transaksi_layanan ||
-          i.id_transaksi_layanan === value.id_transaksi_layanan
+          !value.kode_penjualan_layanan ||
+          i.kode_penjualan_layanan === value.kode_penjualan_layanan
         );
       });
     },
@@ -825,8 +811,8 @@ export default {
     filterProgress2() {
       return this.transaksiLayanans.filter((transaksiLayanan) => {
         return (
-          transaksiLayanan.status.match("Menunggu Pembayaran") &&
-          transaksiLayanan.progress.match("Layanan Selesai")
+          transaksiLayanan.status_transaksi.match("Menunggu Pembayaran") &&
+          transaksiLayanan.proses.match("Layanan Selesai")
         );
       });
     },
@@ -848,7 +834,7 @@ export default {
       this.resetForm();
     },
     getUkuran() {
-      var uri = this.$apiUrl + "UkuranHewan";
+      var uri = this.$apiUrl4 + "UkuranHewan";
       this.$http.get(uri).then((response) => {
         this.ukurans = response.data.message;
       });
@@ -862,9 +848,9 @@ export default {
         jumlah: "",
         total_harga: "",
         harga: "",
-        created_at: "",
+        createLog_at: "",
         created_by: sessionStorage.getItem("Nama"),
-        modified_at: "",
+        updateLog_at: "",
         modified_by: "",
         delete_at: "",
         delete_by: "",
@@ -873,8 +859,8 @@ export default {
 
     filteredHargaLayanan(index) {
       var uri =
-        this.$apiUrl +
-        "HargaLayanan/" +
+        this.$apiUrl4 +
+        "layananharga/" +
         "searchByIdLayananUkuran/" +
         this.detilLayanans[index].id_layanan +
         "/" +
@@ -889,8 +875,8 @@ export default {
     },
     setHargaLayananEdit() {
       var uri =
-        this.$apiUrl +
-        "HargaLayanan/" +
+        this.$apiUrl4 +
+        "layananharga/" +
         "searchByIdLayananUkuran/" +
         this.formLayanan.id_layanan +
         "/" +
@@ -913,31 +899,31 @@ export default {
         this.formLayanan.subtotal - this.formLayanan.diskon;
     },
     getHewan() {
-      var uri = this.$apiUrl + "Hewan/" + "all";
+      var uri = this.$apiUrl4 + "Hewan/" + "all";
       this.$http.get(uri).then((response) => {
         this.hewans = response.data.message;
       });
     },
     getJenisHewan() {
-      var uri = this.$apiUrl + "JenisHewan";
+      var uri = this.$apiUrl4 + "JenisHewan";
       this.$http.get(uri).then((response) => {
         this.jenishewans = response.data.message;
       });
     },
     getPelanggan() {
-      var uri = this.$apiUrl + "Pelanggan/" + "all";
+      var uri = this.$apiUrl4 + "Pelanggan/" + "all";
       this.$http.get(uri).then((response) => {
         this.pelanggans = response.data.message;
       });
     },
     getLayanan() {
-      var uri = this.$apiUrl + "Layanan";
+      var uri = this.$apiUrl4 + "Layanan";
       this.$http.get(uri).then((response) => {
         this.layanans = response.data.message;
       });
     },
     getDataLayanan() {
-      var uri = this.$apiUrl + "TransaksiLayanan/" + "getWithJoin";
+      var uri = this.$apiUrl4 + "transaksipenjualanlayanan/" + "getWithJoin";
       this.$http.get(uri).then((response) => {
         this.transaksiLayanans = response.data.message;
         this.isGuestLayanan();
@@ -946,16 +932,16 @@ export default {
       });
     },
     getDataTransaksiLayanan() {
-      var uri = this.$apiUrl + "DetailTransaksiLayanan/" + "getWithJoin";
+      var uri = this.$apiUrl4 + "detailtransaksilayanan/" + "getWithJoin";
       this.$http.get(uri).then((response) => {
         this.detailTransaksiLayanans = response.data.message;
       });
     },
     getDetailTransaksiLayananById(item) {
-      this.updatedId = item.id_transaksi_layanan;
+      this.updatedId = item.kode_penjualan_layanan;
       var uri =
-        this.$apiUrl +
-        "DetailTransaksiLayanan/" +
+        this.$apiUrl4 +
+        "detailtransaksilayanan/" +
         "getByTransactionId/" +
         this.updatedId;
       this.$http.get(uri).then((response) => {
@@ -970,20 +956,20 @@ export default {
     },
     setIdTransaksiLayanan(item) {
       this.detilJudulLayanan = 1;
-      this.formLayanan.id_transaksi_layanan = item.id_transaksi_layanan;
-      console.log(this.formLayanan.id_transaksi_layanan);
+      this.formLayanan.kode_penjualan_layanan = item.kode_penjualan_layanan;
+      console.log(this.formLayanan.kode_penjualan_layanan);
     },
 
     updateStatusLayanan(detailItem) {
-      this.updatedId = detailItem.id_transaksi_layanan;
+      this.updatedId = detailItem.kode_penjualan_layanan;
       this.transaksiLayanan.append("id_kasir", sessionStorage.getItem("Id"));
       this.transaksiLayanan.append(
         "modified_by",
         sessionStorage.getItem("Nama")
       );
-      console.log(detailItem.id_transaksi_layanan);
+      console.log(detailItem.kode_penjualan_layanan);
       var uri =
-        this.$apiUrl + "TransaksiLayanan/" + "updateStatus/" + this.updatedId;
+        this.$apiUrl4 + "transaksipenjualanlayanan/" + "updateStatus/" + this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.transaksiLayanan)
@@ -1013,7 +999,7 @@ export default {
       this.formLayanan.id_ukuran_hewan = item.id_ukuran_hewan;
       this.formLayanan.jumlah = item.jumlah;
       this.formLayanan.total_harga = item.total_harga;
-      this.formLayanan.id_transaksi_Layanan = item.id_transaksi_layanan;
+      this.formLayanan.id_transaksi_Layanan = item.kode_penjualan_layanan;
       console.log(this.formLayanan.id_transaksi_Layanan);
       this.updatedId = item.id_detail_transaksi_layanan;
     },
@@ -1024,11 +1010,11 @@ export default {
       this.formLayanan.subtotal = item.subtotal;
       this.formLayanan.total = item.total;
       this.formLayanan.diskon = item.diskon;
-      this.formLayanan.id_transaksi_layanan = item.id_transaksi_layanan;
-      this.updatedId = item.id_transaksi_layanan;
+      this.formLayanan.kode_penjualan_layanan = item.kode_penjualan_layanan;
+      this.updatedId = item.kode_penjualan_layanan;
     },
     deleteDataLayanan(deleteId) {
-      var uri = this.$apiUrl + "TransaksiLayanan/" + deleteId; //data dihapus berdasarkan id
+      var uri = this.$apiUrl4 + "transaksipenjualanlayanan/" + deleteId; //data dihapus berdasarkan id
       this.$http
         .delete(uri)
         .then((response) => {
@@ -1048,7 +1034,7 @@ export default {
       this.detil2.append("subtotal", this.formLayanan.subtotal);
       this.detil2.append("total", this.formLayanan.total);
       this.detil2.append("modified_by", this.formLayanan.modified_by);
-      var uri = this.$apiUrl + "TransaksiLayanan/" + "update/" + this.updatedId;
+      var uri = this.$apiUrl4 + "transaksipenjualanlayanan/" + "update/" + this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.detil2)
@@ -1078,7 +1064,7 @@ export default {
       this.user2.append("total_harga", this.formLayanan.total_harga);
       this.user2.append("modified_by", this.formLayanan.modified_by);
       var uri =
-        this.$apiUrl + "DetailTransaksiLayanan/" + "update/" + this.updatedId;
+        this.$apiUrl4 + "detailtransaksilayanan/" + "update/" + this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.user2)
@@ -1107,7 +1093,7 @@ export default {
         "id_detail_transaksi_layanan",
         JSON.stringify(this.detailIdTransaksiLayanansFiltered)
       );
-      var uri = this.$apiUrl + "DetailTransaksiLayanan/" + "deleteMultiple";
+      var uri = this.$apiUrl4 + "detailtransaksilayanan/" + "deleteMultiple";
       this.load = true;
       this.$http
         .post(uri, this.deleteLayanan)
@@ -1129,7 +1115,7 @@ export default {
         });
     },
     async deleteDataDetailLayanan(deleteId) {
-      var uri = this.$apiUrl + "DetailTransaksiLayanan/" + deleteId; //data dihapus berdasarkan id
+      var uri = this.$apiUrl4 + "detailtransaksilayanan/" + deleteId; //data dihapus berdasarkan id
       await this.$http
         .delete(uri)
         .then((response) => {
@@ -1148,7 +1134,7 @@ export default {
         });
     },
     deleteRowLayanan(item) {
-      this.deleteId = item.id_transaksi_layanan;
+      this.deleteId = item.kode_penjualan_layanan;
       this.deleteDialog = true;
     },
     deleteRowDetailLayanan(item) {
@@ -1177,15 +1163,15 @@ export default {
     },
     addLayananDetil() {
       this.user2.append(
-        "id_transaksi_layanan",
-        this.formLayanan.id_transaksi_layanan
+        "kode_penjualan_layanan",
+        this.formLayanan.kode_penjualan_layanan
       );
       this.user2.append("id_harga_layanan", this.formLayanan.id_harga_layanan);
       this.user2.append("id_layanan", this.formLayanan.id_Layanan);
       this.user2.append("jumlah", this.formLayanan.jumlah);
       this.user2.append("total_harga", this.formLayanan.total_harga);
       this.user2.append("created_by", this.formLayanan.created_by);
-      var uri = this.$apiUrl + "DetailTransaksiLayanan";
+      var uri = this.$apiUrl4 + "detailtransaksilayanan";
       this.load = true;
       this.$http
         .post(uri, this.user2)
@@ -1221,7 +1207,7 @@ export default {
         id_hewan: "",
         total: "",
         diskon: "",
-        id_transaksi_layanan: "",
+        kode_penjualan_layanan: "",
         subtotal: "",
         id_harga_layanan: "",
         total_harga: "",
@@ -1234,9 +1220,9 @@ export default {
     },
     cetakStruk(item) {
       var uri =
-        this.$apiUrl +
+        this.$apiUrl4 +
         "CetakStruk/transaksiLayanan/" +
-        item.id_transaksi_layanan;
+        item.kode_penjualan_layanan;
       // this.$http.get(uri).then(() => {
       //     this.snackbar = true;
       //     this.color = 'green';
@@ -1251,7 +1237,7 @@ export default {
       //     this.load = false;
       //   });
       window.open(uri, "_blank");
-      console.log(item.id_transaksi_layanan);
+      console.log(item.kode_penjualan_layanan);
     },
   },
 
