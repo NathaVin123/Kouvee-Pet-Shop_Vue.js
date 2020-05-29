@@ -438,7 +438,7 @@
                               outlined
                               type="text"
                               class="form-control"
-                              placeholder="Masukan tahun pendaptan"
+                              placeholder="Masukan tahun pendapatan"
                               :maxlength="max"
                               v-model="date4"
                               prepend-icon="mdi-calendar"
@@ -566,25 +566,25 @@ export default {
     },
     cetakLaporanBulanan(pengadaanBulanan) {
       var uri =
-        this.$apiUrl + "Laporan/laporanPengadaanBulanan/" + pengadaanBulanan;
+        this.$apiUrl4 + "Laporan/laporanPengadaanBulanan/" + pengadaanBulanan;
       window.open(uri, "_blank");
       this.resetForm();
     },
     cetakPendapatanBulanan(pendapatanBulanan) {
       var uri =
-        this.$apiUrl + "Laporan/laporanPendapatanBulanan/" + pendapatanBulanan;
+        this.$apiUrl4 + "Laporan/laporanPendapatanBulanan/" + pendapatanBulanan;
       window.open(uri, "_blank");
       this.resetForm();
     },
     cetakProdukTerlaris(produkTerlaris) {
       var uri =
-        this.$apiUrl + "Laporan/laporanProdukTerlaris/" + produkTerlaris;
+        this.$apiUrl4 + "Laporan/laporanProdukTerlaris/" + produkTerlaris;
       window.open(uri, "_blank");
       this.resetForm();
     },
     cetakPendapatanTahunan(pendapatanTahunan) {
       var uri =
-        this.$apiUrl + "Laporan/laporanPendapatanTahunan/" + pendapatanTahunan;
+        this.$apiUrl4 + "Laporan/laporanPendapatanTahunan/" + pendapatanTahunan;
       window.open(uri, "_blank");
       this.resetForm();
     },

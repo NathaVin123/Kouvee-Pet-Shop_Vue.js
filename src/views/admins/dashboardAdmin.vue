@@ -78,6 +78,11 @@ export default {
           route: "/admins/produk/MenuProduk",
         },
         {
+          title: "Stok Produk",
+          icon: "mdi-package-variant-closed",
+          route: "/admins/produk/Stok",
+        },
+        {
           title: "Pegawai",
           icon: "mdi-badge-account",
           route: "/admins/pegawai/MenuPegawai",
@@ -103,9 +108,9 @@ export default {
           route: "/admins/pengadaan/MenuPengadaan",
         },
         {
-          title: "Stok Produk",
-          icon: "mdi-package-variant-closed",
-          route: "/admins/produk/Stok",
+          title: "Laporan",
+          icon: "mdi-text",
+          route: "/admins/pengadaan/LaporanPengadaan",
         },
         // { title: 'Customer', icon: 'mdi-account', route: '/admins/adminContents/customer_Admin'},
         // { title: 'Hewan', icon: 'mdi-dog-side', route: '/admins/adminContents/hewan_Admin'},

@@ -285,30 +285,43 @@ export default new Router({
           component: loadStok("Stok"),
         },
         {
-          // beforeEnter(to, from, next) {
-          //   if (sessionStorage.getItem("Nama") != null) {
-          //     next();
-          //   } else {
-          //     sessionStorage.removeItem("Nama");
-          //     next({ path: "/views/signin" });
-          //   }
-          // },
+          beforeEnter(to, from, next) {
+            if (sessionStorage.getItem("Nama") != null) {
+              next();
+            } else {
+              sessionStorage.removeItem("Nama");
+              next({ path: "/views/signin" });
+            }
+          },
           name: "pengadaan_Diproses",
           path: "/admins/pengadaan/PengadaanDiproses",
           component: loadPengadaan("PengadaanDiproses"),
         },
         {
-          // beforeEnter(to, from, next) {
-          //   if (sessionStorage.getItem("Nama") != null) {
-          //     next();
-          //   } else {
-          //     sessionStorage.removeItem("Nama");
-          //     next({ path: "/views/signin" });
-          //   }
-          // },
+          beforeEnter(to, from, next) {
+            if (sessionStorage.getItem("Nama") != null) {
+              next();
+            } else {
+              sessionStorage.removeItem("Nama");
+              next({ path: "/views/signin" });
+            }
+          },
           name: "pengadaan_Selesai",
           path: "/admins/pengadaan/PengadaanSelesai",
           component: loadPengadaan("PengadaanSelesai"),
+        },
+        {
+          beforeEnter(to, from, next) {
+            if (sessionStorage.getItem("Nama") != null) {
+              next();
+            } else {
+              sessionStorage.removeItem("Nama");
+              next({ path: "/views/signin" });
+            }
+          },
+          name: "Laporan",
+          path: "/admins/pengadaan/LaporanPengadaan",
+          component: loadPengadaan("LaporanPengadaan"),
         },
       ],
     },
