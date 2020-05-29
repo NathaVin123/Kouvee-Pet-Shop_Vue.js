@@ -647,7 +647,7 @@ export default {
       menu: false,
       on: "",
       submit: "",
-      link: "http://kouveepetshopapi.smithdev.xyz/index.php/CetakStrukLayanan/",
+      link: "http://kouveepetshopapi.smithdev.xyz/index.php/StrukLayanan/",
 
       headers2: [
         {
@@ -962,7 +962,7 @@ export default {
 
     updateStatusLayanan(detailItem) {
       this.updatedId = detailItem.kode_penjualan_layanan;
-      this.transaksiLayanan.append("id_kasir", sessionStorage.getItem("Id"));
+      this.transaksiLayanan.append("id_kasir", sessionStorage.getItem("Nama"));
       this.transaksiLayanan.append(
         "modified_by",
         sessionStorage.getItem("Nama")
@@ -1221,7 +1221,7 @@ export default {
     cetakStruk(item) {
       var uri =
         this.$apiUrl4 +
-        "CetakStruk/transaksiLayanan/" +
+        "Struk/transaksiLayanan/" +
         item.kode_penjualan_layanan;
       // this.$http.get(uri).then(() => {
       //     this.snackbar = true;

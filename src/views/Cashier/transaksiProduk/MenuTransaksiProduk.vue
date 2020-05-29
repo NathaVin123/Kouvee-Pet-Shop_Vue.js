@@ -1172,7 +1172,7 @@ export default {
     },
     cetakStruk(item) {
       var uri =
-        this.$apiUrl4 + "CetakStruk/transaksiProduk/" + item.kode_penjualan_produk;
+        this.$apiUrl4 + "Struk/transaksiProduk/" + item.kode_penjualan_produk;
       window.open(uri, "_blank");
       console.log(item.kode_penjualan_produk);
     },
