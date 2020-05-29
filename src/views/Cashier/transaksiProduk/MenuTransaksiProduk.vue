@@ -385,7 +385,7 @@
             <v-simple-table height="50%">
               <thead>
                 <tr>
-                  <th class="text-left">Id Detail Transaksi</th>
+                  <th class="text-left">Id Detail Produk</th>
                   <th class="text-left">Nama Produk</th>
                   <th class="text-left">Ukuran Hewan</th>
                   <th class="text-left">Harga Satuan</th>
@@ -403,9 +403,9 @@
               <tbody>
                 <tr
                   v-for="item in filteredItems2(detailItem)"
-                  :key="item.id_detail_transaksi_produk"
+                  :key="item.id_detailproduk"
                 >
-                  <td>{{ item.id_detail_transaksi_produk }}</td>
+                  <td>{{ item.id_detailproduk }}</td>
                   <td>{{ item.nama_produk }}</td>
                   <td>{{ item.ukuran_hewan }}</td>
                   <td>{{ item.harga }}</td>
@@ -916,7 +916,7 @@ export default {
         for (var i = 0; i < this.detailIdTransaksiProduks.length; i++) {
           this.detailIdTransaksiProduksFiltered[
             i
-          ] = this.detailIdTransaksiProduks[i].id_detail_transaksi_produk;
+          ] = this.detailIdTransaksiProduks[i].id_detailproduk;
         }
         console.log(this.detailIdTransaksiProduksFiltered);
       });
@@ -931,7 +931,7 @@ export default {
       this.formProduk.total_harga = item.total_harga;
       this.formProduk.kode_penjualan_produk = item.kode_penjualan_produk;
       console.log(this.formProduk.kode_penjualan_produk);
-      this.updatedId = item.id_detail_transaksi_produk;
+      this.updatedId = item.id_detailproduk;
     },
     editHandlerTransaksiProduk(item) {
       this.typeInput = "edit";
@@ -1062,7 +1062,7 @@ export default {
     },
     deleteMultipleDataDetailProduk() {
       this.deleteProduk.append(
-        "id_detail_transaksi_produk",
+        "id_detailproduk",
         JSON.stringify(this.detailIdTransaksiProduksFiltered)
       );
       var uri = this.$apiUrl4 + "detailpenjualanproduk/" + "deleteMultiple";
@@ -1110,7 +1110,7 @@ export default {
       this.deleteDialog = true;
     },
     deleteRowDetailProduk(item) {
-      this.deleteId = item.id_detail_transaksi_produk;
+      this.deleteId = item.id_detailproduk;
       this.deleteDetailDialog = true;
     },
 
