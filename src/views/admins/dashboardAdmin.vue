@@ -79,7 +79,7 @@ export default {
         },
         {
           title: "Stok Produk",
-          icon: "mdi-package-variant-closed",
+          icon: "mdi-dropbox",
           route: "/admins/produk/Stok",
         },
         {
@@ -109,7 +109,7 @@ export default {
         },
         {
           title: "Laporan",
-          icon: "mdi-text",
+          icon: "mdi-file-pdf-outline",
           route: "/admins/pengadaan/LaporanPengadaan",
         },
         // { title: 'Customer', icon: 'mdi-account', route: '/admins/adminContents/customer_Admin'},

@@ -17,7 +17,7 @@
       <v-menu offset-y transition="slide-y-transition" bottom>
         <template v-slot:activator="{ on }">
           <v-btn flat slot="activator" v-on="on" text small color="primary">
-            <v-icon left small>mdi-file-document-box-outline</v-icon>
+            <v-icon left small>mdi-menu</v-icon>
             <span>Menu</span>
           </v-btn>
         </template>
@@ -72,13 +72,18 @@ export default {
       links: [
         { icon: "mdi-home", title: "Home", route: "/" },
         {
-          icon: "mdi-format-align-justify",
+          icon: "mdi-package-variant-closed",
           title: "Daftar Produk",
           route: "/views/DaftarProduk",
         },
         {
+          icon: "mdi-dog-service",
+          title: "Daftar Layanan",
+          route: "/views/DaftarLayanan",
+        },
+        {
           icon: "mdi-information",
-          title: "Tentang kami ",
+          title: "Developer Info ",
           route: "/views/about",
         },
       ],

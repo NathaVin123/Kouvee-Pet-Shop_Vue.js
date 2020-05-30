@@ -1,7 +1,7 @@
 <template v-slot:body="{ items }">
   <div class="dashboard">
     <v-container class="my-5">
-      <h1 class="text-md-center">Daftar Produk Kouvee Pet Shop</h1>
+      <h1 class="text-md-center">Daftar Layanan Kouvee Pet Shop</h1>
     </v-container>
     <v-container grid-list-md mb-0>
       <v-text-field
@@ -16,25 +16,17 @@
 
       <v-data-table
         :headers="headers"
-        :items="users"
+        :items="layanans"
         :search="keyword"
         :loading="load"
       >
         <template v-slot:body="{ items }">
           <tbody>
-            <tr v-for="(item, index) in items" :key="item.id_produk">
+            <tr v-for="(item, index) in items" :key="item.id_layanan">
               <td>{{ index + 1 }}</td>
-              <v-img
-                :src="$apiUrl5 + 'produk/' + item.gambar"
-                contain
-                class="white"
-                max-height="100"
-                max-width="100"
-              />
-              <td class="subtitle-1 font-weight-bold">{{ item.nama_produk }}</td>
-              <td>{{ item.harga_produk }}</td>
-              <td>{{ item.stok_produk }}</td>
-              <td>{{ item.satuan_produk }}</td>
+              <td class="subtitle-1 font-weight-bold">
+                {{ item.nama_layanan }}
+              </td>
             </tr>
           </tbody>
         </template>
@@ -55,29 +47,13 @@ export default {
           value: "index",
         },
         {
-          text: "Gambar Produk",
-          value: "gambar",
-        },
-        {
-          text: "Nama Produk",
-          value: "nama_produk",
-        },
-        {
-          text: "Harga Produk",
-          value: "harga_produk",
-        },
-        {
-          text: "Jumlah Stok",
-          value: "stok_produk",
-        },
-        {
-          text: "Satuan Produk",
-          value: "satuan_produk",
+          text: "Nama Layanan",
+          value: "nama_layanan",
         },
       ],
       signin: [{ text: "Home", route: "/views/signin" }],
       signup: [{ text: "Home", route: "/views/signup" }],
-      users: [],
+      layanans: [],
       snackbar: false,
       color: null,
       text: "",
@@ -96,14 +72,21 @@ export default {
   },
   methods: {
     getData() {
-      var uri = this.$apiUrl4 + "/produk";
+      var uri = this.$apiUrl4 + "layananharga/getWithJoin";
       this.$http.get(uri).then((response) => {
-        this.users = response.data.message;
+        this.hargalayanans = response.data.message;
+      });
+    },
+    getLayanan() {
+      var uri = this.$apiUrl4 + "Layanan";
+      this.$http.get(uri).then((response) => {
+        this.layanans = response.data.message;
       });
     },
   },
   mounted() {
     this.getData();
+    this.getLayanan();
   },
 };
 </script>

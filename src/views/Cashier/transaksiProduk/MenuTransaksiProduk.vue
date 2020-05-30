@@ -227,7 +227,7 @@
                     @keyup="getHargaEditProduk(), setTotalEditProduk()"
                     @change="getHargaEditProduk(), setTotalEditProduk()"
                     item-value="id_produk"
-                    item-text="nama"
+                    item-text="nama_produk"
                     label="Nama Produk*"
                     outlined
                     color="purple"

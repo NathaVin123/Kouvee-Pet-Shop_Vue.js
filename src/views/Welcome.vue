@@ -1,135 +1,84 @@
 <template>
-  <div class="mt-5">
-    <v-container class="my-5">
-      <v-carousel
-        cycle
-        height="350"
-        hide-delimiter-background
-        show-arrows-on-hover
-        interval:3000
+  <div>
+    <v-carousel
+      cycle
+      height="768"
+      hide-delimiter-background
+      show-arrows-on-hover
+    >
+      <v-carousel-item
+        v-for="(item, i) in colors"
+        :key="i"
+        :src="item.src"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+        class="image"
       >
-        <v-carousel-item v-for="(slide, i) in slides" :key="i">
-          <v-sheet :color="colors[i]" height="100%">
-            <v-row class="fill-height" align="center" justify="center">
-              <center>
-                <div class="display-1">{{ slide }}</div>
-              </center>
-            </v-row>
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel>
-    </v-container>
+      </v-carousel-item>
+    </v-carousel>
     <div class="mt-8">
       <v-container class="my-5">
-        <h1 class="subheading grey--text">
-          <p class="text-center">Apa itu Kouvee Pet Shop ?</p>
+        <h1>
+          <p class="display-2 text-center font-weight-bold">
+            Selamat Datang di Kouvee Pet Shop
+          </p>
         </h1>
-        <br />Kouvee Pet Shop merupakan pet shop ternama di yogyakarta. Kami
-        menyediakan berbagai macam produk dan layanan untuk hewan kesayangan
-        Anda.
+        <br />
+        <p class="text-justify subtitle-1">
+          Kouvee Pet Shop merupakan sebuah toko hewan yang sudah berdiri sejak
+          tahun 2018 menyediakan produk dan jasa layanan yang berada di Kota
+          Yogyakarta. Kouvee Pet Shop menyediakan berbagai macam produk untuk
+          hewan kesayangan anda seperti makanan, aksesoris, perlengkapan dan
+          lain-lain sesuai kebutuhan hewan kesayangan anda. Selain menjual
+          berbagai macam produk, Kouvee Pet Shop juga menyediakan jasa layanan
+          seperti grooming dan penitipan hewan. Kouvee Pet Shop bekerja sama
+          dengan beberapa supplier dalam penyediaan produk yang 10 dijual.
+          Kouvee Pet Shop memiliki lebih dari 15 pegawai dan juga memiliki lebih
+          dari 50 konsumen 11 tetap.
+        </p>
+        <br />
+        <p class="text-center headline font-weight-bold">
+          Lokasi Kouvee Pet Shop:
+          <br />
+          <br />
+        </p>
+        <p class="text-center title font-weight-bold">
+          Jl. Moses Gatotkaca No. 22 Yogyakarta 55281
+          <br />
+          No Telepon : (0274) 357735
+        </p>
       </v-container>
-      <!-- <v-container class="my-5">
-            You can also add lyrics that are not yet on LyricLibs, and your friends can also see the lyrics you have made. LyricLibs will faithfully accompany when listening to your song. Because life needs words.
-      </v-container>-->
     </div>
     <div class="mt-6">
       <v-container class="my-5">
-        <v-card color="#385F73" dark mt-5>
+        <v-card color="#1565C0" dark mt-5>
           <center>
             <v-container class="my-5">
-              <h1 class="subheading grey--text">
+              <h1>
                 <p class="text-center">
-                  Nikmati Berbagai Layanan Kouvee Pet Shop
+                  Nikmati Berbagai Produk dan Layanan
+                  <br />dari <br />Kouvee Pet Shop
                 </p>
               </h1>
-              <br />Currently KouveePetShop is still in the development stage,
-              to enjoy it you don't need to pay for it. To support us, write in
-              the comments column what is still a weakness of the KouveePetShop
-              website. We are very happy and thankful, because of all of you we
-              can continue to accompany you in listening to music.
+              <p class="text-center subtitle-1">
+                Kouvee Pet Shop memiliki berbagai produk dan layanan terbaik
+                untuk Anda dan hewan peliharaan anda. Pengalaman kami selama ini
+                membuat pelayanan kami semakin baik dan mendapatkan respon
+                positif dari customer kami. Dengan motto
+                <b>"Caring Your Beloving Pet"</b> kami siap memberikan yang
+                terbaik untuk Anda. Jika Anda ingin melihat produk dan layanan
+                yang kami sediakan silakan pilih pada tombol menu.
+              </p>
               <br />
-              <br />
-              <!-- <v-btn
-                v-for="item in dashboard"
-                :key="item.text" 
-                text small color="warning"
-                class="mr-4"
-                router :to="item.route"
-              >FIND THE LYRICS</v-btn>-->
             </v-container>
           </center>
         </v-card>
       </v-container>
     </div>
-    <!-- <v-container grid-list-md mb-0>
-        <br><br>
-        <center>
-            <h1 class="subheading grey--text"><p class="text-center">COMMENT</p></h1>  
-        </center>       
-        <v-layout row wrap style="margin:10px">   
-          <v-flex xs6>
-          </v-flex>        
-          <v-flex xs6 class="text-right">               
-              <v-btn            
-                depressed               
-                dark               
-                rounded               
-                style="text-transform: none !important;"               
-                color = "blue accent-3"               
-                @click="dialog = true"               
-                >               
-                <v-icon size="18" >mdi-pencil-plus</v-icon>                   
-                    Add Comment              
-              </v-btn>           
-          </v-flex>           
-          <v-flex xs6 class="text-right">      
-          </v-flex>         
-        </v-layout> 
-        <v-data-table             
-            :headers="headers"             
-            :items="users"               
-            :loading="load"           
-            >             
-              <template v-slot:body="{ items }">               
-                <tbody>                 
-                  <tr v-for="(item) in items" :key="item.id">                   
-                    <td>{{ item.name }}</td>                   
-                    <td>{{ item.comment}}</td>               
-                  </tr>               
-                </tbody>             
-            </template>           
-        </v-data-table>   
-    </v-container>
-    <v-dialog v-model="dialog" persistent max-width="600px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">Add Comment</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field label="Name" v-model="form.name" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Comment" v-model="form.comment"></v-text-field>
-              </v-col>
-              
-            </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="setForm()">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>-->
-
     <v-footer padless dark>
       <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — Kouvee Pet Shop
-        <strong>Made with ❤ by P3L G 3</strong>
+        ©️ {{ new Date().getFullYear() }} Kouvee Pet Shop <br />
+        <strong>Dibuat dengan 💖 oleh Kelompok 3 P3L G</strong>
       </v-col>
     </v-footer>
   </div>
@@ -153,6 +102,28 @@ export default {
           text: "Comment",
           value: "artist",
           sortable: false,
+        },
+      ],
+      colors: [
+        {
+          src:
+            "https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+        },
+        {
+          src:
+            "https://www.whiskasindonesia.com/Content/img/products/kitten.jpg",
+        },
+        {
+          src:
+            "https://www.whiskasindonesia.com/Content/img/products/7years.jpg",
+        },
+        {
+          src:
+            "https://images.unsplash.com/photo-1488015795646-7e22a773d72a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+        },
+        {
+          src:
+            "https://images.unsplash.com/photo-1525253086316-d0c936c814f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         },
       ],
       users: [],

@@ -88,6 +88,11 @@ export default new Router({
           component: loadViewBefore("DaftarProduk"),
         },
         {
+          path: "/views/DaftarLayanan",
+          name: "DaftarLayanan",
+          component: loadViewBefore("DaftarLayanan"),
+        },
+        {
           path: "/views/signin",
           name: "SignIn",
           component: loadViewBefore("SignIn"),
@@ -104,52 +109,52 @@ export default new Router({
         },
       ],
     },
-    {
-      path: "/views/users",
-      component: navbarAfterLogin,
-      children: [
-        {
-          path: "/views/users",
-          name: "Welcome",
-          component: loadViewAfter("Welcome"),
-        },
-        {
-          path: "/views/users/produkUser",
-          name: "produkUser",
-          component: loadViewAfter("produkUser"),
-        },
-        {
-          path: "/views/users/layananUser",
-          name: "layananUser",
-          component: loadViewAfter("layananUser"),
-        },
-        {
-          path: "/views/users/transaksiLayananCS",
-          name: "transaksiLayananCS",
-          component: loadViewAfter("transaksiLayananCS"),
-        },
-        {
-          path: "/views/users/transaksiProdukCS",
-          name: "transaksiProdukCS",
-          component: loadViewAfter("transaksiProdukCS"),
-        },
-        {
-          path: "/views/users/pembayaranProdukKasir",
-          name: "pembayaranProdukKasir",
-          component: loadViewAfter("pembayaranProdukKasir"),
-        },
-        {
-          path: "/views/users/pembayaranLayananKasir",
-          name: "pembayaranLayananKasir",
-          component: loadViewAfter("pembayaranLayananKasir"),
-        },
-        {
-          path: "/views/users/aboutUser",
-          name: "aboutUser",
-          component: loadViewAfter("About"),
-        },
-      ],
-    },
+    // {
+    //   path: "/views/users",
+    //   component: navbarAfterLogin,
+    //   children: [
+    //     {
+    //       path: "/views/users",
+    //       name: "Welcome",
+    //       component: loadViewAfter("Welcome"),
+    //     },
+    //     {
+    //       path: "/views/users/produkUser",
+    //       name: "produkUser",
+    //       component: loadViewAfter("produkUser"),
+    //     },
+    //     {
+    //       path: "/views/users/layananUser",
+    //       name: "layananUser",
+    //       component: loadViewAfter("layananUser"),
+    //     },
+    //     {
+    //       path: "/views/users/transaksiLayananCS",
+    //       name: "transaksiLayananCS",
+    //       component: loadViewAfter("transaksiLayananCS"),
+    //     },
+    //     {
+    //       path: "/views/users/transaksiProdukCS",
+    //       name: "transaksiProdukCS",
+    //       component: loadViewAfter("transaksiProdukCS"),
+    //     },
+    //     {
+    //       path: "/views/users/pembayaranProdukKasir",
+    //       name: "pembayaranProdukKasir",
+    //       component: loadViewAfter("pembayaranProdukKasir"),
+    //     },
+    //     {
+    //       path: "/views/users/pembayaranLayananKasir",
+    //       name: "pembayaranLayananKasir",
+    //       component: loadViewAfter("pembayaranLayananKasir"),
+    //     },
+    //     {
+    //       path: "/views/users/aboutUser",
+    //       name: "aboutUser",
+    //       component: loadViewAfter("About"),
+    //     },
+    //   ],
+    // },
     {
       path: "/admins/dashboardAdmin",
       component: dashboardAdmin,
