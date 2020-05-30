@@ -32,14 +32,14 @@
           lain-lain sesuai kebutuhan hewan kesayangan anda. Selain menjual
           berbagai macam produk, Kouvee Pet Shop juga menyediakan jasa layanan
           seperti grooming dan penitipan hewan. Kouvee Pet Shop bekerja sama
-          dengan beberapa supplier dalam penyediaan produk yang dijual.
-          Kouvee Pet Shop memiliki lebih dari 15 pegawai dan juga memiliki lebih
-          dari 50 konsumen tetap.
+          dengan beberapa supplier dalam penyediaan produk yang dijual. Kouvee
+          Pet Shop memiliki lebih dari 15 pegawai dan juga memiliki lebih dari
+          50 konsumen tetap.
         </p>
         <br />
         <p class="text-center headline font-weight-bold">
           Lokasi Kouvee Pet Shop:
-          <br/>
+          <br />
           --------------------------------------------
           <br />
         </p>

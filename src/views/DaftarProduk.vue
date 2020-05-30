@@ -1,6 +1,6 @@
 <template v-slot:body="{ items }">
   <div class="dashboard">
-    <br/>
+    <br />
     <v-container class="mt-12">
       <h1 class="text-md-center mt-12">Daftar Produk Kouvee Pet Shop</h1>
     </v-container>
@@ -32,7 +32,9 @@
                 max-height="100"
                 max-width="100"
               />
-              <td class="subtitle-1 font-weight-bold">{{ item.nama_produk }}</td>
+              <td class="subtitle-1 font-weight-bold">
+                {{ item.nama_produk }}
+              </td>
               <td>{{ item.harga_produk }}</td>
               <td>{{ item.stok_produk }}</td>
               <td>{{ item.satuan_produk }}</td>

@@ -35,10 +35,9 @@
       </h2>
       <p class="text-center">
         Kami adalah mahasiswa prodi Informatika Universitas Atma Jaya Yogyakarta
-        yang sedang membuat proyek untuk mata kuliah 
-        <br/>
-        Projek Pengembangan
-        Perangkat Lunak
+        yang sedang membuat proyek untuk mata kuliah
+        <br />
+        Projek Pengembangan Perangkat Lunak
       </p>
       <br />
     </v-container>
@@ -64,8 +63,8 @@
     </v-container>
     <v-footer padless dark>
       <v-col class="text-center" cols="12">
-        {{ new Date().getFullYear() }} — Kouvee Pet Shop
-        <strong>Made with ❤ by P3L G 3</strong>
+        ©️ {{ new Date().getFullYear() }} Kouvee Pet Shop <br />
+        <strong>Dibuat dengan 💖 oleh Kelompok 3 P3L G</strong>
       </v-col>
     </v-footer>
   </div>
