@@ -33,7 +33,7 @@
                             bottom=""
                             rounded=""
                             small
-                            color="primary"
+                            color="green accent-3"
                             @click="dialogPengadaanBulanan = true"
                           >
                             <v-icon>mdi-calendar</v-icon>
@@ -68,7 +68,7 @@
                             bottom=""
                             rounded=""
                             small
-                            color="primary"
+                            color="green accent-3"
                             @click="dialogPengadaanTahunan = true"
                           >
                             <v-icon>mdi-calendar</v-icon>
@@ -103,7 +103,7 @@
                             bottom=""
                             rounded=""
                             small
-                            color="primary"
+                            color="green accent-3"
                             @click="dialogPendapatanBulanan = true"
                           >
                             <v-icon>mdi-calendar</v-icon>
@@ -138,7 +138,7 @@
                             bottom=""
                             rounded=""
                             small
-                            color="primary"
+                            color="green accent-3"
                             @click="dialogPendapatanTahunan = true"
                           >
                             <v-icon>mdi-calendar</v-icon>
@@ -172,7 +172,7 @@
                             bottom=""
                             rounded=""
                             small
-                            color="primary"
+                            color="green accent-3"
                             @click="dialogProdukTerlaris = true"
                           >
                             <v-icon>mdi-calendar</v-icon>
@@ -206,7 +206,7 @@
                             bottom=""
                             rounded=""
                             small
-                            color="primary"
+                            color="green accent-3"
                             @click="dialogLayananTerlaris = true"
                           >
                             <v-icon>mdi-calendar</v-icon>
@@ -288,6 +288,55 @@
                         color="blue darken-1"
                         text
                         @click="cekKosongLaporanPengadaan(date1)"
+                        >Save</v-btn
+                      >
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+              <!-- -------------------------------------------------------------------------- -->
+              <v-row justify="center">
+                <v-dialog
+                  v-model="dialogPengadaanTahunan"
+                  persistent
+                  max-width="600px"
+                >
+                  <v-card>
+                    <v-card-title>
+                      <span class="headline">Tahun Pengadaan</span>
+                    </v-card-title>
+                    <v-card-text>
+                      <v-container>
+                        <v-row>
+                          <v-col cols="12">
+                            <v-text-field
+                              outlined
+                              type="text"
+                              class="form-control"
+                              placeholder="Masukan tahun pengadaan"
+                              :maxlength="max"
+                              v-model="date4"
+                              prepend-icon="mdi-calendar"
+                              counter="4"
+                              @input="onlyNumbers"
+                            />
+                          </v-col>
+                        </v-row>
+                      </v-container>
+                      <small>*indicates required field</small>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="resetForm(), (dialogPengadaanTahunan = false)"
+                        >Close</v-btn
+                      >
+                      <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="cekKosongLaporanPengadaanTahunan(date4)"
                         >Save</v-btn
                       >
                     </v-card-actions>
@@ -422,6 +471,54 @@
               <!-- -------------------------------------------------------------------------- -->
               <v-row justify="center">
                 <v-dialog
+                  v-model="dialogLayananTerlaris"
+                  persistent
+                  max-width="600px"
+                >
+                  <v-card>
+                    <v-card-title>
+                      <span class="headline">Tahun Transaksi</span>
+                    </v-card-title>
+                    <v-card-text>
+                      <v-container>
+                        <v-row>
+                          <v-col cols="12">
+                            <v-text-field
+                              outlined
+                              type="text"
+                              class="form-control"
+                              placeholder="Masukan tahun transaksi"
+                              :maxlength="max"
+                              v-model="date3"
+                              prepend-icon="mdi-calendar"
+                              counter="4"
+                            />
+                          </v-col>
+                        </v-row>
+                      </v-container>
+                      <small>*indicates required field</small>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="resetForm(), (dialogLayananTerlaris = false)"
+                        >Close</v-btn
+                      >
+                      <v-btn
+                        color="blue darken-1"
+                        text
+                        @click="cekKosongLayananTerlaris(date3)"
+                        >Save</v-btn
+                      >
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-row>
+              <!-- -------------------------------------------------------------------------- -->
+              <v-row justify="center">
+                <v-dialog
                   v-model="dialogPendapatanTahunan"
                   persistent
                   max-width="600px"
@@ -537,6 +634,14 @@ export default {
         this.dialogProdukTerlaris = false;
       }
     },
+    cekKosongLayananTerlaris(param) {
+      if (param == null) {
+        this.dialogWarning = true;
+      } else {
+        this.cetakLayananTerlaris(param);
+        this.dialogLayananTerlaris = false;
+      }
+    },
     onlyNumbers: function () {
       this.message = this.message.replace(/[^0-9.]/g, "");
     },
@@ -546,6 +651,14 @@ export default {
       } else {
         this.cetakLaporanBulanan(param);
         this.dialogPengadaanBulanan = false;
+      }
+    },
+    cekKosongLaporanPengadaanTahunan(param) {
+      if (param == null) {
+        this.dialogWarning = true;
+      } else {
+        this.cetakLaporanTahunan(param);
+        this.dialogPengadaanTahunan = false;
       }
     },
     cekKosongPendapatanBulanan(param) {
@@ -570,6 +683,12 @@ export default {
       window.open(uri, "_blank");
       this.resetForm();
     },
+    cetakLaporanTahunan(pengadaanTahunan) {
+      var uri =
+        this.$apiUrl4 + "Laporan/laporanPengadaanTahunan/" + pengadaanTahunan;
+      window.open(uri, "_blank");
+      this.resetForm();
+    },
     cetakPendapatanBulanan(pendapatanBulanan) {
       var uri =
         this.$apiUrl4 + "Laporan/laporanPendapatanBulanan/" + pendapatanBulanan;
@@ -579,6 +698,12 @@ export default {
     cetakProdukTerlaris(produkTerlaris) {
       var uri =
         this.$apiUrl4 + "Laporan/laporanProdukTerlaris/" + produkTerlaris;
+      window.open(uri, "_blank");
+      this.resetForm();
+    },
+    cetakLayananTerlaris(layananTerlaris) {
+      var uri =
+        this.$apiUrl4 + "Laporan/laporanLayananTerlaris/" + layananTerlaris;
       window.open(uri, "_blank");
       this.resetForm();
     },
