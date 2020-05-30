@@ -11,7 +11,7 @@
           </v-tabs>
         </div>
         <div v-if="this.layananTab == 'layananTab-2'">
-          <h2 class="text-md-center">Data Transaksi Produk Kouvee Petshop</h2>
+          <h2 class="text-md-center">Data Transaksi Produk</h2>
           <v-layout row wrap style="margin: 10px;">
             <v-flex xs6 class="text-right">
               <v-text-field
@@ -72,7 +72,7 @@
           </v-data-table>
         </div>
         <div v-if="this.layananTab == 'layananTab-1'">
-          <h2 class="text-md-center">Data Transaksi Produk Kouvee Petshop</h2>
+          <h2 class="text-md-center">Data Transaksi Produk</h2>
           <v-layout row wrap style="margin: 10px;">
             <v-flex xs6 class="text-right">
               <v-text-field
@@ -238,7 +238,7 @@
                 <v-col cols="2">
                   <v-text-field
                     label="Jumlah*"
-                    v-model="formProduk.jumlah"
+                    v-model="formProduk.jml_transaksi_produk"
                     color="purple"
                     type="number"
                     outlined
@@ -392,9 +392,7 @@
                   <th class="text-left">Jumlah</th>
                   <th class="text-left">Total Harga</th>
                   <th class="text-left">Tanggal Dibuat</th>
-                  <th class="text-left">Dibuat Oleh</th>
                   <th class="text-left">Tanggal Diubah</th>
-                  <th class="text-left">Diubah Oleh</th>
                   <th v-if="detailItem.status_transaksi != 'Lunas'" class="text-left">
                     Aksi
                   </th>
@@ -407,9 +405,9 @@
                 >
                   <td>{{ item.id_detailproduk }}</td>
                   <td>{{ item.nama_produk }}</td>
-                  <td>{{ item.ukuran_hewan }}</td>
+                  <td>{{ item.id_ukuranHewan }}</td>
                   <td>{{ item.harga }}</td>
-                  <td>{{ item.jumlah }}</td>
+                  <td>{{ item.jml_transaksi_produk }}</td>
                   <td>{{ item.total_harga }}</td>
                   <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_at }}</td>
@@ -514,7 +512,7 @@
                       <h3>{{ "Jenis Hewan : " }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.jenis_hewan }}</h3>
+                      <h3>{{ detailItem.nama_jenisHewan }}</h3>
                     </td>
                   </tr>
                   <tr>
@@ -522,7 +520,7 @@
                       <h3>{{ "Nomor Telpon : " }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.telp }}</h3>
+                      <h3>{{ detailItem.noTelp_customer }}</h3>
                     </td>
                   </tr>
                   <tr v-if="this.layananTab == 'layananTab-2'">
@@ -752,9 +750,9 @@ export default {
       for (var i = 0; i < this.transaksiProduks.length; i++) {
         if (this.transaksiProduks[i].id_hewan == null) {
           this.transaksiProduks[i].nama_hewan = "-";
-          this.transaksiProduks[i].jenis_hewan = "-";
+          this.transaksiProduks[i].nama_jenisHewan = "-";
           this.transaksiProduks[i].nama_customer = "Guest";
-          this.transaksiProduks[i].telp = "-";
+          this.transaksiProduks[i].noTelp_customer = "-";
           this.transaksiProduks[i].diskon = "0";
         }
       }
@@ -822,7 +820,7 @@ export default {
         this.detilTransaksis[index].harga = response.data.message.harga;
         this.detilTransaksis[index].total_harga =
           this.detilTransaksis[index].harga *
-          this.detilTransaksis[index].jumlah;
+          this.detilTransaksis[index].jml_transaksi_produk;
       });
     },
     getHargaEditProduk() {
@@ -831,7 +829,7 @@ export default {
       this.$http.get(uri).then((response) => {
         this.formProduk.harga = response.data.message.harga;
         this.formProduk.total_harga =
-          this.formProduk.harga * this.formProduk.jumlah;
+          this.formProduk.harga * this.formProduk.jml_transaksi_produk;
       });
     },
 
@@ -842,11 +840,11 @@ export default {
     },
     setTotalEditProduk() {
       this.formProduk.total_harga =
-        this.formProduk.harga * this.formProduk.jumlah;
+        this.formProduk.harga * this.formProduk.jml_transaksi_produk;
     },
     setTotal(index) {
       this.detilTransaksis[index].total_harga =
-        this.detilTransaksis[index].harga * this.detilTransaksis[index].jumlah;
+        this.detilTransaksis[index].harga * this.detilTransaksis[index].jml_transaksi_produk;
     },
     setNewEditTotal() {
       this.formProduk.total = this.formProduk.subtotal - this.formProduk.diskon;
@@ -926,7 +924,7 @@ export default {
       this.detilJudulProduk = 0;
       this.dialogEditProduk = true;
       this.formProduk.id_produk = item.id_produk;
-      this.formProduk.jumlah = item.jumlah;
+      this.formProduk.jml_transaksi_produk = item.jml_transaksi_produk;
       this.formProduk.harga = item.harga;
       this.formProduk.total_harga = item.total_harga;
       this.formProduk.kode_penjualan_produk = item.kode_penjualan_produk;
@@ -984,7 +982,7 @@ export default {
     },
     updateDataDetilTransaksi() {
       this.user.append("id_produk", this.formProduk.id_produk);
-      this.user.append("jumlah", this.formProduk.jumlah);
+      this.user.append("jml_transaksi_produk", this.formProduk.jml_transaksi_produk);
       this.user.append("total_harga", this.formProduk.total_harga);
       this.user.append("modified_by", this.formProduk.modified_by);
       var uri =
@@ -1131,7 +1129,7 @@ export default {
       this.user.append("id_produk", this.formProduk.id_produk);
       this.user.append("created_by", this.formProduk.created_by);
       this.user.append("total_harga", this.formProduk.total_harga);
-      this.user.append("jumlah", this.formProduk.jumlah);
+      this.user.append("jml_transaksi_produk", this.formProduk.jml_transaksi_produk);
       var uri = this.$apiUrl4 + "detailpenjualanproduk";
       this.load = true;
       this.$http

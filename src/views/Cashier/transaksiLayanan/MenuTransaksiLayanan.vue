@@ -11,7 +11,7 @@
           </v-tabs>
         </div>
         <div v-if="this.layananTab == 'layananTab-2'">
-          <h2 class="text-md-center">Data Transaksi Layanan Kouvee Petshop</h2>
+          <h2 class="text-md-center">Data Transaksi Layanan</h2>
           <v-layout row wrap style="margin: 10px;">
             <v-flex xs6 class="text-right">
               <v-text-field
@@ -71,7 +71,7 @@
           </v-data-table>
         </div>
         <div v-if="this.layananTab == 'layananTab-1'">
-          <h2 class="text-md-center">Data Transaksi Layanan Kouvee Petshop</h2>
+          <h2 class="text-md-center">Data Transaksi Layanan</h2>
           <v-layout row wrap style="margin: 10px;">
             <v-flex xs6 class="text-right">
               <v-text-field
@@ -218,16 +218,14 @@
             <v-simple-table height="50%">
               <thead>
                 <tr>
-                  <th class="text-left">Id Detail Transaksi</th>
+                  <th class="text-left">Id Detil Layanan</th>
                   <th class="text-left">Nama Layanan</th>
                   <th class="text-left">Ukuran Hewan</th>
                   <th class="text-left">Harga Satuan</th>
                   <th class="text-left">Jumlah</th>
                   <th class="text-left">Total Harga</th>
                   <th class="text-left">Tanggal Dibuat</th>
-                  <th class="text-left">Dibuat Oleh</th>
                   <th class="text-left">Tanggal Diubah</th>
-                  <th class="text-left">Diubah Oleh</th>
                   <th v-if="detailItem.status_transaksi != 'Lunas'" class="text-left">
                     Aksi
                   </th>
@@ -236,13 +234,13 @@
               <tbody>
                 <tr
                   v-for="item in filteredItems(detailItem)"
-                  :key="item.id_detail_transaksi_layanan"
+                  :key="item.id_detaillayanan"
                 >
-                  <td>{{ item.id_detail_transaksi_layanan }}</td>
+                  <td>{{ item.id_detaillayanan }}</td>
                   <td>{{ item.nama_layanan }}</td>
-                  <td>{{ item.ukuran_hewan }}</td>
+                  <td>{{ item.id_ukuranHewan }}</td>
                   <td>{{ item.harga }}</td>
-                  <td>{{ item.jumlah }}</td>
+                  <td>{{ item.jml_transaksi_layanan }}</td>
                   <td>{{ item.total_harga }}</td>
                   <td>{{ item.createLog_at }}</td>
                   <td>{{ item.updateLog_at }}</td>
@@ -347,7 +345,7 @@
                       <h3>{{ "Jenis Hewan : " }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.jenis_hewan }}</h3>
+                      <h3>{{ detailItem.nama_jenisHewan }}</h3>
                     </td>
                   </tr>
                   <tr>
@@ -355,7 +353,7 @@
                       <h3>{{ "Nomor Telpon : " }}</h3>
                     </td>
                     <td>
-                      <h3>{{ detailItem.telp }}</h3>
+                      <h3>{{ detailItem.noTelp_customer }}</h3>
                     </td>
                   </tr>
                   <tr v-if="this.layananTab == 'layananTab-2'">
@@ -553,7 +551,7 @@
                 <v-col cols="2">
                   <v-text-field
                     label="Jumlah*"
-                    v-model="formLayanan.jumlah"
+                    v-model="formLayanan.jml_transaksi_layanan"
                     color="purple"
                     type="number"
                     outlined
@@ -762,9 +760,9 @@ export default {
       for (var i = 0; i < this.transaksiLayanans.length; i++) {
         if (this.transaksiLayanans[i].id_hewan == null) {
           this.transaksiLayanans[i].nama_hewan = "-";
-          this.transaksiLayanans[i].jenis_hewan = "-";
+          this.transaksiLayanans[i].nama_jenisHewan = "-";
           this.transaksiLayanans[i].nama_customer = "Guest";
-          this.transaksiLayanans[i].telp = "-";
+          this.transaksiLayanans[i].noTelp_customer = "-";
           this.transaksiLayanans[i].diskon = "0";
         }
       }
@@ -845,7 +843,7 @@ export default {
         id_customer_service: sessionStorage.getItem("Id"),
         id_transaksi_produk: "",
         id_produk: "",
-        jumlah: "",
+        jml_transaksi_layanan: "",
         total_harga: "",
         harga: "",
         createLog_at: "",
@@ -870,7 +868,7 @@ export default {
         this.detilLayanans[index].id_harga_layanan =
           response.data.message.id_harga_layanan;
         this.detilLayanans[index].total_harga =
-          this.detilLayanans[index].harga * this.detilLayanans[index].jumlah;
+          this.detilLayanans[index].harga * this.detilLayanans[index].jml_transaksi_layanan;
       });
     },
     setHargaLayananEdit() {
@@ -886,13 +884,13 @@ export default {
         this.formLayanan.id_harga_layanan =
           response.data.message.id_harga_layanan;
         this.formLayanan.total_harga =
-          this.formLayanan.harga * this.formLayanan.jumlah;
+          this.formLayanan.harga * this.formLayanan.jml_transaksi_layanan;
         console.log(this.formLayanan.id_harga_layanan);
       });
     },
     setSubtotalEditLayanan() {
       this.formLayanan.total_harga =
-        this.formLayanan.harga * this.formLayanan.jumlah;
+        this.formLayanan.harga * this.formLayanan.jml_transaksi_layanan;
     },
     setNewEditTotal2() {
       this.formLayanan.total =
@@ -949,7 +947,7 @@ export default {
         for (var i = 0; i < this.detailIdTransaksiLayanans.length; i++) {
           this.detailIdTransaksiLayanansFiltered[
             i
-          ] = this.detailIdTransaksiLayanans[i].id_detail_transaksi_layanan;
+          ] = this.detailIdTransaksiLayanans[i].id_detaillayanan;
         }
         console.log(this.detailIdTransaksiLayanansFiltered);
       });
@@ -997,11 +995,11 @@ export default {
       this.dialogEditLayanan = true;
       this.formLayanan.id_layanan = item.id_layanan;
       this.formLayanan.id_ukuran_hewan = item.id_ukuran_hewan;
-      this.formLayanan.jumlah = item.jumlah;
+      this.formLayanan.jml_transaksi_layanan = item.jml_transaksi_layanan;
       this.formLayanan.total_harga = item.total_harga;
       this.formLayanan.id_transaksi_Layanan = item.kode_penjualan_layanan;
       console.log(this.formLayanan.id_transaksi_Layanan);
-      this.updatedId = item.id_detail_transaksi_layanan;
+      this.updatedId = item.id_detaillayanan;
     },
     editHandlerTransaksiLayanan(item) {
       this.typeInput = "edit";
@@ -1060,7 +1058,7 @@ export default {
     updateDataDetilLayanan() {
       this.user2.append("id_harga_layanan", this.formLayanan.id_harga_layanan);
       this.user2.append("id_layanan", this.formLayanan.id_Layanan);
-      this.user2.append("jumlah", this.formLayanan.jumlah);
+      this.user2.append("jml_transaksi_layanan", this.formLayanan.jml_transaksi_layanan);
       this.user2.append("total_harga", this.formLayanan.total_harga);
       this.user2.append("modified_by", this.formLayanan.modified_by);
       var uri =
@@ -1090,7 +1088,7 @@ export default {
     },
     deleteMultipleDataDetailLayanan() {
       this.deleteLayanan.append(
-        "id_detail_transaksi_layanan",
+        "id_detaillayanan",
         JSON.stringify(this.detailIdTransaksiLayanansFiltered)
       );
       var uri = this.$apiUrl4 + "detailtransaksilayanan/" + "deleteMultiple";
@@ -1138,7 +1136,7 @@ export default {
       this.deleteDialog = true;
     },
     deleteRowDetailLayanan(item) {
-      this.deleteId = item.id_detail_transaksi_layanan;
+      this.deleteId = item.id_detaillayanan;
       this.deleteDetailDialog = true;
     },
     setFormProduk() {
@@ -1168,7 +1166,7 @@ export default {
       );
       this.user2.append("id_harga_layanan", this.formLayanan.id_harga_layanan);
       this.user2.append("id_layanan", this.formLayanan.id_Layanan);
-      this.user2.append("jumlah", this.formLayanan.jumlah);
+      this.user2.append("jml_transaksi_layanan", this.formLayanan.jml_transaksi_layanan);
       this.user2.append("total_harga", this.formLayanan.total_harga);
       this.user2.append("created_by", this.formLayanan.created_by);
       var uri = this.$apiUrl4 + "detailtransaksilayanan";
