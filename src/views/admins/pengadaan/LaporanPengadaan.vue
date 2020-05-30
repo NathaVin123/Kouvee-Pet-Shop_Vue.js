@@ -17,9 +17,8 @@
                           Laporan Pengadaan Bulanan
                         </h2>
                         <div class="text--primary">
-                          Mencetak laporan pengadaan sesuai bulan dan tahun yang
+                          Untuk mencetak laporan pengadaan sesuai bulan dan tahun yang
                           dipilih.<br />
-                          Silahkan masukan bulan dan tahun pengadaan.
                         </div>
                       </v-card-text>
                       <v-card-actions>
@@ -29,7 +28,7 @@
                             absolute
                             class="white--text"
                             fab
-                            right
+                            left
                             bottom=""
                             rounded=""
                             small
@@ -52,9 +51,8 @@
                           Laporan Pengadaan Tahunan
                         </h2>
                         <div class="text--primary">
-                          Mencetak laporan pengadaan sesuai tahun yang
+                          Untuk mencetak laporan pengadaan sesuai tahun yang
                           dipilih.<br />
-                          Silahkan masukan tahun pengadaan.
                         </div>
                       </v-card-text>
                       <v-card-actions>
@@ -64,7 +62,7 @@
                             absolute
                             class="white--text"
                             fab
-                            right
+                            left
                             bottom=""
                             rounded=""
                             small
@@ -87,9 +85,8 @@
                           Laporan Pendapatan Bulanan
                         </h2>
                         <div class="text--primary">
-                          Mencetak laporan Pendapatan sesuai bulan dan tahun
+                          Untuk mencetak laporan Pendapatan sesuai bulan dan tahun
                           yang dipilih.<br />
-                          Silahkan masukan bulan dan tahun pengadaan.
                         </div>
                       </v-card-text>
                       <v-card-actions>
@@ -99,7 +96,7 @@
                             absolute
                             class="white--text"
                             fab
-                            right
+                            left
                             bottom=""
                             rounded=""
                             small
@@ -122,9 +119,8 @@
                           Laporan Pendapatan Tahunan
                         </h2>
                         <div class="text--primary">
-                          Mencetak laporan Pendapatan sesuai tahun yang
+                          Untuk mencetak laporan Pendapatan sesuai tahun yang
                           dipilih.<br />
-                          Silahkan masukan tahun pengadaan.
                         </div>
                       </v-card-text>
                       <v-card-actions>
@@ -134,7 +130,7 @@
                             absolute
                             class="white--text"
                             fab
-                            right
+                            left
                             bottom=""
                             rounded=""
                             small
@@ -157,8 +153,7 @@
                           Laporan Produk Terlaris
                         </h2>
                         <div class="text--primary">
-                          Mencetak laporan produk terlaris dalam satu tahun.<br />
-                          Silahkan masukan tahun untuk mencetak.
+                          Untuk mencetak laporan produk terlaris dalam satu tahun.<br />
                         </div>
                       </v-card-text>
                       <v-card-actions>
@@ -168,7 +163,7 @@
                             absolute
                             class="white--text"
                             fab
-                            right
+                            left
                             bottom=""
                             rounded=""
                             small
@@ -191,8 +186,7 @@
                           Laporan Layanan Terlaris
                         </h2>
                         <div class="text--primary">
-                          Mencetak laporan layanan terlaris dalam satu tahun.<br />
-                          Silahkan masukan tahun untuk mencetak.
+                          Untuk mencetak laporan layanan terlaris dalam satu tahun.<br />
                         </div>
                       </v-card-text>
                       <v-card-actions>
@@ -202,7 +196,7 @@
                             absolute
                             class="white--text"
                             fab
-                            right
+                            left
                             bottom=""
                             rounded=""
                             small
@@ -226,7 +220,7 @@
                 >
                   <v-card>
                     <v-card-title>
-                      <span class="headline">Tanggal Pengadaan</span>
+                      <span class="headline">Silakan pilih Tanggal Pengadaan</span>
                     </v-card-title>
                     <v-card-text>
                       <v-container>
@@ -303,7 +297,7 @@
                 >
                   <v-card>
                     <v-card-title>
-                      <span class="headline">Tahun Pengadaan</span>
+                      <span class="headline">Silakan pilih Tahun Pengadaan</span>
                     </v-card-title>
                     <v-card-text>
                       <v-container>
@@ -352,7 +346,7 @@
                 >
                   <v-card>
                     <v-card-title>
-                      <span class="headline">Tanggal Pendapatan</span>
+                      <span class="headline">Silakan pilih Tanggal Pendapatan</span>
                     </v-card-title>
                     <v-card-text>
                       <v-container>
@@ -429,7 +423,7 @@
                 >
                   <v-card>
                     <v-card-title>
-                      <span class="headline">Tahun Transaksi</span>
+                      <span class="headline">Silakan pilih Tahun Transaksi</span>
                     </v-card-title>
                     <v-card-text>
                       <v-container>
@@ -477,7 +471,7 @@
                 >
                   <v-card>
                     <v-card-title>
-                      <span class="headline">Tahun Transaksi</span>
+                      <span class="headline">Silakan pilih Tahun Transaksi</span>
                     </v-card-title>
                     <v-card-text>
                       <v-container>
@@ -525,7 +519,7 @@
                 >
                   <v-card>
                     <v-card-title>
-                      <span class="headline">Tahun Pendapatan</span>
+                      <span class="headline">Silakan pilih Tahun Pendapatan</span>
                     </v-card-title>
                     <v-card-text>
                       <v-container>
@@ -570,13 +564,13 @@
                 <v-dialog width="500" v-model="dialogWarning">
                   <v-card>
                     <v-card-title class="headline Red lighten-2" primary-title
-                      >Data Harus Diisi Semua !</v-card-title
+                      >Data Harus Diisi</v-card-title
                     >
 
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn color="primary" text @click="dialogWarning = false"
-                        >Kembali</v-btn
+                        >Close</v-btn
                       >
                     </v-card-actions>
                   </v-card>

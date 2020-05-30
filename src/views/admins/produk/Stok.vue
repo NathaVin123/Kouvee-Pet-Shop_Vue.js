@@ -97,8 +97,6 @@
       };
     },
 
-    
-
     methods: {
      
       getData() {
