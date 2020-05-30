@@ -393,7 +393,10 @@
                   <th class="text-left">Total Harga</th>
                   <th class="text-left">Tanggal Dibuat</th>
                   <th class="text-left">Tanggal Diubah</th>
-                  <th v-if="detailItem.status_transaksi != 'Lunas'" class="text-left">
+                  <th
+                    v-if="detailItem.status_transaksi != 'Lunas'"
+                    class="text-left"
+                  >
                     Aksi
                   </th>
                 </tr>
@@ -844,7 +847,8 @@ export default {
     },
     setTotal(index) {
       this.detilTransaksis[index].total_harga =
-        this.detilTransaksis[index].harga * this.detilTransaksis[index].jml_transaksi_produk;
+        this.detilTransaksis[index].harga *
+        this.detilTransaksis[index].jml_transaksi_produk;
     },
     setNewEditTotal() {
       this.formProduk.total = this.formProduk.subtotal - this.formProduk.diskon;
@@ -958,7 +962,10 @@ export default {
       );
       console.log(detailItem.kode_penjualan_produk);
       var uri =
-        this.$apiUrl4 + "transaksipenjualanproduk/" + "updateStatus/" + this.updatedId;
+        this.$apiUrl4 +
+        "transaksipenjualanproduk/" +
+        "updateStatus/" +
+        this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.transaksiProduk)
@@ -982,7 +989,10 @@ export default {
     },
     updateDataDetilTransaksi() {
       this.user.append("id_produk", this.formProduk.id_produk);
-      this.user.append("jml_transaksi_produk", this.formProduk.jml_transaksi_produk);
+      this.user.append(
+        "jml_transaksi_produk",
+        this.formProduk.jml_transaksi_produk
+      );
       this.user.append("total_harga", this.formProduk.total_harga);
       this.user.append("modified_by", this.formProduk.modified_by);
       var uri =
@@ -1016,7 +1026,11 @@ export default {
       this.detil.append("subtotal", this.formProduk.subtotal);
       this.detil.append("total", this.formProduk.total);
       this.detil.append("modified_by", this.formProduk.modified_by);
-      var uri = this.$apiUrl4 + "transaksipenjualanproduk/" + "update/" + this.updatedId;
+      var uri =
+        this.$apiUrl4 +
+        "transaksipenjualanproduk/" +
+        "update/" +
+        this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.detil)
@@ -1129,7 +1143,10 @@ export default {
       this.user.append("id_produk", this.formProduk.id_produk);
       this.user.append("created_by", this.formProduk.created_by);
       this.user.append("total_harga", this.formProduk.total_harga);
-      this.user.append("jml_transaksi_produk", this.formProduk.jml_transaksi_produk);
+      this.user.append(
+        "jml_transaksi_produk",
+        this.formProduk.jml_transaksi_produk
+      );
       var uri = this.$apiUrl4 + "detailpenjualanproduk";
       this.load = true;
       this.$http

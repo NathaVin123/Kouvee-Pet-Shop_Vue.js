@@ -226,7 +226,10 @@
                   <th class="text-left">Total Harga</th>
                   <th class="text-left">Tanggal Dibuat</th>
                   <th class="text-left">Tanggal Diubah</th>
-                  <th v-if="detailItem.status_transaksi != 'Lunas'" class="text-left">
+                  <th
+                    v-if="detailItem.status_transaksi != 'Lunas'"
+                    class="text-left"
+                  >
                     Aksi
                   </th>
                 </tr>
@@ -645,8 +648,6 @@ export default {
       menu: false,
       on: "",
       submit: "",
-      link: "http://kouveepetshopapi.smithdev.xyz/index.php/StrukLayanan/",
-
       headers2: [
         {
           text: "No",
@@ -868,7 +869,8 @@ export default {
         this.detilLayanans[index].id_harga_layanan =
           response.data.message.id_harga_layanan;
         this.detilLayanans[index].total_harga =
-          this.detilLayanans[index].harga * this.detilLayanans[index].jml_transaksi_layanan;
+          this.detilLayanans[index].harga *
+          this.detilLayanans[index].jml_transaksi_layanan;
       });
     },
     setHargaLayananEdit() {
@@ -967,7 +969,10 @@ export default {
       );
       console.log(detailItem.kode_penjualan_layanan);
       var uri =
-        this.$apiUrl4 + "transaksipenjualanlayanan/" + "updateStatus/" + this.updatedId;
+        this.$apiUrl4 +
+        "transaksipenjualanlayanan/" +
+        "updateStatus/" +
+        this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.transaksiLayanan)
@@ -1032,7 +1037,11 @@ export default {
       this.detil2.append("subtotal", this.formLayanan.subtotal);
       this.detil2.append("total", this.formLayanan.total);
       this.detil2.append("modified_by", this.formLayanan.modified_by);
-      var uri = this.$apiUrl4 + "transaksipenjualanlayanan/" + "update/" + this.updatedId;
+      var uri =
+        this.$apiUrl4 +
+        "transaksipenjualanlayanan/" +
+        "update/" +
+        this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.detil2)
@@ -1058,7 +1067,10 @@ export default {
     updateDataDetilLayanan() {
       this.user2.append("id_harga_layanan", this.formLayanan.id_harga_layanan);
       this.user2.append("id_layanan", this.formLayanan.id_Layanan);
-      this.user2.append("jml_transaksi_layanan", this.formLayanan.jml_transaksi_layanan);
+      this.user2.append(
+        "jml_transaksi_layanan",
+        this.formLayanan.jml_transaksi_layanan
+      );
       this.user2.append("total_harga", this.formLayanan.total_harga);
       this.user2.append("modified_by", this.formLayanan.modified_by);
       var uri =
@@ -1166,7 +1178,10 @@ export default {
       );
       this.user2.append("id_harga_layanan", this.formLayanan.id_harga_layanan);
       this.user2.append("id_layanan", this.formLayanan.id_Layanan);
-      this.user2.append("jml_transaksi_layanan", this.formLayanan.jml_transaksi_layanan);
+      this.user2.append(
+        "jml_transaksi_layanan",
+        this.formLayanan.jml_transaksi_layanan
+      );
       this.user2.append("total_harga", this.formLayanan.total_harga);
       this.user2.append("created_by", this.formLayanan.created_by);
       var uri = this.$apiUrl4 + "detailtransaksilayanan";
@@ -1218,9 +1233,7 @@ export default {
     },
     cetakStruk(item) {
       var uri =
-        this.$apiUrl4 +
-        "Struk/transaksiLayanan/" +
-        item.kode_penjualan_layanan;
+        this.$apiUrl4 + "Struk/transaksiLayanan/" + item.kode_penjualan_layanan;
       // this.$http.get(uri).then(() => {
       //     this.snackbar = true;
       //     this.color = 'green';
