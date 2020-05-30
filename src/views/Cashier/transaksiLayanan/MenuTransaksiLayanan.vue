@@ -238,7 +238,7 @@
                 >
                   <td>{{ item.id_detaillayanan }}</td>
                   <td>{{ item.nama_layanan }}</td>
-                  <td>{{ item.id_ukuranHewan }}</td>
+                  <td>{{ item.nama_ukuranHewan }}</td>
                   <td>{{ item.harga }}</td>
                   <td>{{ item.jml_transaksi_layanan }}</td>
                   <td>{{ item.total_harga }}</td>

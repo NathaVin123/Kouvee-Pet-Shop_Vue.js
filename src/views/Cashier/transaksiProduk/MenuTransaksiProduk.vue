@@ -405,7 +405,7 @@
                 >
                   <td>{{ item.id_detailproduk }}</td>
                   <td>{{ item.nama_produk }}</td>
-                  <td>{{ item.id_ukuranHewan }}</td>
+                  <td>{{ item.nama_ukuranHewan }}</td>
                   <td>{{ item.harga }}</td>
                   <td>{{ item.jml_transaksi_produk }}</td>
                   <td>{{ item.total_harga }}</td>
