@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- untuk navbar-->
-    <v-app-bar app fixed clipped-left>
+    <v-app-bar fixed>
       <img
         src="../assets/AW419642_01.gif"
         style="width: 110px; height: 48px;"

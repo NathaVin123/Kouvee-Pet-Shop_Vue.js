@@ -1,7 +1,7 @@
 <template v-slot:body="{ items }">
-  <div class="dashboard">
-    <v-container class="my-5">
-      <h1 class="text-md-center">Daftar Produk Kouvee Pet Shop</h1>
+  <div class="dashboard mt-12">
+    <v-container class="mt-12">
+      <h1 class="text-md-center mt-12">Daftar Produk Kouvee Pet Shop</h1>
     </v-container>
     <v-container grid-list-md mb-0>
       <v-text-field

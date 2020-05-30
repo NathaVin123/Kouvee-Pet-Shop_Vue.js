@@ -47,7 +47,7 @@
       <br />
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1397.630617600131!2d110.41532473896422!3d-7.7796082313804185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59f1fb2f2b45%3A0x20986e2fe9c79cdd!2sUniversitas%20Atma%20Jaya%20Yogyakarta%20-%20Kampus%203%20Gedung%20Bonaventura%20Babarsari!5e0!3m2!1sid!2sid!4v1590827631830!5m2!1sid!2sid"
-          width="600"
+          width="1155"
           height="450"
           frameborder="0"
           style="border: 0;"
