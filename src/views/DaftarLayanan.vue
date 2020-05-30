@@ -1,5 +1,6 @@
 <template v-slot:body="{ items }">
-  <div class="dashboard mt-12">
+  <div class="dashboard">
+    <br/>
     <v-container class="mt-12">
       <h1 class="text-md-center mt-12">Daftar Layanan Kouvee Pet Shop</h1>
     </v-container>

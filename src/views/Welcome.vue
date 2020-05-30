@@ -39,7 +39,8 @@
         <br />
         <p class="text-center headline font-weight-bold">
           Lokasi Kouvee Pet Shop:
-          <br />
+          <br/>
+          --------------------------------------------
           <br />
         </p>
         <p class="text-center title font-weight-bold">
@@ -49,7 +50,7 @@
         </p>
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d988.2832793313931!2d110.39110782915002!3d-7.775706570875792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59c7c6c6c5d7%3A0x3aff6caee9cdb15b!2sJl.%20Moses%20Gatotkaca%20No.22%2C%20Mrican%2C%20Caturtunggal%2C%20Kec.%20Depok%2C%20Kabupaten%20Sleman%2C%20Daerah%20Istimewa%20Yogyakarta%2055281!5e0!3m2!1sid!2sid!4v1590846159230!5m2!1sid!2sid"
-          width="1155"
+          width="1160"
           height="300"
           frameborder="0"
           style="border: 0;"
