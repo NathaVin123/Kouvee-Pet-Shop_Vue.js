@@ -35,12 +35,16 @@
       </h2>
       <p class="text-center">
         Kami adalah mahasiswa prodi Informatika Universitas Atma Jaya Yogyakarta
+        yang sedang membuat proyek untuk mata kuliah 
+        <br/>
+        Projek Pengembangan
+        Perangkat Lunak
       </p>
       <br />
     </v-container>
 
     <v-container class="my-5">
-      <h2 class="text-center">Kantor Kami</h2>
+      <h2 class="text-center">Kampus Kami</h2>
       <br />
       <p class="text-center">
         Jalan Babarsari No 43, Caturtunggal, Depok, Yogyakarta
