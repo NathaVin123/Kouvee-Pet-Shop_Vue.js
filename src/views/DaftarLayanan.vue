@@ -28,6 +28,7 @@
               <td class="subtitle-1 font-weight-bold">
                 {{ item.nama_layanan }}
               </td>
+              <td>{{ item.harga }}</td>
             </tr>
           </tbody>
         </template>
@@ -50,6 +51,10 @@ export default {
         {
           text: "Nama Layanan",
           value: "nama_layanan",
+        },
+        {
+          text: "Harga Layanan",
+          value: "harga",
         },
       ],
       signin: [{ text: "Home", route: "/views/signin" }],
