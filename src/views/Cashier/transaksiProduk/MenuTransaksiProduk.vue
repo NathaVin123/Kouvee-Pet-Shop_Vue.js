@@ -955,7 +955,7 @@ export default {
     },
     updateStatusProduk(detailItem) {
       this.updatedId = detailItem.kode_penjualan_produk;
-      this.transaksiProduk.append("id_kasir", sessionStorage.getItem("Id"));
+      this.transaksiProduk.append("id_kasir", sessionStorage.getItem("Nama"));
       this.transaksiProduk.append(
         "modified_by",
         sessionStorage.getItem("Nama")
