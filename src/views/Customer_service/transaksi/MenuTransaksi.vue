@@ -1867,7 +1867,7 @@ export default {
     //memfilter transaksi produk yang statusnya menunggu pembayaran
     filterProgress3() {
       return this.transaksiProduks.filter((transaksiProduk) => {
-        return transaksiProduk.status_transaksi.match("Belum Selesai");
+        return transaksiProduk.status_transaksi.match("Menunggu Pembayaran");
       });
     },
     filteredItems(value) {

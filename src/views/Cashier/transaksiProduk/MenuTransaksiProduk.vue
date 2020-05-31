@@ -790,7 +790,7 @@ export default {
     },
     filterProgress2() {
       return this.transaksiProduks.filter((transaksiProduk) => {
-        return transaksiProduk.status_transaksi.match("Belum Selesai");
+        return transaksiProduk.status_transaksi.match("Menunggu Pembayaran");
       });
     },
     selectTabs(selectedTabs) {
@@ -874,7 +874,7 @@ export default {
       });
     },
     getDataTransaksiProduk() {
-      var uri = this.$apiUrl4 + "detailpenjualanproduk/" + "getWithJoin";
+      var uri = this.$apiUrl4 + "detailtransaksiproduk/" + "getWithJoin";
       this.$http.get(uri).then((response) => {
         this.detailTransaksiProduks = response.data.message;
       });
@@ -910,7 +910,7 @@ export default {
       this.updatedId = item.kode_penjualan_produk;
       var uri =
         this.$apiUrl4 +
-        "detailpenjualanproduk/" +
+        "detailtransaksiproduk/" +
         "getByTransactionId/" +
         this.updatedId;
       this.$http.get(uri).then((response) => {
@@ -996,7 +996,7 @@ export default {
       this.user.append("total_harga", this.formProduk.total_harga);
       this.user.append("modified_by", this.formProduk.modified_by);
       var uri =
-        this.$apiUrl4 + "detailpenjualanproduk/" + "update/" + this.updatedId;
+        this.$apiUrl4 + "detailtransaksiproduk/" + "update/" + this.updatedId;
       this.load = true;
       this.$http
         .post(uri, this.user)
@@ -1077,7 +1077,7 @@ export default {
         "id_detailproduk",
         JSON.stringify(this.detailIdTransaksiProduksFiltered)
       );
-      var uri = this.$apiUrl4 + "detailpenjualanproduk/" + "deleteMultiple";
+      var uri = this.$apiUrl4 + "detailtransaksiproduk/" + "deleteMultiple";
       this.load = true;
       this.$http
         .post(uri, this.deleteProduk)
@@ -1099,7 +1099,7 @@ export default {
         });
     },
     async deleteDataDetailProduk(deleteId) {
-      var uri = this.$apiUrl4 + "detailpenjualanproduk/" + deleteId; //data dihapus berdasarkan id
+      var uri = this.$apiUrl4 + "detailtransaksiproduk/" + deleteId; //data dihapus berdasarkan id
       await this.$http
         .delete(uri)
         .then((response) => {
@@ -1147,7 +1147,7 @@ export default {
         "jml_transaksi_produk",
         this.formProduk.jml_transaksi_produk
       );
-      var uri = this.$apiUrl4 + "detailpenjualanproduk";
+      var uri = this.$apiUrl4 + "detailtransaksiproduk";
       this.load = true;
       this.$http
         .post(uri, this.user)
