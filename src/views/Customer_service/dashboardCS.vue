@@ -82,6 +82,11 @@ export default {
           icon: "mdi-bank-transfer",
           route: "/Customer_service/transaksi/MenuTransaksi",
         },
+        {
+          title: "SMS Notifikasi",
+          icon: "mdi-email",
+          route: "/Customer_service/customer/MenuSMS",
+        },
       ],
     };
   },

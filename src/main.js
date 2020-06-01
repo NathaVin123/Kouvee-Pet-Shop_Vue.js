@@ -7,11 +7,11 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import Snotify, { SnotifyPosition } from "vue-snotify";
 
 Vue.prototype.$http = Axios;
-Vue.prototype.$apiUrl = "http://localhost:8081/LyricLibs_CI/index.php";
-Vue.prototype.$apiUrl2 = "http://localhost:8081/LyricLibs_CI/index.php/";
-Vue.prototype.$apiUrl3 = "http://localhost:8081/LyricLibs_CI/index.php/";
-Vue.prototype.$apiUrl4 = "http://localhost:8081/KouveePetShop_CI/index.php/";
-Vue.prototype.$apiUrl5 = "http://localhost:8081/KouveePetShop_CI/uploads/";
+Vue.prototype.$apiUrl = "http://localhost:8080/LyricLibs_CI/index.php";
+Vue.prototype.$apiUrl2 = "http://localhost:8080/LyricLibs_CI/index.php/";
+Vue.prototype.$apiUrl3 = "http://localhost:8080/LyricLibs_CI/index.php/";
+Vue.prototype.$apiUrl4 = "http://localhost:8080/KouveePetShop_CI/index.php/";
+Vue.prototype.$apiUrl5 = "http://localhost:8080/KouveePetShop_CI/uploads/";
 // Vue.prototype.$apiUrl5 = "http://127.0.0.1:8000/api/";
 
 Vue.use(VueGoogleMaps, {

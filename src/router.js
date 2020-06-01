@@ -373,6 +373,19 @@ export default new Router({
           path: "/Customer_service/transaksi/MenuTransaksi",
           component: loadTransaksi("MenuTransaksi"),
         },
+        {
+          beforeEnter(to, from, next) {
+            if (sessionStorage.getItem("Nama") != null) {
+              next();
+            } else {
+              sessionStorage.removeItem("Nama");
+              next({ path: "/views/signin" });
+            }
+          },
+          name: "customer_Admin",
+          path: "/Customer_service/customer/MenuSMS",
+          component: loadCustomer("MenuSMS"),
+        },
       ],
     },
     {
